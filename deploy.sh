@@ -12,15 +12,12 @@ cd docs/.vuepress/dist
 # deploy to github pages
 echo 'inhere.xyz' > CNAME
 
-if [ -z "$GITHUB_TOKEN" ]; then
-  msg='deploy'
-  githubUrl=git@github.com:xugaoyi/vuepress-theme-vdoing.git
-else
-  msg='auto deploy by github actions'
-  githubUrl=https://inhere:${GITHUB_TOKEN}@github.com/inhere/inhere.github.io.git
-  git config --global user.name "inhere"
-  git config --global user.email "in.798@qq.com"
-fi
+msg='auto deploy by github actions'
+githubUrl=https://inhere:${GITHUB_TOKEN}@github.com/inhere/inhere.github.io.git
+
+git config --global user.name "inhere"
+git config --global user.email "in.798@qq.com"
+
 git init
 git checkout -b main # goto branch main
 git add -A
