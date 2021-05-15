@@ -5,11 +5,11 @@ heroText: Inhere's blog
 tagline: 技术博客，积跬步以至千里，致敬每个爱学习的你。
 # actionText: 立刻进入 →
 # actionLink: /web/
-# bannerBg: auto # auto => 网格纹背景(有bodyBgImg时无背景)，默认 | none => 无 | '大图地址' | background: 自定义背景样式       提示：如发现文本颜色不适应你的背景时可以到palette.styl修改$bannerTextColor变量
+bannerBg: '/img/bg.jpg' # auto => 网格纹背景(有bodyBgImg时无背景)，默认 | none => 无 | '大图地址' | background: 自定义背景样式       提示：如发现文本颜色不适应你的背景时可以到palette.styl修改$bannerTextColor变量
 
 features: # 可选的
   - title: 后端
-    details: JavaScript、ES6、Vue框架等前端技术
+    details: PHP、GO、框架等后端技术
     link: /backend/ # 可选
     imgUrl: /img/code.png # 可选
   - title: 页面
