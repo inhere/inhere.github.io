@@ -18,13 +18,15 @@ if [ -z "$GITHUB_TOKEN" ]; then
 else
   msg='auto deploy by github actions'
   githubUrl=https://inhere:${GITHUB_TOKEN}@github.com/inhere/inhere.github.io.git
-  git config --global user.name "xugaoyi"
-  git config --global user.email "894072666@qq.com"
+  git config --global user.name "inhere"
+  git config --global user.email "in.798@qq.com"
 fi
 git init
+git checkout -b main # goto branch main
 git add -A
 git commit -m "${msg}"
-git push -f $githubUrl master:gh-pages # 推送到github gh-pages分支
+# git push -f $githubUrl main:gh-pages # 推送到github gh-pages分支
+git push -f $githubUrl gh-pages # 推送到github gh-pages分支
 
 # deploy to coding pages
 # echo 'www.xugaoyi.com\nxugaoyi.com' > CNAME  # 自定义域名
