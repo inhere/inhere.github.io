@@ -1,0 +1,61 @@
+---
+title: download docker by proxy on win10
+tags: 
+  - docker
+  - curl
+  - proxy
+date: 2021-05-15 22:04:52
+permalink: /pages/9117ad/
+sidebar: auto
+categories: 
+  - 随笔
+---
+
+使用命令行代理方式下载docker安装包
+
+## 配置
+
+为了方便开启代理，添加一点bash脚本：
+
+```bash
+vim ~/.bashrc
+```
+
+添加如下内容：
+
+```bash
+##
+## proxy setting
+##
+function proxy_off(){
+    unset http_proxy
+    unset https_proxy
+    echo -e "proxy closed"
+}
+
+function proxy_on() {
+    export no_proxy="localhost,127.0.0.1,localaddress,.localdomain.com"
+    export http_proxy="http://127.0.0.1:10809"
+    export https_proxy=$http_proxy
+    echo -e "proxy opened"
+}
+```
+
+> 注意调整端口号
+
+## download
+
+```bash
+bash // 重新载入bash配置
+proxy_on
+```
+
+开始使用curl下载安装包，同时启用断点续传：
+
+```bash
+$ curl -C - -O https://download.docker.com/win/stable/Docker%20Desktop%20Installer.exe
+** Resuming transfer from byte position 1255972
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100  835M  100  835M    0     0   9.9M      0  0:01:23  0:01:23 --:--:-- 9845k
+```
