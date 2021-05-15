@@ -10,7 +10,7 @@ npm run build
 cd docs/.vuepress/dist
 
 # deploy to github pages
-echo 'inhere.xyz' > CNAME
+# echo 'inhere.xyz' > CNAME
 
 msg='auto deploy by github actions'
 githubUrl=https://inhere:${GITHUB_TOKEN}@github.com/inhere/inhere.github.io.git
