@@ -29,9 +29,9 @@ jobs:
           node-version: ${{ matrix.node-version }} # 版本
       
       - name: Run npm build
-        run: npm run buld
+        run: npm run build
 
-      - name: Run deploy.sh # 步骤3
+      - name: Run npm deploy # 步骤3
         env: # 设置环境变量
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN  }} # toKen私密变量
           # CODING_TOKEN: ${{ secrets.CODING_TOKEN }}
