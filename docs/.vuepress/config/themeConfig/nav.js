@@ -16,9 +16,9 @@ module.exports = [
       {
         text: 'Golang',
         link: '/golang/',
-        items: [
-          // { text: '《JavaScript教程》笔记', link: '/note/javascript/' },
-        ],
+        // items: [
+        //   { text: 'chog', link: '/note/javascript/' },
+        // ],
       },
     ],
   },
@@ -30,8 +30,8 @@ module.exports = [
     ],
   },
   {
-    text: '技术',
-    link: '/tech/',
+    text: '工具',
+    link: '/tool/',
     items: [
       { text: '技术文档', link: '/pages/9a7ee40fc232253e/' },
       { text: 'GitHub技巧', link: '/pages/4c778760be26d8b3/' },

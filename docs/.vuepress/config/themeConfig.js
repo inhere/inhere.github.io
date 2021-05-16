@@ -54,7 +54,7 @@ module.exports = {
     // 博主信息，显示在首页侧边栏
     avatar: 'https://avatars.githubusercontent.com/u/5302062?v=4',
     name: 'Inhere',
-    slogan: 'learing',
+    slogan: 'learning ... working',
   },
   social: {
     // 社交图标，显示于博主信息栏和页脚栏
