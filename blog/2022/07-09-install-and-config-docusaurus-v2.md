@@ -208,6 +208,24 @@ module.exports = {
 - https://github.com/cmfcmf/docusaurus-search-local
 
 
+### openapi-docs
+
+> GitHub https://github.com/PaloAltoNetworks/docusaurus-openapi-docs
+
+Installation
+
+Plugin:
+
+```bash
+yarn add docusaurus-plugin-openapi-docs
+```
+
+Theme:
+
+```bash
+yarn add docusaurus-theme-openapi-docs
+```
+
 ## 一些使用说明
 
 一些有用的使用说明
