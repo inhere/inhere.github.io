@@ -73,7 +73,7 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       navbar: {
-        // hideOnScroll: true,
+        hideOnScroll: true, // 自动隐藏顶部导航栏
         // dark or primary or just remove it and it will be light
         // style: 'primary',
         title: "Inhere's Site",
@@ -100,7 +100,8 @@ const config = {
             label: 'Docs',
           },
           {
-            to: '/collections',
+            to: '/docs/collections',
+            docId: 'sites',
             label: 'Collections',
             position: 'left'
           },
@@ -150,7 +151,7 @@ const config = {
             items: [
               {
                 label: 'Blog',
-                to: '/blog',
+                to: '/',
               },
               {
                 label: 'GitHub',

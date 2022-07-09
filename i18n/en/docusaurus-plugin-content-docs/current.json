@@ -14,5 +14,17 @@
   "sidebar.tutorialSidebar.category.Tutorial - Extras": {
     "message": "Tutorial - Extras",
     "description": "The label for category Tutorial - Extras in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Tools": {
+    "message": "Tools",
+    "description": "The label for category Tools in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Tools.link.generated-index.description": {
+    "message": "5 minutes to learn the most important Docusaurus concepts.",
+    "description": "The generated-index page description for category Tools in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Collections": {
+    "message": "Collections",
+    "description": "The label for category Collections in sidebar tutorialSidebar"
   }
 }
