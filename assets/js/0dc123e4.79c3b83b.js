@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkmy_website=self.webpackChunkmy_website||[]).push([[4676],{7107:e=>{e.exports=JSON.parse('{"label":"gookit","permalink":"/tags/gookit","allTagsPath":"/tags","count":1}')}}]);

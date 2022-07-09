@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkmy_website=self.webpackChunkmy_website||[]).push([[4792],{1846:e=>{e.exports=JSON.parse('{"label":"zsh","permalink":"/en/tags/zsh","allTagsPath":"/en/tags","count":1}')}}]);
