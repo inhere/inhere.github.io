@@ -88,7 +88,7 @@ const config = {
             position: 'left'
           },
           {
-            to: '/tags',
+            to: '/blog/tags',
             label: 'Tags',
             position: 'left'
           },
