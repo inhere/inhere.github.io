@@ -26,22 +26,13 @@ PHP & Go & Java developer
 
 ## GitHub
 
-
 [![inhere's github stats](https://github-readme-stats.vercel.app/api?username=inhere&show_icons=true&theme=)](https://github.com/inhere)
 
 - GitHub https://github.com/inhere
+
+### 我的组织
+
 - Gookit https://github.com/gookit
 - PHPPkg https://github.com/phppkg
 - PHP-Toolkit https://github.com/php-toolkit
 
-
-### 🎨Go Projects
-
-[<img src="https://github-readme-stats.vercel.app/api/pin/?username=gookit&amp;repo=color" alt="ReadMe Card" class="no-zoom"></img>](https://github.com/gookit/color)
-[<img src="https://github-readme-stats.vercel.app/api/pin/?username=gookit&amp;repo=rux" alt="ReadMe Card" class="no-zoom"></img>](https://github.com/gookit/rux)
-
-### 🎨PHP Projects
-
-## 站点主题
-
-- Powered by https://github.com/facebook/docusaurus

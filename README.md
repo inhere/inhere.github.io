@@ -1,5 +1,7 @@
 # Inehre's Blog and Docs
 
+Build by [Docusaurus](https://github.com/facebook/docusaurus)
+
 ## Site address
 
 - http://inhere.xyz
@@ -17,6 +19,8 @@ npm run write-translations -- --locale en
 
 A Docusaurus v2 plugin that supports referencing code examples from public GitHub repositories.
 
+- GitHub https://github.com/saucelabs/docusaurus-theme-github-codeblock
+
 Instal plugins
 
 ```bash
@@ -24,9 +28,17 @@ yarn install @saucelabs/theme-github-codeblock
 npm install @saucelabs/theme-github-codeblock
 ```
 
+Usage:
+
+```markdown
+```js reference title="Example"
+https://github.com/saucelabs/docusaurus-theme-github-codeblock/blob/main/src/theme/ReferenceCodeBlock/index.tsx#L105-L108
+```
+```
+
 ### openapi-docs
 
-GitHub https://github.com/PaloAltoNetworks/docusaurus-openapi-docs
+- GitHub https://github.com/PaloAltoNetworks/docusaurus-openapi-docs
 
 Installation
 

@@ -33,10 +33,6 @@ const config = {
       en: {
         htmlLang: 'en-GB',
       },
-      // 如果你不需要覆盖默认值，你可以忽略这个语言（比如 zh-Hans）
-      // 'zh-CN': {
-      //   direction: 'zh-Hans',
-      // },
     },
   },
 
@@ -47,20 +43,24 @@ const config = {
       ({
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
+          remarkPlugins: [
+            [require('@docusaurus/remark-plugin-npm2yarn'), {sync: true}],
+          ],
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/inhere/inhere.github.io/tree/main/packages/docs/',
+          editUrl: 'https://github.com/inhere/inhere.github.io/tree/main/',
         },
         blog: {
           showReadingTime: true,
           postsPerPage: 6,
-          routeBasePath: '/', // 把博客放在站点根部
+          // routeBasePath: '/', // 把博客放在站点根部
           blogSidebarCount: 6, // 默认 5
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/inhere/inhere.github.io/tree/main/packages/blog/',
+          editUrl: 'https://github.com/inhere/inhere.github.io/tree/main/',
+          remarkPlugins: [
+            [require('@docusaurus/remark-plugin-npm2yarn'), {sync: true}],
+          ],
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
@@ -82,12 +82,11 @@ const config = {
           src: 'img/inhere-s03.png',
         },
         items: [
-          // blog 配置 presets.blog.routeBasePath 指向到首页了
-          // {
-          //   to: '/blog',
-          //   label: 'Blog',
-          //   position: 'left'
-          // },
+          {
+            to: '/blog',
+            label: 'Blog',
+            position: 'left'
+          },
           {
             to: '/tags',
             label: 'Tags',
@@ -106,6 +105,11 @@ const config = {
             position: 'left'
           },
           {
+            to: '/projects',
+            label: 'Projects',
+            position: 'left'
+          },
+          {
             to: '/about',
             label: 'About',
             position: 'left'
@@ -119,6 +123,10 @@ const config = {
             label: 'GitHub',
             position: 'right',
           },
+          // {
+          //   type: "docsVersionDropdown",
+          //   position: "right",
+          // },
         ],
       },
       footer: {
@@ -128,7 +136,7 @@ const config = {
             title: 'Docs',
             items: [
               {
-                label: 'Tutorial',
+                label: 'Docs',
                 to: '/docs/intro',
               },
             ],
@@ -137,11 +145,11 @@ const config = {
             title: 'Community',
             items: [
               {
-                label: 'Inhere GitHub',
+                label: "Inhere's GitHub",
                 href: 'https://github.com/inhere',
               },
               {
-                label: 'Gookit GitHub',
+                label: "Gookit on GitHub",
                 href: 'https://github.com/inhere',
               },
             ],
@@ -151,7 +159,7 @@ const config = {
             items: [
               {
                 label: 'Blog',
-                to: '/',
+                to: '/blog',
               },
               {
                 label: 'GitHub',
@@ -169,7 +177,19 @@ const config = {
       },
     }), // end theme config
     plugins: [
-
+        // '@docusaurus/remark-plugin-npm2yarn',
+    ],
+    themes: [
+      // '@saucelabs/theme-github-codeblock',
+      [
+        "@easyops-cn/docusaurus-search-local",
+        {
+          hashed: true,
+          language: ["en", "zh"],
+          highlightSearchTermsOnTargetPage: true,
+          explicitSearchResultPath: true,
+        },
+      ],
     ],
 };
 
