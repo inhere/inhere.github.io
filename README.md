@@ -11,6 +11,38 @@
 npm run write-translations -- --locale en
 ```
 
+## Plugins
+
+### theme-github-codeblock
+
+A Docusaurus v2 plugin that supports referencing code examples from public GitHub repositories.
+
+Instal plugins
+
+```bash
+yarn install @saucelabs/theme-github-codeblock
+npm install @saucelabs/theme-github-codeblock
+```
+
+### openapi-docs
+
+GitHub https://github.com/PaloAltoNetworks/docusaurus-openapi-docs
+
+Installation
+
+Plugin:
+
+```bash
+yarn add docusaurus-plugin-openapi-docs
+```
+
+Theme:
+
+```bash
+yarn add docusaurus-theme-openapi-docs
+```
+
+
 # Docusaurus
 
 This website is built using [Docusaurus 2](https://docusaurus.io/), a modern static website generator.
@@ -25,6 +57,8 @@ $ yarn
 
 ```
 $ yarn start
+# or
+$ npm run start
 ```
 
 This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.

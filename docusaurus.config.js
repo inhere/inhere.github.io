@@ -4,6 +4,7 @@
 const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 // const repoPath = 'inhere/inhere.github.io'
+// docs see https://docusaurus.io/zh-CN/docs/api/docusaurus-config
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -53,6 +54,7 @@ const config = {
         },
         blog: {
           showReadingTime: true,
+          postsPerPage: 6,
           routeBasePath: '/', // 把博客放在站点根部
           blogSidebarCount: 6, // 默认 5
           // Please change this to your repo.
@@ -71,6 +73,9 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       navbar: {
+        // hideOnScroll: true,
+        // dark or primary or just remove it and it will be light
+        // style: 'primary',
         title: "Inhere's Site",
         logo: {
           alt: "Inhere's Site Logo",
@@ -161,7 +166,10 @@ const config = {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
       },
-    }),
+    }), // end theme config
+    plugins: [
+
+    ],
 };
 
 module.exports = config;
