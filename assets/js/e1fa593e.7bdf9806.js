@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkmy_website=self.webpackChunkmy_website||[]).push([[8387],{7642:e=>{e.exports=JSON.parse('{"permalink":"/tags/cli-color","page":1,"postsPerPage":6,"totalPages":1,"totalCount":1,"blogDescription":"Blog","blogTitle":"Blog"}')}}]);
