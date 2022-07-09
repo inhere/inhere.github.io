@@ -1,4 +1,17 @@
-# Website
+# Inehre's Blog and Docs
+
+## Site address
+
+- http://inhere.xyz
+- https://inhere.github.io
+
+## Commands
+
+```bash
+npm run write-translations -- --locale en
+```
+
+# Docusaurus
 
 This website is built using [Docusaurus 2](https://docusaurus.io/), a modern static website generator.
 

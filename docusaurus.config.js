@@ -8,9 +8,10 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: "Inhere's Site",
-  tagline: 'Dinosaurs are cool',
+  tagline: "Inhere's site, blogs and project docs",
   url: 'https://inhere.github.io',
   baseUrl: '/',
+  trailingSlash: false,
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
@@ -19,13 +20,23 @@ const config = {
   // If you aren't using GitHub pages, you don't need these.
   organizationName: 'inhere', // Usually your GitHub org/user name.
   projectName: 'inhere.github.io', // Usually your repo name.
+  deploymentBranch: 'gh-pages',
 
   // Even if you don't use internalization, you can use this field to set useful
   // metadata like html lang. For example, if your site is Chinese, you may want
   // to replace "en" with "zh-Hans".
   i18n: {
-    defaultLocale: 'en',
-    locales: ['en', "zh-CN"],
+    defaultLocale: 'zh-CN',
+    locales: [ "zh-CN", 'en'],
+    localeConfigs: {
+      en: {
+        htmlLang: 'en-GB',
+      },
+      // 如果你不需要覆盖默认值，你可以忽略这个语言（比如 zh-Hans）
+      // 'zh-CN': {
+      //   direction: 'zh-Hans',
+      // },
+    },
   },
 
   presets: [
@@ -38,14 +49,16 @@ const config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/inhere/inhere.github.io/tree/main/packages/create-docusaurus/templates/shared/',
+            'https://github.com/inhere/inhere.github.io/tree/main/packages/docs/',
         },
         blog: {
           showReadingTime: true,
+          routeBasePath: '/', // 把博客放在站点根部
+          blogSidebarCount: 6, // 默认 5
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/inhere/inhere.github.io/tree/main/packages/create-docusaurus/templates/shared/',
+            'https://github.com/inhere/inhere.github.io/tree/main/packages/blog/',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
@@ -58,21 +71,45 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       navbar: {
-        title: 'My Site',
+        title: "Inhere's Site",
         logo: {
-          alt: 'My Site Logo',
-          src: 'img/logo.svg',
+          alt: "Inhere's Site Logo",
+          src: 'img/inhere-s03.png',
         },
         items: [
+          // blog 配置 presets.blog.routeBasePath 指向到首页了
+          // {
+          //   to: '/blog',
+          //   label: 'Blog',
+          //   position: 'left'
+          // },
+          {
+            to: '/tags',
+            label: 'Tags',
+            position: 'left'
+          },
           {
             type: 'doc',
             docId: 'intro',
             position: 'left',
-            label: 'Tutorial',
+            label: 'Docs',
           },
-          {to: '/blog', label: 'Blog', position: 'left'},
           {
-            href: 'https://github.com/inhere/inhere.github.io',
+            to: '/collections',
+            label: 'Collections',
+            position: 'left'
+          },
+          {
+            to: '/about',
+            label: 'About',
+            position: 'left'
+          },
+          {
+            type: 'localeDropdown',
+            position: 'right',
+          },
+          {
+            href: 'https://github.com/inhere',
             label: 'GitHub',
             position: 'right',
           },
@@ -117,7 +154,8 @@ const config = {
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+        copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc.
+         Built with <a target="block" href="https://github.com/facebook/docusaurus">Docusaurus</a>.`,
       },
       prism: {
         theme: lightCodeTheme,
