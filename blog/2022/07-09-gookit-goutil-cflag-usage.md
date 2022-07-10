@@ -164,13 +164,13 @@ func handleFunc(c *cflag.CFlags) error {
 }
 ```
 
-## 设置必须和短选项
+### 设置必须和短选项
 
 可以设置选项为 `required` 必填项，并且支持设置 **短选项** 名称。
 
 > TIPs: 通过扩展解析了选项的 `usage` 来实现 `required` 和 `shorts`
 
-### `usage` 格式
+#### `usage` 格式
 
 - 默认：`desc`
 - 格式1: `desc;required`
@@ -205,7 +205,7 @@ func handleFunc(c *cflag.CFlags) error {
 	cliutil.Infoln("arg2 =", c.Arg("arg2").Int())
 ```
 
-## 显示帮助信息
+### 显示帮助信息
 
 ```shell
 go run ./cflag/_example/cmd.go -h
@@ -215,7 +215,7 @@ go run ./cflag/_example/cmd.go -h
 
 ![cmd-help](https://raw.githubusercontent.com/gookit/goutil/master/cflag/_example/cmd-help.png)
 
-## 运行命令
+### 运行命令
 
 ```shell
 go run ./cflag/_example/cmd.go --name inhere -a 12 --lo val ab cd
