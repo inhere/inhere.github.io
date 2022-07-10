@@ -38,7 +38,7 @@
         <category label="docusaurus" term="docusaurus"/>
     </entry>
     <entry>
-        <title type="html"><![CDATA[cflag - wraps and extends Go flag build pertty CLI command]]></title>
+        <title type="html"><![CDATA[cflag - 包装Go FlagSet构建简单且漂亮的命令行应用程序]]></title>
         <id>gookit-goutil-cflag-intro</id>
         <link href="https://inhere.github.io/blog/gookit-goutil-cflag-intro"/>
         <updated>2022-07-09T16:00:00.000Z</updated>
