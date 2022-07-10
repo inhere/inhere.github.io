@@ -7,8 +7,14 @@ Build by [Docusaurus](https://github.com/facebook/docusaurus)
 - http://inhere.xyz
 - https://inhere.github.io
 
+## Quick generate new doc
 
-# Docusaurus
+```bash
+kite run script/cgen.php -h
+kite run script/cgen.php --name 'install tools by scoop on windows' --tags tool,windows,scoop
+```
+
+## Docusaurus
 
 This website is built using [Docusaurus 2](https://docusaurus.io/), a modern static website generator.
 
