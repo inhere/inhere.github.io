@@ -4,15 +4,14 @@ tags: [golang, gookit, flag, cli, console]
 date: 2022-07-09T16:00
 slug: gookit-goutil-cflag-intro
 authors: inhere
+image: https://raw.githubusercontent.com/gookit/goutil/master/cflag/_example/cmd-help.png
 ---
 
 `cflag` - 包装和扩展 Go `flag.FlagSet` 以构建简单且漂亮的命令行应用程序。
 
-TODO image
-
 <!--truncate-->
 
-## Use flag
+## 使用 flag 包
 
 Go `flag` 是Go内置的包，使用  `flag` 包构建一个命令应用非常简单。
 
@@ -69,7 +68,7 @@ func handleFunc1() {
 go run ./cflag/_example/rawflag.go -h
 ```
 
-TODO image
+![rawflag-help](https://raw.githubusercontent.com/gookit/goutil/master/cflag/_example/rawflag-help.png)
 
 ### 不足的点
 
@@ -80,7 +79,7 @@ TODO image
 - 不能检查选项是否为空
 - 渲染的帮助信息非常简陋
 
-## cflag 使用
+## 使用 cflag 包
 
 `cflag` - 包装和扩展 Go `flag.FlagSet` 以构建简单且漂亮的命令行应用程序
 
