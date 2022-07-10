@@ -54,6 +54,7 @@ const config = {
           showReadingTime: true,
           postsPerPage: 6,
           // routeBasePath: '/', // 把博客放在站点根部
+          blogSidebarTitle: '📅最近文章',
           blogSidebarCount: 6, // 默认 5
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
