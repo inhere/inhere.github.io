@@ -1,5 +1,5 @@
 ---
-title: cflag - wraps and extends Go flag build pertty CLI command
+title: cflag - 包装Go FlagSet构建简单且漂亮的命令行应用程序
 tags: [golang, gookit, flag, cli, console]
 date: 2022-07-09T16:00
 slug: gookit-goutil-cflag-intro
