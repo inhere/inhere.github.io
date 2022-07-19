@@ -27,11 +27,13 @@ title: My Projects
 
 ### 🎨PHP Projects
 
-
+[<img src="https://github-readme-stats.vercel.app/api/pin/?username=inhere&amp;repo=php-console" alt="ReadMe Card" class="no-zoom"></img>](https://github.com/inhere/php-console)
+[<img src="https://github-readme-stats.vercel.app/api/pin/?username=inhere&amp;repo=php-validate" alt="ReadMe Card" class="no-zoom"></img>](https://github.com/inhere/php-validate)
 [<img src="https://github-readme-stats.vercel.app/api/pin/?username=phppkg&amp;repo=easytpl" alt="ReadMe Card" class="no-zoom"></img>](https://github.com/phppkg/easytpl)
 [<img src="https://github-readme-stats.vercel.app/api/pin/?username=phppkg&amp;repo=phpgit" alt="ReadMe Card" class="no-zoom"></img>](https://github.com/phppkg/phpgit)
 [<img src="https://github-readme-stats.vercel.app/api/pin/?username=phppkg&amp;repo=config" alt="ReadMe Card" class="no-zoom"></img>](https://github.com/phppkg/config)
 [<img src="https://github-readme-stats.vercel.app/api/pin/?username=php-toolkit&amp;repo=pflag" alt="ReadMe Card" class="no-zoom"></img>](https://github.com/php-toolkit/pflag)
+[<img src="https://github-readme-stats.vercel.app/api/pin/?username=php-toolkit&amp;repo=stdlib" alt="ReadMe Card" class="no-zoom"></img>](https://github.com/php-toolkit/stdlib)
 
 ## 参与项目
 
