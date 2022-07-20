@@ -8,14 +8,13 @@ authors: inhere
 
 `cflag` - wraps and extends Go flag build pertty CLI command
 
-TODO image
+<!--truncate-->
 
-## Use flag
+## Use Go flag
 
-使用Go `flag` 包构建一个命令应用。
+Go `flag` is a package built into Go, and it is very easy to build a command application using the `flag` package.
 
-
-```go
+```go title="cflag/_example/rawflag.go"
 package main
 
 import (
@@ -62,32 +61,185 @@ func handleFunc1() {
 }
 ```
 
-### Show Help
+### Show help
 
 ```bash
 go run ./cflag/_example/rawflag.go -h
 ```
 
-TODO image
+![rawflag-help](https://raw.githubusercontent.com/gookit/goutil/master/cflag/_example/rawflag-help.png)
 
-### 不足的点
+### Some problems
 
-它是Go内置的包，使用也非常简单。但是有一些不足的点：
+It's a package built into Go, and it's very simple to use. But there are some problems:
 
-- 不支持给选项添加短选项
-- 不支持解析后续参数信息
-- 不能检查选项是否为空
-- 渲染的帮助信息非常简陋
+- Adding short options to options is not supported
+- Does not support parsing subsequent parameter information
+- Can't check if option is empty
+- Rendering help information is very rudimentary
 
 ## Use cflag
 
 
 `cflag` - Wraps and extends go `flag.FlagSet` to build simple command line applications
 
+- As easy as Go `flag` to use
 - Supports auto-rendering of pretty help messages
 - Allows adding short options to flag options, and multiples
 - Allows binding named parameters
 - Allows setting arguments or options as required
 - Allows setting validators for arguments or options
 
+
+### Install
+
+```shell
+go get github.com/gookit/goutil/cflag
+```
+
+### Usage example
+
+`cflag` has the same binding option information as Go `flag`. At the same time, some additional information has been added, such as version, description, etc.
+
+```go title="cflag/_example/cmd.go"
+package main
+
+import (
+	"os"
+
+	"github.com/gookit/goutil/cflag"
+	"github.com/gookit/goutil/cliutil"
+)
+
+var opts = struct {
+	age  int
+	name string
+	str1 string
+	lOpt string
+	bol  bool
+}{}
+
+// go run ./_example/cmd.go
+// go run ./cflag/_example/cmd.go -h
+// go run ./cflag/_example/cmd.go --name inhere -a 12 --lo val ab cd
+func main() {
+	c := cflag.New(func(c *cflag.CFlags) {
+		c.Desc = "this is a demo command"
+		c.Version = "0.5.1"
+	})
+	c.IntVar(&opts.age, "age", 0, "this is a int option;;a")
+	c.StringVar(&opts.name, "name", "", "this is a string option and required;true")
+	c.StringVar(&opts.str1, "str1", "def-val", "this is a string option with default value;;s")
+	c.StringVar(&opts.lOpt, "long-opt", "", "this is a string option with shorts;;lo")
+
+    // highlight-start
+	c.AddArg("arg1", "this is arg1", true, nil)
+	c.AddArg("arg2", "this is arg2", true, nil)
+    // highlight-end
+
+	// add handle func
+	c.Func = handleFunc
+
+	c.MustParse(os.Args[1:])
+}
+
+func handleFunc(c *cflag.CFlags) error {
+	cliutil.Magentaln("hello, this is command:", c.Name())
+	cliutil.Infoln("after parse, do something ...")
+
+	cliutil.Yellowln("option values:")
+	cliutil.Infoln("opts.age =", opts.age)
+	cliutil.Infoln("opts.name =", opts.name)
+	cliutil.Infoln("opts.str1 =", opts.str1)
+	cliutil.Infoln("opts.lOpt =", opts.lOpt)
+
+    // highlight-start
+	cliutil.Yellowln("argument values:")
+	cliutil.Infoln("arg1 =", c.Arg("arg1").String())
+	cliutil.Infoln("arg2 =", c.Arg("arg2").String())
+    // highlight-end
+
+	cliutil.Infoln("\nremain args =", c.RemainArgs())
+
+	return nil
+}
+```
+
+### Set required and shortcuts
+
+Option can be set as required(`required`), and supports setting **short option** name.
+
+> TIPs: Implement `required` and `shorts` by extending `usage` that parses options
+
+
+#### `usage` format
+
+- Defatul: `desc`
+- Foramt 1: `desc;required`
+- Foramt 2: `desc;required;shorts`
+- `required`: A boolean string. Mark option is required
+  - True: `true,on,yes`
+  - False: `false,off,no,''`
+- `shorts`: Shortcut names for options, multiple values are allowed, separated by commas `,`
+
+**Examples**:
+
+```go
+    // set option 'name' is required
+	c.StringVar(&opts.name, "name", "", "this is a string option and required;true")
+    // set option 'str1' shorts: s
+	c.StringVar(&opts.str1, "str1", "def-val", "this is a string option with default value;;s")
+```
+
+### 绑定和获取参数
+
+**Binding arguments**
+
+```go
+	c.AddArg("arg1", "this is arg1", true, nil)
+	c.AddArg("arg2", "this is arg2", true, nil)
+```
+
+**Get arguments by name**
+
+```go
+	cliutil.Infoln("arg1 =", c.Arg("arg1").String())
+	cliutil.Infoln("arg2 =", c.Arg("arg2").Int())
+```
+
+### Show help
+
+```shell
+go run ./cflag/_example/cmd.go -h
+```
+
+**Output**:
+
+![cmd-help](https://raw.githubusercontent.com/gookit/goutil/master/cflag/_example/cmd-help.png)
+
+### Run command
+
+```shell
+go run ./cflag/_example/cmd.go --name inhere -a 12 --lo val ab cd
+go run ./cflag/_example/cmd.go --name inhere -a 12 --lo val ab cd de fg
+```
+
+**Output**:
+
+![cmd-run](https://raw.githubusercontent.com/gookit/goutil/master/cflag/_example/cmd-run.png)
+
+### `required` check
+
+```shell
+go run ./cflag/_example/cmd.go -a 22
+go run ./cflag/_example/cmd.go --name inhere
+```
+
+**Output**:
+
+![cmd-required.png](https://raw.githubusercontent.com/gookit/goutil/master/cflag/_example/cmd-required.png)
+
+## GitHub
+
+- [gookit/goutil/cflag](https://github.com/gookit/goutil/tree/master/cflag)
 

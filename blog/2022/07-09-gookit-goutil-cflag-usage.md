@@ -191,14 +191,14 @@ func handleFunc(c *cflag.CFlags) error {
 
 ### 绑定和获取参数
 
-绑定参数信息
+**绑定参数信息**
 
 ```go
 	c.AddArg("arg1", "this is arg1", true, nil)
 	c.AddArg("arg2", "this is arg2", true, nil)
 ```
 
-获取参数信息
+**获取参数信息**
 
 ```go
 	cliutil.Infoln("arg1 =", c.Arg("arg1").String())
