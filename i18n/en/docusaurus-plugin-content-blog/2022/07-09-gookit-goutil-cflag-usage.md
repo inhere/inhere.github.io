@@ -191,7 +191,7 @@ Option can be set as required(`required`), and supports setting **short option**
 	c.StringVar(&opts.str1, "str1", "def-val", "this is a string option with default value;;s")
 ```
 
-### 绑定和获取参数
+### Binding and get arguments
 
 **Binding arguments**
 
