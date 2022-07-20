@@ -99,12 +99,12 @@ const config = {
             position: 'left',
             label: 'Docs',
           },
-          {
-            to: '/docs/collections',
-            docId: 'sites',
-            label: 'Collections',
-            position: 'left'
-          },
+          // {
+          //   to: '/docs/collections',
+          //   docId: 'sites',
+          //   label: 'Collections',
+          //   position: 'left'
+          // },
           {
             to: '/projects',
             label: 'Projects',
