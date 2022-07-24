@@ -12,12 +12,13 @@ use PhpPkg\EasyTpl\TextTemplate;
 use Toolkit\Stdlib\OS;
 use Toolkit\Stdlib\Str;
 
- // load kite boot file, allow use all class in the kite.
- $kiteBootFile = getenv('KITE_BOOT_FILE');
+// load kite boot file, allow use all class in the kite.
+$kiteBootFile = getenv('KITE_BOOT_FILE');
 if (!$kiteBootFile || !is_file($kiteBootFile)) {
     throw new RuntimeException("kite boot file is not exists", 1);
 }
 
+date_default_timezone_set('PRC');
 echo "... load kite boot file: ", $kiteBootFile, "\n\n";
 require $kiteBootFile;
 
@@ -34,6 +35,7 @@ CliCmd::new()
         // config flags
         $cmd->options = [
             'i,interactive' => 'bool;interactive set config',
+            'd,draft' => 'bool;create new draft article to the ./draft dir',
             'i18n' => 'i18n language name, generate file to i18n folder. eg: en',
             'a, author' => "author for the new markdwon article, default will auto fetch OS user;;$osUser",
             'name' => 'the new markdown file name;true',
@@ -46,6 +48,11 @@ CliCmd::new()
         ];
         // or use property
         // $cmd->arguments = [...];
+        // $cmd->getFlags()->setHelp();
+        $cmd->getFlags()->setExample([
+            '{binWithCmd} --name pflag-better-php-command-line-parse-library',
+            '{binWithCmd} --name pflag-better-php-command-line-parse-library -d',
+        ]);
     })
     // ->withArguments([
     //     'arg1' => 'this is arg1, is string'
@@ -59,9 +66,10 @@ function handle_func(FlagsParser $fs)
     $needValues = ['date', 'tpl-file'];
 
     $basePath = dirname(__DIR__);
-    $tplFile = $basePath . $fs->getOpt('tpl-file');
+    $tplFile = $fs->getOpt('tpl-file');
+    $tplFile = $basePath . '/' . ltrim($tplFile, './');
     if (!is_file($tplFile)) {
-        throw new InvalidArgumentException('template file not exists');
+        throw new InvalidArgumentException('template file not exists, path: ' . $tplFile);
     }
 
     $i18n = $fs->getOpt('i18n');
@@ -74,9 +82,15 @@ function handle_func(FlagsParser $fs)
 
     $year = substr($datetime, 0, 4);
     $mday = substr($datetime, 5, 5);
+
+    $subDir = $i18n ? "$i18n/docusaurus-plugin-content-$type" : $type;
+    if ($fs->getOpt('draft')) {
+        $subDir = 'draft';
+    }
+
     $mdFile = implode('/', array_filter([
         $basePath,
-        $i18n ? "$i18n/docusaurus-plugin-content-$type" : $type,
+        $subDir,
         $year,
         "$mday-$name.md"
     ]));
@@ -101,7 +115,10 @@ function handle_func(FlagsParser $fs)
     vdump($infos);
 
     // TIP: must end with newline.
-    // println('continue to generate?[y/N]');
+    if (DIRECTORY_SEPARATOR !== '\\') {
+        println('continue to generate?[y/N]');
+    }
+
     // echo "continue to generate?[y/N]\n";
     $ans = Cli::readln("continue to generate?[y/N]\n");
     if (!$ans || stripos($ans, 'y') !== 0 ) {
