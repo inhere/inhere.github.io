@@ -7,7 +7,7 @@ authors: {{ $author | nl }}
 # gen by: {{ $genMark | nl }}
 ---
 
-TODO 
+{{ $desc ?: 'TODO' | nl }}
 
 <!--truncate-->
 

@@ -1,6 +1,6 @@
 ---
 title: cflag - 包装Go FlagSet构建简单且漂亮的命令行应用程序
-tags: [golang, gookit, flag, cli, console]
+tags: [golang, gookit, flag, cli, console, command-line]
 date: 2022-07-09T16:00
 slug: gookit-goutil-cflag-intro
 authors: inhere
@@ -8,6 +8,8 @@ image: https://raw.githubusercontent.com/gookit/goutil/master/cflag/_example/cmd
 ---
 
 `cflag` - 包装和扩展 Go `flag.FlagSet` 以构建简单且漂亮的命令行应用程序。
+
+![cmd-help](https://raw.githubusercontent.com/gookit/goutil/master/cflag/_example/cmd-help.png)
 
 <!--truncate-->
 

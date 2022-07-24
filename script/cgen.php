@@ -6,6 +6,7 @@
  *  KITE_BOOT_FILE=C:\\Users/inhere/.kite/app/boot.php php script/cgen.php --name "install tools by scoop on windows"
  */
 use Toolkit\Cli\Cli;
+use Toolkit\FsUtil\File;
 use Toolkit\PFlag\CliCmd;
 use Toolkit\PFlag\FlagsParser;
 use PhpPkg\EasyTpl\TextTemplate;
@@ -45,13 +46,15 @@ CliCmd::new()
             'type' => 'the new markdwon article file type, allow: docs, blog;;blog',
             'date' => "the article publish date, format: `yyyy-mm-ddThh:ii`,\ndefault is current datetime",
             't,tpl-file'     => 'the tempalte file;;./internal/template/demo.tpl',
+            'c,config'     => 'the INI config file for set article information',
         ];
         // or use property
         // $cmd->arguments = [...];
         // $cmd->getFlags()->setHelp();
         $cmd->getFlags()->setExample([
-            '{binWithCmd} --name pflag-better-php-command-line-parse-library',
+            '{binWithCmd} --name pflag-better-php-command-line-parse-library --tags php,cli,command',
             '{binWithCmd} --name pflag-better-php-command-line-parse-library -d',
+            '{binWithCmd} --name pflag-better-php-command-line-parse-library -c script/conf.ini',
         ]);
     })
     // ->withArguments([
@@ -72,13 +75,19 @@ function handle_func(FlagsParser $fs)
         throw new InvalidArgumentException('template file not exists, path: ' . $tplFile);
     }
 
+    $conf = [];
+    if ($confFile = $fs->getOpt('config')) {
+        println("load information form config file: $confFile");
+        $conf = File::parseIni($confFile);
+    }
+
     $i18n = $fs->getOpt('i18n');
     $type = $fs->getOpt('type');
-    $tags = $fs->getOpt('tags');
+    $tags = $fs->getOpt('tags', $conf['tags'] ?? '');
     $name = $fs->getOpt('name');
     $name = strtolower(str_replace(' ', '-', $name));
 
-    $datetime = date('Y-m-d\TH:i');
+    $datetime = $fs->getOpt('date', $conf['date'] ?? date('Y-m-d\TH:i'));
 
     $year = substr($datetime, 0, 4);
     $mday = substr($datetime, 5, 5);
@@ -95,12 +104,15 @@ function handle_func(FlagsParser $fs)
         "$mday-$name.md"
     ]));
 
+    $title = $fs->getOpt('title', $conf['title'] ?? str_replace('-', ' ', $name));
+
     $tplVars = [
-        'date'   => $datetime,
+        'date'   => str_replace(' ', 'T', $datetime),
         'tags'   => $tags,
         'slug'   => $fs->getOpt('slug', $name),
         'author' => $fs->getOpt('author'),
-        'title'   => $fs->getOpt('title', str_replace('-', ' ', $name)),
+        'title'   => $title,
+        'desc'    => $conf['desc'] ?? '',
         'genMark' => 'kite run ' . Str::shellQuotesToLine($fs->getFlags(), $fs->getScriptFile()),
     ];
     $infos = $tplVars;
@@ -131,7 +143,7 @@ function handle_func(FlagsParser $fs)
     $contents = $tplEng->renderString($contents, $tplVars);
 
     Cli::info("Write contents to the: $mdFile");
-    $ok = file_put_contents($mdFile, $contents);
+    $ok = File::mkdirSave($mdFile, $contents);
     if ($ok !== false) {
         Cli::success("Generate new article file completed");
     }
