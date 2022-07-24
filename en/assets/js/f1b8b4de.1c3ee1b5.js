@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkmy_website=self.webpackChunkmy_website||[]).push([[2946],{8160:e=>{e.exports=JSON.parse('{"label":"telnet","permalink":"/en/blog/tags/telnet","allTagsPath":"/en/blog/tags","count":1}')}}]);
