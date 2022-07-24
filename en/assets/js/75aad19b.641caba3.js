@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkmy_website=self.webpackChunkmy_website||[]).push([[7817],{2112:e=>{e.exports=JSON.parse('{"label":"sftp","permalink":"/en/blog/tags/sftp","allTagsPath":"/en/blog/tags","count":1}')}}]);

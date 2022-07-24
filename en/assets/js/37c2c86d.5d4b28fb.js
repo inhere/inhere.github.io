@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkmy_website=self.webpackChunkmy_website||[]).push([[3986],{9842:e=>{e.exports=JSON.parse('{"label":"macOS","permalink":"/en/blog/tags/mac-os","allTagsPath":"/en/blog/tags","count":1}')}}]);

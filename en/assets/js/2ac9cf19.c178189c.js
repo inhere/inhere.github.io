@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkmy_website=self.webpackChunkmy_website||[]).push([[5230],{5269:e=>{e.exports=JSON.parse('{"label":"scp","permalink":"/en/blog/tags/scp","allTagsPath":"/en/blog/tags","count":1}')}}]);

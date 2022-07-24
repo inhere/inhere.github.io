@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkmy_website=self.webpackChunkmy_website||[]).push([[7945],{8158:e=>{e.exports=JSON.parse('{"label":"ngnix","permalink":"/en/blog/tags/ngnix","allTagsPath":"/en/blog/tags","count":1}')}}]);
