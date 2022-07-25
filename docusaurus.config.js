@@ -163,7 +163,11 @@ const config = {
                 to: '/blog',
               },
               {
-                label: 'GitHub',
+                label: 'Blog Archives',
+                to: '/blog/archive',
+              },
+              {
+                label: 'Site GitHub',
                 href: 'https://github.com/inhere/inhere.github.io',
               },
             ],

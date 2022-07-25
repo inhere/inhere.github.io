@@ -1,7 +1,7 @@
 ---
 title: pflag - 更好的PHP命令行选项解析库
 tags: [php, cli, command-line, parser]
-date: 2022-10-11T15:11
+date: 2021-10-11T15:11
 slug: pflag-better-php-command-line-parse-library
 authors: inhere
 # gen by: kite run script/cgen.php --name pflag-better-php-command-line-parse-library
