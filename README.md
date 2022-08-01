@@ -11,7 +11,7 @@ Build by [Docusaurus](https://github.com/facebook/docusaurus)
 
 ```bash
 kite run script/cgen.php -h
-kite run script/cgen.php --name 'install tools by scoop on windows' --tags tool,windows,scoop
+kite run script/cgen.php --name install-tools-by-scoop-on-windows --tags tool,windows,scoop
 ```
 
 ## Docusaurus
@@ -26,8 +26,10 @@ $ yarn
 
 ### Local Development
 
-```
+```bash
 $ yarn start
+# or
+$ pnpm start
 # or
 $ npm run start
 ```

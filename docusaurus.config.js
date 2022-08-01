@@ -146,12 +146,16 @@ const config = {
             title: 'Community',
             items: [
               {
-                label: "Inhere's GitHub",
+                label: "Inhere GitHub",
                 href: 'https://github.com/inhere',
               },
               {
-                label: "Gookit on GitHub",
-                href: 'https://github.com/inhere',
+                label: "Gookit GitHub",
+                href: 'https://github.com/gookit',
+              },
+              {
+                label: "PHPPkg GitHub",
+                href: 'https://github.com/phppkg',
               },
             ],
           },
@@ -161,6 +165,10 @@ const config = {
               {
                 label: 'Blog',
                 to: '/blog',
+              },
+              {
+                label: 'Blog Tags',
+                to: '/blog/tags',
               },
               {
                 label: 'Blog Archives',
