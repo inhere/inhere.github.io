@@ -185,6 +185,48 @@ git pull --rebase
 git config branch.BRANCH_NAME_HERE.rebase true
 ```
 
-转自 [10 个很有用的高级 Git 命令](http://www.oschina.net/translate/10-useful-advanced-git-commands)
+## Git revert 后再次Merge代码丢失问题
+
+解决Git Revert操作后再次Merge代码被冲掉的问题。
+
+### 产生过程
+
+- 开发分支Dev 错误的PR合并到了 目标分支A
+- 使用 `git revert` 撤销了这次 PR 合并
+- 后面想真正将 分支Dev 合并到 分支A 时，却发现没有第一次PR的代码
+
+### 解决方式1：
+
+- 删除现有的 目标分支A
+- 从 Master 重新切一个目标分支A
+- 将开发分支Dev合并到目标分支A
+
+### 解决方式2：
+
+对 revert 的那次提交记录再次进行revert  (官方推荐方法)
+
+```shell
+git checkout A
+git log
+
+# 找到 revert 的那条提交记录
+# 注意: revert 相关的会有两条记录
+#  第一条是 revert，第二条是 revert 后 merge 的记录，这里取第一条
+
+# revert之前的revert第一条commit_id
+git revert <commit_id>
+```
+
+## git revert 和  git reset的区别
+
+- git revert是用一次新的commit来回滚之前的commit，git reset是直接删除指定的commit。
+- git reset 是把HEAD向后移动了一下，而git revert是HEAD继续前进，只是新的commit的内容和要revert的内容正好相反，能够抵消要被revert的内容。
+
+在回滚这一操作上看，效果差不多。但是在日后继续merge以前的老版本时有区别。
+因为git revert是用一次逆向的commit“中和”之前的提交，因此日后合并老的branch时，导致这部分改变不会再次出现，但是git reset是之间把某些commit在某个branch上删除，因而和老的branch再次merge时，这些被回滚的commit应该还会被引入。
+
+
+
+> refers: [10 个很有用的高级 Git 命令](http://www.oschina.net/translate/10-useful-advanced-git-commands)
 
 
