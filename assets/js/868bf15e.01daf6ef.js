@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkmy_website=self.webpackChunkmy_website||[]).push([[4273],{1991:o=>{o.exports=JSON.parse('{"title":"Gookit","description":"there gookit project docs collections","slug":"/category/gookit","permalink":"/docs/category/gookit","navigation":{"next":{"title":"Gookit \u5de5\u5177\u5305","permalink":"/docs/gookit/about-gookit"}}}')}}]);
