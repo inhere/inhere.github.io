@@ -1,6 +1,8 @@
 # Change Log
 
-## v0.6.1
+- Github https://github.com/gookit/goutil
+
+## v0.6.1 Change Log
 
 > Released at 2022.12.12
 

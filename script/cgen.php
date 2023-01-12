@@ -26,8 +26,7 @@ require $kiteBootFile;
 // install tools by scoop on windows
 // title: Better parse command line flags in PHP
 
-CliCmd::new()
-    ->config(function (CliCmd $cmd) {
+CliCmd::newWith(function (CliCmd $cmd) {
         $cmd->name = 'cgen';
         $cmd->desc = 'quickly generate a blog or doc markdown file';
 
