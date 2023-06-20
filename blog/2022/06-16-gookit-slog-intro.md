@@ -6,9 +6,9 @@ slug: gookit-slog-intro
 authors: inhere
 ---
 
-slog - Go 实现的一个易于使用的，轻量级、可配置、可扩展的日志库
+`gookit/slog` 📑 一个易于使用的，轻量级、可配置、可扩展的日志库。支持多个级别，输出到多文件；内置文件日志处理、自动切割、清理、压缩等增强功能
 
-![image](https://raw.githubusercontent.com/gookit/slog/master/\_example/images/console-log-all-level.png)
+![image](https://raw.githubusercontent.com/gookit/slog/master/_example/images/console-log-all-level.png)
 
 <!--truncate-->
 
@@ -115,6 +115,22 @@ $ ls /tmp/logs
 app_error.log
 app_info.log
 ```
+
+## 自定义创建logger
+
+```go
+
+
+```
+
+## bufwrite 包
+
+`github.com/gookit/slog/bufwrite`
+
+## rotatefile 包
+
+`github.com/gookit/slog/rotatefile`
+
 
 ## 更多使用
 

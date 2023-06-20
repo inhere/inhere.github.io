@@ -4,7 +4,6 @@ Build by [Docusaurus](https://github.com/facebook/docusaurus)
 
 ## Site address
 
-- http://inhere.xyz
 - https://inhere.github.io
 
 ## Quick generate new doc
