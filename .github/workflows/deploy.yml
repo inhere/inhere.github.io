@@ -18,6 +18,13 @@ jobs:
           node-version: 18
           cache: pnpm
 
+      - uses: pnpm/action-setup@v2
+        name: Install pnpm
+        id: pnpm-install
+        with:
+          version: 8
+          run_install: false
+
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
       - name: Build website
