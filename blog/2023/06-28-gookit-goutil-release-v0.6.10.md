@@ -1,5 +1,5 @@
 ---
-title: gookit/goutil - 发布 v0.6.10 版本, 易于使用的，可配置、可扩展的Go日志库
+title: gookit/goutil - 发布 v0.6.10 版本, Go常用功能的扩展工具库
 tags: [gookit,golang,goutil]
 date: 2023-06-28T14:55
 slug: gookit-goutil-release-v0.6.10

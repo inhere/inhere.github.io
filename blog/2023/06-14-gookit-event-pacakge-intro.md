@@ -1,5 +1,5 @@
 ---
-title: gookit event pacakge intro
+title: gookit/event - Go实现的轻量级的事件管理、调度程序库
 tags: [golang,gookit,event]
 date: 2023-06-14T15:53
 slug: gookit-event-pacakge-intro

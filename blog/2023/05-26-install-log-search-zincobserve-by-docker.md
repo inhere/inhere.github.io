@@ -1,5 +1,5 @@
 ---
-title: install log search zincobserve by docker
+title: 通过docker安装日志搜索服务 zincobserve(openobserve)
 tags: [tool,zinc,search]
 date: 2023-05-26T16:41
 slug: install-log-search-zincobserve-by-docker
