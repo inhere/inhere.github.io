@@ -1,5 +1,5 @@
 ---
-title: gookit slog release v0.5.2
+title: gookit/slog - 发布 v0.5.2 版本, 易于使用的，可配置、可扩展的Go日志库
 tags: [gookit,golang,logger,slog]
 date: 2023-06-19T17:16
 slug: gookit-slog-release-v0.5.2
@@ -19,14 +19,14 @@ authors: inhere
 
 ### 新功能
 
-- :sparkles: feat: 添加新选项 FilePerm 用于自定义创建log文件上的权限. issues #102 https://github.com/gookit/slog/commit/699ecd8bc2dea0fb35607ba89d4299e86f96e40b
-- :sparkles: feat: rotatefile - 添加新配置旋转模式 `RotateMode` ，支持在旋转时间创建日志文件。 https://github.com/gookit/slog/commit/8c4a9a08a9b3432a699f6770b73935ecfd42e5b8
+- ✨ feat: 添加新选项 FilePerm 用于自定义创建log文件上的权限. issues #102 https://github.com/gookit/slog/commit/699ecd8bc2dea0fb35607ba89d4299e86f96e40b
+- ✨ feat: rotatefile - 添加新配置旋转模式 `RotateMode` ，支持在旋转时间创建日志文件。 https://github.com/gookit/slog/commit/8c4a9a08a9b3432a699f6770b73935ecfd42e5b8
 
 ### 更新调整
 
-- :necktie: up: 更新并添加更多单元测试，将 goutil 升级到 v0.6.10 https://github.com/gookit/slog/commit/693cc04eb0e375183357be18893cbecaa171ffa1
-- :memo: doc: 更新README文档说明 https://github.com/gookit/slog/commit/cbf77c38db5615a9a7ec8ab07853b2f9e3517bfa
-- :white_check_mark: test: 添加更多单元测试用例 https://github.com/gookit/slog/commit/8468ea470645bb981fb34002176671bac1a9559e
+- 👔 up: 更新并添加更多单元测试，将 goutil 升级到 v0.6.10 https://github.com/gookit/slog/commit/693cc04eb0e375183357be18893cbecaa171ffa1
+- 📝 doc: 更新README文档说明 https://github.com/gookit/slog/commit/cbf77c38db5615a9a7ec8ab07853b2f9e3517bfa
+- ✅ test: 添加更多单元测试用例 https://github.com/gookit/slog/commit/8468ea470645bb981fb34002176671bac1a9559e
 
 ## 新功能使用
 
@@ -44,7 +44,7 @@ slog.PushHandler(h1)
 
 ```
 
-### 设置RotateMode为ModeCreate
+### 使用ModeCreate模式分割文件
 
 RotateMode 文件切割模式：
 
@@ -90,9 +90,3 @@ slog.PushHandler(h1)
 ## 更多
 
 更多使用说明请看 [README](https://github.com/gookit/slog/blob/master/README.zh-CN.md)
-
-
-Release v0.6.10 · gookit/goutil  - 💪 Helper Utils(700+): int, byte, string, array/slice, map, struct, dump, convert/format, error, web/http, cli/flag, OS/ENV, filesystem, system, test/assert, time and more.
-
-
-https://github.com/gookit/goutil/releases/tag/v0.6.10

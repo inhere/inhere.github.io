@@ -20,15 +20,15 @@ This website is built using [Docusaurus 2](https://docusaurus.io/), a modern sta
 ### Installation
 
 ```
-$ yarn
+$ pnpm install
 ```
 
 ### Local Development
 
 ```bash
-$ yarn start
-# or
 $ pnpm start
+# or
+$ yarn start
 # or
 $ npm run start
 ```
