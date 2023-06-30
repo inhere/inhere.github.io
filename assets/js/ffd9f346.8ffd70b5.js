@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkmy_website=self.webpackChunkmy_website||[]).push([[8624],{7108:e=>{e.exports=JSON.parse('{"label":"composer","permalink":"/blog/tags/composer","allTagsPath":"/blog/tags","count":1}')}}]);
