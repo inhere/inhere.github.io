@@ -49,10 +49,79 @@ dump 特殊处理自定义的 int、uint 类型值，将会打印 String 格式�
 
 ![dump custom_type.png](https://raw.githubusercontent.com/gookit/goutil/v0.6.10/dump/_examples/custom_type.png)
 
-#### 使用 echo server 测试
+#### 初始化结构体
+
+- 支持初始化使用环境变量
+- 支持初始化 slice 字段，嵌套结构体
 
 ```go
+type ExtraDefault struct {
+    City   string `default:"some where"`
+    Github string `default:"${ GITHUB_ADDR }"`
+}
 
+type User struct {
+    Name  string        `default:"inhere"`
+    Age   int           `default:"300"`
+    Extra *ExtraDefault `default:""` // 标记需要初始化
+}
+
+optFn := func(opt *structs.InitOptions) {
+    opt.ParseEnv = true
+}
+
+obj := &User{}
+err := structs.InitDefaults(obj, optFn)
+goutil.PanicErr(err)
+
+dump.P(obj)
+```
+
+**初始化结果**:
+
+```go
+&structs_test.User {
+  Name: string("inhere"), #len=6
+  Age: int(300),
+  Extra: &structs_test.ExtraDefault {
+    City: string("some where"), #len=10
+    Github: string("https://some .... url"), #len=21
+  },
+},
+```
+
+#### 使用 echo server 测试
+
+使用 `testutil.NewEchoServer()` 可以快速的创建一个HTTP echo server. 方便测试HTTP请求，响应等。
+
+**使用示例**：
+
+```go title="example_test.go“
+
+var testSrvAddr string
+
+func TestMain(m *testing.M) {
+    s := testutil.NewEchoServer()
+    defer s.Close()
+
+    testSrvAddr = "http://" + s.Listener.Addr().String()
+    fmt.Println("server addr:", testSrvAddr)
+
+    m.Run()
+}
+
+func TestNewEchoServer(t *testing.T) {
+    // 可直接请求测试server
+    r, err := http.Post(testSrvAddr, "text/plain", strings.NewReader("hello!"))
+    assert.NoErr(t, err)
+
+    // 将响应信息绑定到 testutil.EchoReply
+    rr := testutil.ParseRespToReply(r)
+    dump.P(rr)
+    assert.Eq(t, "POST", rr.Method)
+    assert.Eq(t, "text/plain", rr.ContentType())
+    assert.Eq(t, "hello!", rr.Body)
+}
 ```
 
 ## v0.6.9 更新记录
@@ -99,13 +168,27 @@ dump 特殊处理自定义的 int、uint 类型值，将会打印 String 格式�
 
 #### finder 文件查找使用
 
-```go
+`fsutil/finder` 提供了简单快速的方式查找匹配文件、目录。
 
+- 内置支持 名称、扩展、后缀、前缀、glob、path 等包含或排除
+- 支持匹配 文件大小，修改时间(ModTime)等扩展匹配方式
+
+```go
+ff := finder.NewFinder("/path/to/dir/").
+    // OnlyFindDir(). // 默认只只查找文件
+    UseAbsPath().
+    WithoutDotDir().
+    WithDirName("testdata")
+
+// Find() 返回chan, 可以 for 处理查找结果
+for el := range f.Find() {
+    fmt.Println(el.Path())
+}
 ```
 
 #### strutil.ParseSizeRange
 
-方便创建的将字符串大小范围解析为 byte size
+可以简单方便的将字符串大小范围解析为 byte size
 
 ```go
 opt := &strutil.ParseSizeOpt{}
@@ -115,7 +198,7 @@ goutil.PanicErr(err)
 fmt.Println(min, max) // OUTPUT: 1024, 1048576
 ```
 
-支持的表达式格式示例：
+**支持的表达式格式示例：**
 
 ```text
 "1KB~2MB"       => 1KB to 2MB
@@ -126,6 +209,35 @@ fmt.Println(min, max) // OUTPUT: 1024, 1048576
 "1KB~"          => >1KB
 ">1KB"          => >1KB
 "+1KB"          => >1KB
+```
+
+#### timex.ParseRange()
+
+`timex.ParseRange()` 可以简单快速的将相对的时间大小范围、或关键字解析为 time.Time
+
+```go
+start, end, err := ParseRange("-1h~1h", nil)
+goutil.PanicErr(err)
+
+
+fmt.Println(start, end)
+```
+
+**支持的表达式格式示例：**
+
+```text
+"-5h~-1h"           => 5 hours ago to 1 hour ago
+"1h~5h"             => 1 hour after to 5 hours after
+"-1h~1h"            => 1 hour ago to 1 hour after
+"-1h"               => 1 hour ago to feature. eq "-1h~"
+"-1h~0"             => 1 hour ago to now.
+"< -1h" OR "~-1h"   => 1 hour ago.
+"> 1h" OR "1h"      => 1 hour after to feature
+
+// keyword: now, today, yesterday, tomorrow
+"today"          => today start to today end
+"yesterday"      => yesterday start to yesterday end
+"tomorrow"       => tomorrow start to tomorrow end
 ```
 
 ## 更多信息
