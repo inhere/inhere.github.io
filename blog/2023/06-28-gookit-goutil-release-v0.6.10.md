@@ -23,7 +23,7 @@ authors: inhere
 ### ✨ 新功能
 
 - ✨ feat: testutil - 添加新的子包 `fakeobj` 以创建假对象用于测试
-- ✨ feat: testutil - 添加新的函数 `NewEchoServer()` 来启动e服务器
+- ✨ feat: testutil - 添加新的函数 `NewEchoServer()` 来启动echo服务器
 - ✨ feat: byteutil - Buffer 新增更多有用的方法，方便使用
 - ✨ feat: dump - 特殊处理自定义的 int、uint 类型值，将会打印 String 格式的说明
 - ✨ feat: fsutil - 添加新的函数 `Glob()` 快速列出匹配的文件
