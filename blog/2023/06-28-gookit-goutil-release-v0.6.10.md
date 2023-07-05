@@ -178,7 +178,9 @@ ff := finder.NewFinder("/path/to/dir/").
     // OnlyFindDir(). // 默认只只查找文件
     UseAbsPath().
     WithoutDotDir().
-    WithDirName("testdata")
+    WithDirName("testdata").
+    Include(finder.HumanModTime("<10m")). // 最近10分钟有变动的
+    Include(finder.HumanSize("500kb~10mb")) // 限制文件大小
 
 // Find() 返回chan, 可以 for 处理查找结果
 for el := range f.Find() {
