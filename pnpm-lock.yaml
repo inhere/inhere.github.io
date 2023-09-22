@@ -38,8 +38,8 @@ dependencies:
 
 devDependencies:
   '@docusaurus/module-type-aliases':
-    specifier: 2.4.1
-    version: 2.4.1(react-dom@17.0.2)(react@17.0.2)
+    specifier: 2.4.3
+    version: 2.4.3(react-dom@17.0.2)(react@17.0.2)
 
 packages:
 
@@ -1977,6 +1977,30 @@ packages:
       - esbuild
       - uglify-js
       - webpack-cli
+    dev: false
+
+  /@docusaurus/module-type-aliases@2.4.3(react-dom@17.0.2)(react@17.0.2):
+    resolution: {integrity: sha512-cwkBkt1UCiduuvEAo7XZY01dJfRn7UR/75mBgOdb1hKknhrabJZ8YH+7savd/y9kLExPyrhe0QwdS9GuzsRRIA==}
+    peerDependencies:
+      react: '*'
+      react-dom: '*'
+    dependencies:
+      '@docusaurus/react-loadable': 5.5.2(react@17.0.2)
+      '@docusaurus/types': 2.4.3(react-dom@17.0.2)(react@17.0.2)
+      '@types/history': 4.7.11
+      '@types/react': 18.2.14
+      '@types/react-router-config': 5.0.7
+      '@types/react-router-dom': 5.3.3
+      react: 17.0.2
+      react-dom: 17.0.2(react@17.0.2)
+      react-helmet-async: 1.3.0(react-dom@17.0.2)(react@17.0.2)
+      react-loadable: /@docusaurus/react-loadable@5.5.2(react@17.0.2)
+    transitivePeerDependencies:
+      - '@swc/core'
+      - esbuild
+      - uglify-js
+      - webpack-cli
+    dev: true
 
   /@docusaurus/plugin-content-blog@2.4.1(react-dom@17.0.2)(react@17.0.2)(typescript@5.1.6):
     resolution: {integrity: sha512-E2i7Knz5YIbE1XELI6RlTnZnGgS52cUO4BlCiCUCvQHbR+s1xeIWz4C6BtaVnlug0Ccz7nFSksfwDpVlkujg5Q==}
@@ -2497,6 +2521,30 @@ packages:
       - esbuild
       - uglify-js
       - webpack-cli
+    dev: false
+
+  /@docusaurus/types@2.4.3(react-dom@17.0.2)(react@17.0.2):
+    resolution: {integrity: sha512-W6zNLGQqfrp/EoPD0bhb9n7OobP+RHpmvVzpA+Z/IuU3Q63njJM24hmT0GYboovWcDtFmnIJC9wcyx4RVPQscw==}
+    peerDependencies:
+      react: ^16.8.4 || ^17.0.0
+      react-dom: ^16.8.4 || ^17.0.0
+    dependencies:
+      '@types/history': 4.7.11
+      '@types/react': 18.2.14
+      commander: 5.1.0
+      joi: 17.9.2
+      react: 17.0.2
+      react-dom: 17.0.2(react@17.0.2)
+      react-helmet-async: 1.3.0(react-dom@17.0.2)(react@17.0.2)
+      utility-types: 3.10.0
+      webpack: 5.88.1
+      webpack-merge: 5.9.0
+    transitivePeerDependencies:
+      - '@swc/core'
+      - esbuild
+      - uglify-js
+      - webpack-cli
+    dev: true
 
   /@docusaurus/utils-common@2.4.1(@docusaurus/types@2.4.1):
     resolution: {integrity: sha512-bCVGdZU+z/qVcIiEQdyx0K13OC5mYwxhSuDUR95oFbKVuXYRrTVrwZIqQljuo1fyJvFTKHiL9L9skQOPokuFNQ==}
