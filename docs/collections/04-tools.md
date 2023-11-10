@@ -24,8 +24,15 @@ tags:
   - [isacikgoz/tldr](https://github.com/isacikgoz/tldr) go语言版本的客户端实现
 - [kite](https://github.com/inhere/kite) PHP 编写的命令行工具，方便本地开发和使用。
 
+### 编辑器
+
+- [neovim]https://github.com/neovim/neovim 更易用、增强版的vim编辑器
+- [helix](https://github.com/helix-editor/helix) A post-modern modal text editor. rust 编写的编辑器，支持多平台。
+- [cudatext](https://cudatext.github.io/index.html)  一个编辑器，支持多平台。
 
 ## 适用于 Windows
+
+- [scoop](https://scoop.sh/) Windows 命令行下的非常有用的包管理器，像 apt-get, brew 一样。
 
 ### 命令行增强
 
@@ -46,4 +53,9 @@ Clink 将本机 Windows shell cmd.exe 与 GNU Readline 库强大的命令行编�
 - 命令行编辑改进 - Clink 通过新的输入编辑命令和可配置的键绑定增强了命令行。
 - Auto-answering of the "Terminate batch job?" prompt
 
+### 编辑器
+
+
 ## 适用于 MacOS
+
+
