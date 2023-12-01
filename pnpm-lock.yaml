@@ -12,8 +12,8 @@ dependencies:
     specifier: 2.4.3
     version: 2.4.3(@algolia/client-search@4.18.0)(react-dom@17.0.2)(react@17.0.2)(search-insights@2.6.0)(typescript@5.1.6)
   '@docusaurus/remark-plugin-npm2yarn':
-    specifier: ^3.0.0
-    version: 3.0.0
+    specifier: ^3.0.1
+    version: 3.0.1
   '@easyops-cn/docusaurus-search-local':
     specifier: ^0.38.1
     version: 0.38.1(@docusaurus/theme-common@2.4.3)(react-dom@17.0.2)(react@17.0.2)(typescript@5.1.6)
@@ -2407,8 +2407,8 @@ packages:
       prop-types: 15.8.1
       react: 17.0.2
 
-  /@docusaurus/remark-plugin-npm2yarn@3.0.0:
-    resolution: {integrity: sha512-OapBu1mXui1LLc/1RJztl0Syr5sTKX6GWt10HBB5XvCxb9l08IkcQwjzktNLWZAUOr+Xbx6LBINbAgm7yKSUOw==}
+  /@docusaurus/remark-plugin-npm2yarn@3.0.1:
+    resolution: {integrity: sha512-UZDvQN6XhaImbQUsmWCNZDZbazv4SDzVJGtlJKBP6DBHMxzYDC7YMVZ6YPRloi74W++5copIIk9DNlp4KtieNw==}
     engines: {node: '>=18.0'}
     dependencies:
       mdast-util-mdx: 3.0.0
@@ -3271,13 +3271,13 @@ packages:
   /@types/hast@2.3.4:
     resolution: {integrity: sha512-wLEm0QvaoawEDoTRwzTXp4b4jpwiJDvR5KMnFnVodm3scufTlBOWRD6N1OBf9TZMhjlNsSfcO5V+7AF4+Vy+9g==}
     dependencies:
-      '@types/unist': 2.0.6
+      '@types/unist': 3.0.1
     dev: false
 
   /@types/hast@3.0.2:
     resolution: {integrity: sha512-B5hZHgHsXvfCoO3xgNJvBnX7N8p86TqQeGKXcokW4XXi+qY4vxxPSFYofytvVmpFxzPv7oxDQzjg5Un5m2/xiw==}
     dependencies:
-      '@types/unist': 2.0.6
+      '@types/unist': 3.0.1
     dev: false
 
   /@types/history@4.7.11:
@@ -3325,7 +3325,7 @@ packages:
   /@types/mdast@3.0.11:
     resolution: {integrity: sha512-Y/uImid8aAwrEA24/1tcRZwpxX3pIFTSilcNDKSPn+Y2iDywSEachzRuvgAYYLR3wpGXAsMbv5lvKLDZLeYPAw==}
     dependencies:
-      '@types/unist': 2.0.6
+      '@types/unist': 3.0.1
     dev: false
 
   /@types/mdast@4.0.2:
