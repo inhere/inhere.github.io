@@ -38,8 +38,8 @@ dependencies:
 
 devDependencies:
   '@docusaurus/module-type-aliases':
-    specifier: 3.0.0
-    version: 3.0.0(react-dom@17.0.2)(react@17.0.2)
+    specifier: 3.0.1
+    version: 3.0.1(react-dom@17.0.2)(react@17.0.2)
 
 packages:
 
@@ -2003,14 +2003,14 @@ packages:
       - webpack-cli
     dev: false
 
-  /@docusaurus/module-type-aliases@3.0.0(react-dom@17.0.2)(react@17.0.2):
-    resolution: {integrity: sha512-CfC6CgN4u/ce+2+L1JdsHNyBd8yYjl4De2B2CBj2a9F7WuJ5RjV1ciuU7KDg8uyju+NRVllRgvJvxVUjCdkPiw==}
+  /@docusaurus/module-type-aliases@3.0.1(react-dom@17.0.2)(react@17.0.2):
+    resolution: {integrity: sha512-DEHpeqUDsLynl3AhQQiO7AbC7/z/lBra34jTcdYuvp9eGm01pfH1wTVq8YqWZq6Jyx0BgcVl/VJqtE9StRd9Ag==}
     peerDependencies:
       react: '*'
       react-dom: '*'
     dependencies:
       '@docusaurus/react-loadable': 5.5.2(react@17.0.2)
-      '@docusaurus/types': 3.0.0(react-dom@17.0.2)(react@17.0.2)
+      '@docusaurus/types': 3.0.1(react-dom@17.0.2)(react@17.0.2)
       '@types/history': 4.7.11
       '@types/react': 18.2.14
       '@types/react-router-config': 5.0.7
@@ -2594,8 +2594,8 @@ packages:
       - webpack-cli
     dev: false
 
-  /@docusaurus/types@3.0.0(react-dom@17.0.2)(react@17.0.2):
-    resolution: {integrity: sha512-Qb+l/hmCOVemReuzvvcFdk84bUmUFyD0Zi81y651ie3VwMrXqC7C0E7yZLKMOsLj/vkqsxHbtkAuYMI89YzNzg==}
+  /@docusaurus/types@3.0.1(react-dom@17.0.2)(react@17.0.2):
+    resolution: {integrity: sha512-plyX2iU1tcUsF46uQ01pAd4JhexR7n0iiQ5MSnBFX6M6NSJgDYdru/i1/YNPKOnQHBoXGLHv0dNT6OAlDWNjrg==}
     peerDependencies:
       react: ^18.0.0
       react-dom: ^18.0.0
