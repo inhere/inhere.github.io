@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkmy_website=self.webpackChunkmy_website||[]).push([[3513],{6734:e=>{e.exports=JSON.parse('{"label":"cli-color","permalink":"/blog/tags/cli-color","allTagsPath":"/blog/tags","count":1}')}}]);
