@@ -12,8 +12,8 @@ dependencies:
     specifier: 2.4.3
     version: 2.4.3(@algolia/client-search@4.18.0)(react-dom@17.0.2)(react@17.0.2)(search-insights@2.6.0)(typescript@5.1.6)
   '@docusaurus/remark-plugin-npm2yarn':
-    specifier: ^3.0.1
-    version: 3.0.1
+    specifier: ^3.1.0
+    version: 3.1.0
   '@easyops-cn/docusaurus-search-local':
     specifier: ^0.40.1
     version: 0.40.1(@docusaurus/theme-common@2.4.3)(react-dom@17.0.2)(react@17.0.2)(typescript@5.1.6)
@@ -2407,8 +2407,8 @@ packages:
       prop-types: 15.8.1
       react: 17.0.2
 
-  /@docusaurus/remark-plugin-npm2yarn@3.0.1:
-    resolution: {integrity: sha512-UZDvQN6XhaImbQUsmWCNZDZbazv4SDzVJGtlJKBP6DBHMxzYDC7YMVZ6YPRloi74W++5copIIk9DNlp4KtieNw==}
+  /@docusaurus/remark-plugin-npm2yarn@3.1.0:
+    resolution: {integrity: sha512-+dUortlwU8kEmEyrI/b5e1eu6BPIjaS4T/iU54pxVGo4thwj4luB8eqXDLgz2OjBqfUsEFf/Of3dgRueph7mXQ==}
     engines: {node: '>=18.0'}
     dependencies:
       mdast-util-mdx: 3.0.0
