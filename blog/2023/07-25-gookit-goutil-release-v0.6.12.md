@@ -14,6 +14,10 @@ authors: inhere
 
 > **Github**: https://github.com/gookit/goutil
 
+## 部分更新说明
+
+
+
 ## v0.6.12 更新记录
 
 > 完整变更日志 [v0.6.10...v0.6.12](https://github.com/gookit/goutil/compare/v0.6.10...v0.6.12)

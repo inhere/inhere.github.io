@@ -25,6 +25,10 @@
 - 支持直接使用规则来验证值 例如: `validate.Val("xyz@mail.com", "required|email")`
 - 完善的单元测试，测试覆盖率 **> 90%**
 
+## 版本更新记录
+
+- 2024.01.24 发布 [v1.5.2 更新说明](https://inhere.github.io/blog/gookit-validate-release-v1.5.2)
+
 ## v1.4.6 更新日志
 
 > 发布于 2022.12.28

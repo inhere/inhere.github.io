@@ -123,7 +123,7 @@ Zend Engine v3.4.0, Copyright (c) Zend Technologies
 
 ```bat
 @echo off
-rem alias command for php7.ext
+rem alias command for php7.exe
 
 rem override set ENV var PHP_INI_SCAN_DIR
 set PHP_INI_SCAN_DIR=C:\Users\inhere\scoop\apps\php7.4-nts\current\conf.d
@@ -145,3 +145,17 @@ C:\Users\inhere\scoop\apps\php7.4-nts\current\conf.d\xdebug.ini
 ```
 
 > 小问题：在 cmd,pwsh 可以省略 `.cmd` 运行 php7，但是在 `git-bash` 下不行，因此还是配置一个 `bash alias` 比较方便。
+
+
+## PHPStorm 里无法加载ext
+
+PHPStorm 里直接配置的 php7.4-nts/php.exe 文件路径。无法自由设置 `PHP_INI_SCAN_DIR`，会导致无法加载 `conf.d` 目录下的新增扩展配置。
+
+解决办法：不使用 `conf.d/*.ini` 来加载额外配置。新增的扩展都直接添加到 php.ini 文件里
+
+```ini
+extension=redis
+```
+
+
+

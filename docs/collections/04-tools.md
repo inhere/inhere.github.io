@@ -2,7 +2,7 @@
 title: 工具收藏
 date: 2021-05-16T22:14
 tags:
-  - tools
+  - tools,windows,linux,macos
 ---
 
 开发工具收藏
@@ -15,6 +15,7 @@ tags:
 
 ☄ 🌌️ 适用于任何 shell 的最小、速度极快且可无限定制的提示！
 
+- 支持 Windows(CMD,PowerShell), MacOS, Linux 环境
 - github https://github.com/starship/starship
 - doc https://starship.rs/config/
 
@@ -26,7 +27,7 @@ tags:
 
 ### 编辑器
 
-- [neovim]https://github.com/neovim/neovim 更易用、增强版的vim编辑器
+- [neovim](https://github.com/neovim/neovim) 更易用、增强版的vim编辑器
 - [helix](https://github.com/helix-editor/helix) A post-modern modal text editor. rust 编写的编辑器，支持多平台。
 - [cudatext](https://cudatext.github.io/index.html)  一个编辑器，支持多平台。
 
