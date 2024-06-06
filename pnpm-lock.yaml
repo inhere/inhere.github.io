@@ -15,8 +15,8 @@ dependencies:
     specifier: ^3.4.0
     version: 3.4.0
   '@easyops-cn/docusaurus-search-local':
-    specifier: ^0.42.0
-    version: 0.42.0(@docusaurus/theme-common@2.4.3)(react-dom@17.0.2)(react@17.0.2)(typescript@5.1.6)
+    specifier: ^0.43.0
+    version: 0.43.0(@docusaurus/theme-common@2.4.3)(react-dom@17.0.2)(react@17.0.2)(typescript@5.1.6)
   '@mdx-js/react':
     specifier: ^1.6.22
     version: 1.6.22(react@17.0.2)
@@ -2701,8 +2701,8 @@ packages:
       immediate: 3.3.0
     dev: false
 
-  /@easyops-cn/docusaurus-search-local@0.42.0(@docusaurus/theme-common@2.4.3)(react-dom@17.0.2)(react@17.0.2)(typescript@5.1.6):
-    resolution: {integrity: sha512-05G151YgZrNmV3GkO6/B+nYb8fwdyBMhJTSzZViifTJQ1b0IgCmugUval4udkBlGeUL8LN/otORiMhwUMSos5A==}
+  /@easyops-cn/docusaurus-search-local@0.43.0(@docusaurus/theme-common@2.4.3)(react-dom@17.0.2)(react@17.0.2)(typescript@5.1.6):
+    resolution: {integrity: sha512-SBFMM1CWP3Fq4VExwSoWnAq6MtJOA0PI6yNVjOT8i/QmchyjQYi9YiZ4mo9/SYM8Bk0q+lwQohANE9el5azlkQ==}
     engines: {node: '>=12'}
     peerDependencies:
       '@docusaurus/theme-common': ^2 || ^3
