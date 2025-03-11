@@ -30,8 +30,8 @@ importers:
         specifier: ^2.1.1
         version: 2.1.1
       prism-react-renderer:
-        specifier: ^2.3.1
-        version: 2.3.1(react@17.0.2)
+        specifier: ^2.4.1
+        version: 2.4.1(react@17.0.2)
       react:
         specifier: ^17.0.2
         version: 17.0.2
@@ -1389,8 +1389,8 @@ packages:
   '@types/parse5@5.0.3':
     resolution: {integrity: sha512-kUNnecmtkunAoQ3CnjmMkzNU/gtxG8guhi+Fk2U/kOpIKjIMKnXGp4IJCgQJrXSgMsWYimYG4TGjz/UzbGEBTw==}
 
-  '@types/prismjs@1.26.0':
-    resolution: {integrity: sha512-ZTaqn/qSqUuAq1YwvOFQfVW1AR/oQJlLSZVustdjwI+GZ8kr0MSHBj0tsXPW1EqHubx50gtBEjbPGsdZwQwCjQ==}
+  '@types/prismjs@1.26.5':
+    resolution: {integrity: sha512-AUZTa7hQ2KY5L7AmtSiqxlhWxb4ina0yd8hNbl4TWuqnv/pFP0nDMb3YrfSBf4hJVGLh2YEIBfKaBW/9UEl6IQ==}
 
   '@types/prop-types@15.7.5':
     resolution: {integrity: sha512-JCB8C6SnDoQf0cNycqd/35A7MjcnK+ZTqE7judS6o7utxUCg6imJg3QK2qzHKszlTjcj2cn+NwMB2i96ubpj7w==}
@@ -3872,8 +3872,8 @@ packages:
     peerDependencies:
       react: '>=0.14.9'
 
-  prism-react-renderer@2.3.1:
-    resolution: {integrity: sha512-Rdf+HzBLR7KYjzpJ1rSoxT9ioO85nZngQEoFIhL07XhtJHlCU3SOz0GJ6+qvMyQe0Se+BV3qpe6Yd/NmQF5Juw==}
+  prism-react-renderer@2.4.1:
+    resolution: {integrity: sha512-ey8Ls/+Di31eqzUxC46h8MksNuGx/n0AAC8uKpwFau4RPDYLuE3EXTp8N8G2vX2N7UC/+IXeNUnlWBGGcAG+Ig==}
     peerDependencies:
       react: '>=16.0.0'
 
@@ -7083,7 +7083,7 @@ snapshots:
 
   '@types/parse5@5.0.3': {}
 
-  '@types/prismjs@1.26.0': {}
+  '@types/prismjs@1.26.5': {}
 
   '@types/prop-types@15.7.5': {}
 
@@ -7106,7 +7106,7 @@ snapshots:
   '@types/react-router@5.1.20':
     dependencies:
       '@types/history': 4.7.11
-      '@types/react': 19.0.10
+      '@types/react': 18.2.14
 
   '@types/react@18.2.14':
     dependencies:
@@ -9883,9 +9883,9 @@ snapshots:
     dependencies:
       react: 17.0.2
 
-  prism-react-renderer@2.3.1(react@17.0.2):
+  prism-react-renderer@2.4.1(react@17.0.2):
     dependencies:
-      '@types/prismjs': 1.26.0
+      '@types/prismjs': 1.26.5
       clsx: 2.1.1
       react: 17.0.2
 
