@@ -1,9 +1,8 @@
 ---
 title: gookit goutil release v0.6.15
-tags: [gookit,golang,goutil]
-date: 2024-01-24T23:24
-slug: gookit-goutil-release-v0.6.15
-authors: inhere
+taxonomies:
+  tags: [gookit,golang,goutil]
+date: 2024-01-24T23:24:00
 # gen by: kite run script/cgen.php --name gookit-goutil-release-v0.6.15 --tags gookit,golang,goutil
 ---
 

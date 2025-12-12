@@ -1,5 +1,5 @@
 +++
-title = "Archive"
+title = "📦 Archive"
 template = "archive.html"
 
 [extra]

@@ -49,7 +49,7 @@ val := envutil.VarParse("${CREDENTIALS | {}}")
 `mathutil` 之前只有 `Uint`, `ToUint` 相关函数，并且返回的是 uint64。与函数名称不符，有歧义。
 本次新增了 `Uint64, ToUint64` 相关函数，原有的 `Uint`, `ToUint` 改为了返回 uint 类型。
 
-```go title="github.com/gookit/goutil/mathutil"
+```go,name=github.com/gookit/goutil/mathutil
 func Uint64(in any) (uint64, error)
 func SafeUint64(in any) uint64
 func MustUint64(in any) uint64
@@ -64,7 +64,7 @@ func ToUint64With(in any, optFns ...ConvOptionFn[uint64]) (u64 uint64, err error
 - `nil` 当前会默认转换为对应的 零值(`int: 0, string: ""`)
 - 默认不会启用，需要设置对应的选项 `mathutil.WithHandlePtr[T]`
 
-```go title="example or tests"
+```go,name=example-or-tests
 func TestWithHandlePtr(t *testing.T) {
 	var err error
 	is := assert.New(t)

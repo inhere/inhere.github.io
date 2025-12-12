@@ -1,9 +1,10 @@
 ---
 title: Quick config vim
-tags:
-  - vim
-  - config
-date: 2019-12-07T22:04
+date: 2019-12-07T22:04:00
+taxonomies:
+  tags:
+    - vim
+    - config
 ---
 
 # My vim config

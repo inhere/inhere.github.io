@@ -3,7 +3,6 @@ title: cflag - 包装Go FlagSet构建简单且漂亮的命令行应用程序
 taxonomies:
   tags: [golang, gookit, flag, cli, console, command-line]
 date: 2022-07-09T16:00:00
-slug: gookit-goutil-cflag-intro
 # authors: inhere
 image: https://raw.githubusercontent.com/gookit/goutil/master/cflag/_example/cmd-help.png
 ---
@@ -18,7 +17,7 @@ image: https://raw.githubusercontent.com/gookit/goutil/master/cflag/_example/cmd
 
 Go `flag` 是Go内置的包，使用  `flag` 包构建一个命令应用非常简单。
 
-```go title="cflag/_example/rawflag.go"
+```go,name=cflag/_example/rawflag.go
 package main
 
 import (
@@ -103,7 +102,7 @@ go get github.com/gookit/goutil/cflag
 
 跟 Go `flag` 一样的绑定选项信息。同时额外新增了一些信息，比如 版本，描述等
 
-```go title="cflag/_example/cmd.go"
+```go,name=cflag/_example/cmd.go
 package main
 
 import (

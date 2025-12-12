@@ -50,6 +50,29 @@ taxonomies:
 
 Zola 默认不会显示文章的摘要，你需要在 Markdown 文件中添加 `<!-- more -->` 注释来标记摘要的结束位置。之前 Docusaurus 则是使用的 `<!--truncate-->` 注释标记。
 
+## Zola 配置
+
+### Github alert 提示
+
+配置 `config.toml` 文件，启用 Github alert 提示。
+
+```toml
+[markdown]
+github_alert = true
+```
+
+Zola 支持在文章中添加 Github alert 提示。例如：
+
+```markdown
+> [!NOTE]
+> 这是一个注意提示。
+```
+
+这将在文章中添加一个蓝色的提示框，内容为 "这是一个注意提示。"
+
+> [!TIP]
+> 你可以使用 `note`, `tip`, `important`, `warning`, or `caution` 来添加不同类型的提示。
+
 ## 主题配置
 
 Zola 支持使用主题来定制网站的外观。你可以在 `config.toml` 文件中配置主题。
@@ -71,9 +94,7 @@ theme = "tabi"
 你可以在 `config.toml` 文件中配置 tabi 主题。例如：
 
 ```toml
-[extra]
-author = "Inhere"
-avatar = "img/avatar.jpg"
+theme = "tabi"
 ```
 
 > 参考 [https://welpo.github.io/tabi/blog/mastering-tabi-settings/](https://welpo.github.io/tabi/blog/mastering-tabi-settings/) 了解更多配置选项。
@@ -82,3 +103,38 @@ avatar = "img/avatar.jpg"
 
 - [welpo/tabi](https://github.com/welpo/tabi) 当前使用的主题
 - [RatanShreshtha/DeepThought](https://github.com/RatanShreshtha/DeepThought)
+
+## 配置自动部署
+
+通过 GitHub Actions 自动部署到 GitHub Pages。
+
+1. 在你的 Zola 项目中创建一个 `.github/workflows/deploy.yml` 文件。
+2. 复制以下内容到 `deploy.yml` 文件中：
+
+```yaml
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    name: Deploy to GitHub Pages
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Build and Deploy
+        uses: shalzz/zola-deploy-action@v0.21.0
+        env:
+          PAGES_BRANCH: gh-pages
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BUILD_THEMES: false
+```
+
+> 参考 [shalzz/zola-deploy-action](https://github.com/shalzz/zola-deploy-action) 了解更多配置选项。

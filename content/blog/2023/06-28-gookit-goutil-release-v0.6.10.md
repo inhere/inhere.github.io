@@ -3,7 +3,6 @@ title: gookit/goutil - 发布 v0.6.10 版本, Go常用功能的扩展工具库
 taxonomies:
   tags: [gookit,golang,goutil]
 date: 2023-06-28T14:55:00
-slug: gookit-goutil-release-v0.6.10
 # authors: inhere
 # gen by: kite run script/cgen.php --name gookit-goutil-release-v0.6.10 --tags gookit,golang,goutil
 ---
@@ -97,8 +96,7 @@ dump.P(obj)
 
 **使用示例**：
 
-```go title="example_test.go“
-
+```go,name=example_test.go
 var testSrvAddr string
 
 func TestMain(m *testing.M) {

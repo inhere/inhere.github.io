@@ -1,10 +1,10 @@
 ---
-title: My windows terminal config
-authors: inhere
-tags:
-  - terminal
-  - windows-terminal
-date: 2019-12-08T22:04
+title: My Windows Terminal Config
+taxonomies:
+  tags:
+    - terminal
+    - windows-terminal
+date: 2019-12-08T22:04:00
 ---
 
 My windows terminal config

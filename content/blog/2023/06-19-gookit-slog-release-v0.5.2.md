@@ -3,7 +3,6 @@ title: gookit/slog - 发布 v0.5.2 版本, 易于使用的，可配置、可扩�
 taxonomies:
   tags: [gookit,golang,logger,slog]
 date: 2023-06-19T17:16:00
-slug: gookit-slog-release-v0.5.2
 # authors: inhere
 # gen by: kite run script/cgen.php --name gookit-slog-release-v0.5.2 --tags gookit,golang,logger,slog
 ---

@@ -42,7 +42,7 @@ npm run start
 
 基础配置
 
-```js title="docusaurus.config.js"
+```js,name="docusaurus.config.js"
 const config = {
   title: "Inhere's Site",
   tagline: "Inhere's site, blogs and project docs",
@@ -60,7 +60,7 @@ const config = {
 
 文档和博客配置：
 
-```js title="docusaurus.config.js"
+```js,name=docusaurus.config.js
   presets: [
     [
       'classic',
@@ -94,7 +94,7 @@ const config = {
 
 ### 配置多语言
 
-```js title="docusaurus.config.js"
+```js,name="docusaurus.config.js"
 i18n: {
     defaultLocale: 'zh-CN',
     locales: [ "zh-CN", 'en'],
@@ -140,7 +140,7 @@ npm install @docusaurus/remark-plugin-npm2yarn
 
 配置插件：
 
-```js title="docusaurus.config.js"
+```js,name=docusaurus.config.js
 module.exports = {
   // ...
   presets: [
@@ -182,7 +182,7 @@ npm install --save @easyops-cn/docusaurus-search-local
 
 配置插件：
 
-```js title="docusaurus.config.js"
+```js,name=docusaurus.config.js
 module.exports = {
   // ... Your other configurations.
   themes: [

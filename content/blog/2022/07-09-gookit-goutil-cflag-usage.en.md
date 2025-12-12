@@ -1,9 +1,8 @@
 ---
 title: cflag - wraps and extends Go flag build pertty CLI command
-tags: [golang, gookit, flag, cli, console]
-date: 2022-07-09T16:00
-slug: gookit-goutil-cflag-intro
-authors: inhere
+taxonomies:
+  tags: [golang, gookit, flag, cli, console]
+date: 2022-07-09T16:00:00
 ---
 
 `cflag` - wraps and extends Go flag build pertty CLI command
@@ -14,7 +13,7 @@ authors: inhere
 
 Go `flag` is a package built into Go, and it is very easy to build a command application using the `flag` package.
 
-```go title="cflag/_example/rawflag.go"
+```go,name="cflag/_example/rawflag.go"
 package main
 
 import (
@@ -101,7 +100,7 @@ go get github.com/gookit/goutil/cflag
 
 `cflag` has the same binding option information as Go `flag`. At the same time, some additional information has been added, such as version, description, etc.
 
-```go title="cflag/_example/cmd.go"
+```go,name=cflag/_example/cmd.go
 package main
 
 import (

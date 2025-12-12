@@ -1,11 +1,12 @@
 ---
 title: 在shell脚本里简单快速的使用颜色
 # authors: inhere
-tags:
-  - shell
-  - bash
-  - linux
-  - cli-color
+taxonomies:
+  tags:
+    - shell
+    - bash
+    - linux
+    - cli-color
 date: 2019-11-08T22:04:00
 slug: simple-use-color-in-shell
 ---

@@ -10,10 +10,10 @@ slug: about
 
 ## 🐶About Me
 
-PHP & Go & Java developer
+PHP & Go & Java & Android & Flutter developer
 
 - 🔭 I’m currently working on Earth
-- 🌱 I’m currently learning Go,Java
+- 🌱 I’m currently learning Go,Java,Android,Flutter
 - 👯 I am participating in the contribution project: [Gookit](https://github.com/gookit) [Swoft](https://github.com/swoft-cloud)
 
 ### 技能
@@ -34,3 +34,6 @@ PHP & Go & Java developer
 - PHPPkg https://github.com/phppkg
 - PHP-Toolkit https://github.com/php-toolkit
 
+### 参与项目
+
+[<img src="https://github-readme-stats.vercel.app/api/pin/?username=swoft-cloud&amp;repo=swoft&amp;show_owner=true" alt="ReadMe Card" class="no-zoom"></img>](https://github.com/swoft-cloud/swoft)

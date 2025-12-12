@@ -3,7 +3,6 @@ title: gitw - Git 命令包装器，生成 git 变更记录日志
 taxonomies:
   tags: [golang, gookit, git]
 date: 2022-07-06T21:00:00
-slug: gookit-gitw-intro
 # authors: inhere
 ---
 

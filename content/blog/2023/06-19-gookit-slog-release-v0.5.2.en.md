@@ -1,9 +1,8 @@
 ---
 title: gookit/slog - release v0.5.2, Lightweight, configurable, extensible logging library
-tags: [gookit,golang,logger,slog]
-date: 2023-06-19T17:16
-slug: gookit-slog-release-v0.5.2
-authors: inhere
+taxonomies:
+  tags: [gookit,golang,logger,slog]
+date: 2023-06-19T17:16:00
 # gen by: kite run script/cgen.php --name gookit-slog-release-v0.5.2 --tags gookit,golang,logger,slog
 ---
 

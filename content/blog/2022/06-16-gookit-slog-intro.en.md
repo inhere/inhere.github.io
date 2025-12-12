@@ -1,9 +1,8 @@
 ---
 title: slog - Lightweight, configurable, extensible Go logging library
-tags: [golang, gookit, log, logger]
-date: 2022-06-16T21:00
-slug: gookit-slog-intro
-authors: inhere
+taxonomies:
+  tags: [golang, gookit, log, logger]
+date: 2022-06-16T21:00:00
 ---
 
 `slog` - a lightweight, configurable, extensible Go logging library

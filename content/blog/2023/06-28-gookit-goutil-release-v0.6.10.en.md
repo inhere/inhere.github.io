@@ -1,9 +1,9 @@
 ---
 title: gookit/goutil - released v0.6.10, an extension library of common Go features
-tags: [gookit,golang,goutil]
-date: 2023-06-28T14:55
+taxonomies:
+  tags: [gookit,golang,goutil]
+date: 2023-06-28T14:55:00
 slug: gookit-goutil-release-v0.6.10
-authors: inhere
 # gen by: kite run script/cgen.php --name gookit-goutil-release-v0.6.10 --tags gookit,golang,goutil
 ---
 
@@ -96,7 +96,7 @@ Use `testutil.NewEchoServer()` to quickly create an HTTP echo server. Convenient
 
 **Usage examples:**
 
-```go title="example_test.go“
+```go,name=example_test.go
 
 var testSrvAddr string
 

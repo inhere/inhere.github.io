@@ -3,7 +3,6 @@ title: slog - 一个易于使用的，易扩展、可配置的日志库
 taxonomies:
   tags: [golang, gookit, log, logger]
 date: 2022-06-16T21:00:00
-slug: gookit-slog-intro
 # authors: inhere
 ---
 
