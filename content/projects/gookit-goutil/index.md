@@ -4,7 +4,7 @@ description = "Go 常用功能的扩展工具库。包含：数字，字符串�
 weight = 3
 
 [taxonomies]
-tags = ["Golang", "Gookit", "goutil"]
+tags = ["golang", "gookit", "goutil"]
 
 [extra]
 +++

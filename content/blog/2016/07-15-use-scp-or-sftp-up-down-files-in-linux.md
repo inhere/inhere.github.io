@@ -1,7 +1,7 @@
 ---
 title: linux 终端下上传下载命令 sftp,scp
 taxonomies:
-  tags: [linux,macOS,sftp,scp]
+  tags: [linux,macos,sftp,scp]
 date: 2016-07-15T17:40:34
 slug: use-scp-or-sftp-up-down-files-in-linux
 # authors: inhere

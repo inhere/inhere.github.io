@@ -4,7 +4,7 @@ description = "一个易于使用的，轻量级、可配置、可扩展的日�
 weight = 4
 
 [taxonomies]
-tags = ["Golang", "Gookit", "slog", "logger"]
+tags = ["golang", "gookit", "slog", "logger"]
 
 [extra]
 +++

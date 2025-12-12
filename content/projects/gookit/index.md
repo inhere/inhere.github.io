@@ -4,7 +4,7 @@ description = "The non-opinionated Rust-based commit message linter."
 weight = 0
 
 [taxonomies]
-tags = ["Golang", "Gookit", "CLI"]
+tags = ["golang", "gookit"]
 
 [extra]
 +++
