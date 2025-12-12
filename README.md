@@ -19,6 +19,10 @@ kite run script/cgen.php --name install-tools-by-scoop-on-windows --tags tool,wi
 
 ```bash
 git submodule add https://github.com/welpo/tabi.git themes/tabi
+
+# 更新子模块
+git submodule update --init --recursive
+git submodule update --remote themes/tabi
 ```
 
 ## 配置

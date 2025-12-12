@@ -12,9 +12,18 @@ theme = "tabi"
 generate_feeds = true
 compile_sass = true
 minify_html = true
-build_search_index = true
-default_language = "en"
+# 生成搜索索引
+build_search_index = false # TODO 默认不支持中文索引,暂时关闭
+default_language = "zh-Hans" # en, zh-Hans
+# default_language = "zh_CN" zh, zh-CN, zh-Hans
 taxonomies = [{name = "tags", feed = true}]
+
+# [languages.zh-Hans]
+# title = "我的网站"
+
+# [languages.en]
+# title = "Inhere's Site"
+# description = "Inhere's site, blogs and project docs"
 
 # Configuration of the Markdown rendering
 [markdown]
@@ -79,12 +88,11 @@ default_theme = ""
 # All other skins have optimal contrast.
 skin = "blue"
 
-
 # List additional stylesheets to load site-wide.
 # These stylesheets should be located in your site's `static` directory.
 # Example: stylesheets = ["extra1.css", "path/extra2.css"]
 # You can load a stylesheet for a single post by adding it to the [extra] section of the post's front matter, following this same format.
-stylesheets = []
+stylesheets = ["custom.css"]
 
 # Show the reading time of a page.
 # Can be set at page or section levels, following the hierarchy: page > section > config. See: https://welpo.github.io/tabi/blog/mastering-tabi-settings/#settings-hierarchy
@@ -114,17 +122,23 @@ quick_navigation_buttons = true
 # Custom separator used in title tag and posts metadata (between date, time to read, and tags).
 separator = "•"
 favicon = "icons/favicon.ico"
+# 紧凑显示 tags
+compact_tags = true
+
 socials = [
     { name = "github", url = "https://github.com/inhere/", icon = "github" }
 ]
 
+language_name.en = "English"
+language_name.zh_CN = "中文"
+
 menu = [
-    { name = "Blog", url = "blog", trailing_slash = true },
-    { name = "Projects", url = "projects", trailing_slash = true },
-    { name = "Collections", url = "collections", trailing_slash = true },
-    { name = "Tags", url = "tags", trailing_slash = true },
-    { name = "Archive", url = "archive", trailing_slash = true },
-    # { name = "Github", url = "https://github.com/inhere", trailing_slash = false }
+    { name = "📝 Blog", url = "blog", trailing_slash = true },
+    { name = "🚀 Projects", url = "projects", trailing_slash = true },
+    { name = "📚 Collections", url = "collections", trailing_slash = true },
+    { name = "🏷️ Tags", url = "tags", trailing_slash = true },
+    { name = "🗄️ Archive", url = "archive", trailing_slash = true },
+    # { name = "🐱 Github", url = "https://github.com/inhere", trailing_slash = false }
 ]
 
 # Extra menu to show on the footer, below socials section.
@@ -136,6 +150,13 @@ footer_menu = [
 ]
 
 enable_subset = true
+
+# Git 仓库集成
+remote_repository_url = "https://github.com/inhere/inhere.github.io"
+remote_repository_git_platform = "auto"
+remote_repository_branch = "main"
+show_remote_changes = true
+show_remote_source = true
 
 [extra.author]
 name = "Inhere"

@@ -1,6 +1,7 @@
-name: Test deployment
+name: Test deploy
 
 on:
+  workflow_dispatch:
   pull_request:
     branches:
       - main
@@ -8,25 +9,16 @@ on:
     # https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#on
 
 jobs:
-  test-deploy:
-    name: Test deployment
+  test:
+    name: Test Site Build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
-      - uses: pnpm/action-setup@v4
-        name: Install pnpm
-        id: pnpm-install
+      - name: Checkout Code
+        uses: actions/checkout@v4
         with:
-          version: 8
-          run_install: false
+          submodules: true
 
-      - uses: actions/setup-node@v6
-        with:
-          node-version: 18
-          cache: pnpm
-
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
-      - name: Test build website
-        run: pnpm build
-
+      - name: Zola Build
+        uses: shalzz/zola-deploy-action@v0.19.2
+        env:
+          BUILD_ONLY: true
