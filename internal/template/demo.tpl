@@ -9,6 +9,6 @@ authors: {{ author | nl }}
 
 {{ $desc ?: 'TODO' | nl }}
 
-<!--truncate-->
+<!-- more -->
 
-TODO 
+TODO

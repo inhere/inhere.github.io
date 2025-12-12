@@ -1,6 +1,6 @@
 # Inehre's Blog and Docs
 
-Build by [Docusaurus](https://github.com/facebook/docusaurus)
+Build by [Zola](https://github.com/getzola/zola)
 
 ## Site address
 
@@ -13,50 +13,30 @@ kite run script/cgen.php -h
 kite run script/cgen.php --name install-tools-by-scoop-on-windows --tags tool,windows,scoop
 ```
 
-## Docusaurus
+## 初始化
 
-This website is built using [Docusaurus 2](https://docusaurus.io/), a modern static website generator.
-
-### Installation
-
-```
-$ pnpm install
-```
-
-### Local Development
+使用 zola 的主题 [tabi](https://github.com/welpo/tabi) 进行构建
 
 ```bash
-$ pnpm start
-# or
-$ yarn start
-# or
-$ npm run start
+git submodule add https://github.com/welpo/tabi.git themes/tabi
 ```
 
-This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
+## 配置
 
-### Build
-
-```
-$ yarn build
-# or
-$ npm run build
-```
-
-This command generates static content into the `build` directory and can be served using any static contents hosting service.
-
-### Deployment
-
-Using SSH:
+- 配置文件：`config.toml`
+- 文档目录：`content/`
+- 参考start项目：https://github.com/welpo/tabi-start
 
 ```
-$ USE_SSH=true yarn deploy
+
+#
+inhere:
+  name: inhere
+  title: docs maintainer
+  url: https://github.com/inhere
+  image_url: https://github.com/inhere.png
 ```
 
-Not using SSH:
+## 部署
 
-```
-$ GIT_USER=<Your GitHub username> yarn deploy
-```
-
-If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
+使用 [zola-deploy-action](https://github.com/shalzz/zola-deploy-action) 进行部署

@@ -10,7 +10,7 @@ date: 2019-12-07T22:04
 
 some config files
 
-<!--truncate-->
+<!-- more -->
 
 ## Basic
 

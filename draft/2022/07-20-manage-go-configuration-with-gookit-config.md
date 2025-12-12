@@ -10,7 +10,7 @@ authors: inhere
 Manage Go configuration with gookit/config
 
 
-<!--truncate-->
+<!-- more -->
 
 ## What is gookit/config?
 

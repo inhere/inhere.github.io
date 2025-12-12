@@ -8,7 +8,7 @@ authors: inhere
 
 `cflag` - wraps and extends Go flag build pertty CLI command
 
-<!--truncate-->
+<!-- more -->
 
 ## Use Go flag
 
@@ -93,7 +93,7 @@ It's a package built into Go, and it's very simple to use. But there are some pr
 
 ### Install
 
-```shell
+```bash
 go get github.com/gookit/goutil/cflag
 ```
 
@@ -209,7 +209,7 @@ Option can be set as required(`required`), and supports setting **short option**
 
 ### Show help
 
-```shell
+```bash
 go run ./cflag/_example/cmd.go -h
 ```
 
@@ -219,7 +219,7 @@ go run ./cflag/_example/cmd.go -h
 
 ### Run command
 
-```shell
+```bash
 go run ./cflag/_example/cmd.go --name inhere -a 12 --lo val ab cd
 go run ./cflag/_example/cmd.go --name inhere -a 12 --lo val ab cd de fg
 ```
@@ -230,7 +230,7 @@ go run ./cflag/_example/cmd.go --name inhere -a 12 --lo val ab cd de fg
 
 ### `required` check
 
-```shell
+```bash
 go run ./cflag/_example/cmd.go -a 22
 go run ./cflag/_example/cmd.go --name inhere
 ```

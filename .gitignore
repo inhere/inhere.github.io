@@ -4,7 +4,6 @@
 # Production
 /build
 
-# Generated files
 .docusaurus
 .cache-loader
 
@@ -21,3 +20,5 @@ yarn-error.log*
 
 # editer
 /.idea
+# Generated files
+public/

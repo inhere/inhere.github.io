@@ -10,7 +10,7 @@ authors: inhere
 
 `gookit/goutil` 💪 Go 常用功能的扩展工具库。包含：数字，字符串，slice/数组，Map，结构体，反射，文本，文件，错误，时间日期，测试，CLI，命令运行，系统信息，格式化，常用信息获取等等。
 
-<!--truncate-->
+<!-- more -->
 
 :::info
 

@@ -9,7 +9,7 @@ authors: inhere
 
 TODO
 
-<!--truncate-->
+<!-- more -->
 
 TODO
 

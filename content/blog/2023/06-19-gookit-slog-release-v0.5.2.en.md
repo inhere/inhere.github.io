@@ -10,7 +10,7 @@ authors: inhere
 `gookit/slog` 📑 Lightweight, configurable, extensible logging library written in Go.
 Support multi level, multi outputs and built-in multi file logger, buffers, clean, rotate-file handling.
 
-<!--truncate-->
+<!-- more -->
 
 > Github https://github.com/gookit/slog
 

@@ -18,7 +18,7 @@ authors: inhere
   - 允许自定义生成过滤、样式等
   - 可以直接在 GitHub Actions 中使用
 
-<!--truncate-->
+<!-- more -->
 
 > Github https://github.com/gookit/gitw
 
@@ -29,7 +29,7 @@ authors: inhere
 
 ### 安装
 
-```shell
+```bash
 go install github.com/gookit/gitw/cmd/chlog@latest
 ```
 
@@ -37,7 +37,7 @@ go install github.com/gookit/gitw/cmd/chlog@latest
 
 **生成变更日志:**:
 
-```shell
+```bash
 chlog prev last
 chlog last head
 chlog -c .github/changelog.yml last head

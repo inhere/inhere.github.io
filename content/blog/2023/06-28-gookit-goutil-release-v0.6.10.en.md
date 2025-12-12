@@ -11,7 +11,7 @@ authors: inhere
 `gookit/goutil` An extended library of Go's common functionality. Contains: number, string, slice/array, Map, struct, reflection, text, file, error, time and date, test, CLI, command run, system information, formatting, common information acquisition, etc.
 
 
-<!--truncate-->
+<!-- more -->
 
 > **Github**: https://github.com/gookit/goutil
 
@@ -203,7 +203,7 @@ fmt.Println(min, max) // OUTPUT: 1024, 1048576
 
 **Examples of supported expression formats:**
 
-```text
+```txt
 "1KB~2MB"       => 1KB to 2MB
 "-1KB"          => <1KB
 "~1MB"          => <1MB
@@ -228,7 +228,7 @@ fmt.Println(start, end)
 
 **Examples of supported expression formats:**
 
-```text
+```txt
 "-5h~-1h"           => 5 hours ago to 1 hour ago
 "1h~5h"             => 1 hour after to 5 hours after
 "-1h~1h"            => 1 hour ago to 1 hour after

@@ -14,7 +14,7 @@ added:
 - add git bash profile
 
 
-<!--truncate-->
+<!-- more -->
 
 ## profiles
 
