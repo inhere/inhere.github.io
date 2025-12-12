@@ -1,4 +1,4 @@
-# Inehre's Blog and Docs
+# Inhere's Blog and Docs
 
 Build by [Zola](https://github.com/getzola/zola)
 

@@ -5,7 +5,7 @@ slug: about
 
 📚 这是一个兼具博客文章、知识管理、工具文档的个人网站
 
-> ![NOTE]
+> [!NOTE]
 > 文章内容仅是我个人的小总结，资历尚浅，如有误还请指正。
 
 ## 🐶About Me
@@ -14,26 +14,29 @@ PHP & Go & Java & Android & Flutter developer
 
 - 🔭 I’m currently working on Earth
 - 🌱 I’m currently learning Go,Java,Android,Flutter
-- 👯 I am participating in the contribution project: [Gookit](https://github.com/gookit) [Swoft](https://github.com/swoft-cloud)
+- 👯 I am participating in the contribution orgi:
+   [Gookit](https://github.com/gookit) [PHPPkg](https://github.com/phppkg) [Swoft](https://github.com/swoft-cloud)
 
-### 技能
+### :computer: 技能 Skills
 
-* 熟悉 PHP, Go, Java 的拼写
-* 了解 Linux、windows、macOS 的开关机方式
-* 精通 Git 的 pull 和 push
+* 熟悉 PHP, Go, Java, Android, Flutter 的拼写
+* 了解 Linux、Windows、macOS 的开关机方式
+* 精通 Git 的 pull 和 push 操作
+* 精通 IDE 的 `Ctrl + C` 和 `Ctrl + V` 复制粘贴操作
 
-## GitHub
+## :cat: GitHub
 
-[![inhere's github stats](https://github-readme-stats.vercel.app/api?username=inhere&show_icons=true&theme=)](https://github.com/inhere)
+> [!IMPORTANT]
+> More see [https://github.com/inhere](https://github.com/inhere)
 
-- GitHub https://github.com/inhere
+![GitHub Card](https://githubcard.com/inhere.svg)
 
-### 我的组织
+### :family: 我的组织 Organizations
 
-- Gookit https://github.com/gookit
-- PHPPkg https://github.com/phppkg
-- PHP-Toolkit https://github.com/php-toolkit
+- Gookit [https://github.com/gookit](https://github.com/gookit)
+- PHPPkg [https://github.com/phppkg](https://github.com/phppkg)
+- PHP-Toolkit [https://github.com/php-toolkit](https://github.com/php-toolkit)
 
-### 参与项目
+### :package: 参与项目 Projects
 
-[<img src="https://github-readme-stats.vercel.app/api/pin/?username=swoft-cloud&amp;repo=swoft&amp;show_owner=true" alt="ReadMe Card" class="no-zoom"></img>](https://github.com/swoft-cloud/swoft)
+- Swoft [https://github.com/swoft-cloud/swoft](https://github.com/swoft-cloud/swoft)
