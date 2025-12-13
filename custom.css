@@ -1,0 +1,73 @@
+/* 自定义样式 */
+
+/* 为 blockquote 添加自定义样式: 类似 Github alert 的样式 */
+blockquote {
+    border-bottom: .1rem solid var(--primary-color);
+    border-radius: 10px;
+    padding-top: 4px;
+}
+
+/*
+为 class markdown-alert-{type} 添加不同的样式
+type: note, tip, important, warning, or caution
+ */
+.markdown-alert-note,
+.markdown-alert-tip,
+.markdown-alert-important,
+.markdown-alert-warning,
+.markdown-alert-caution {
+    border-top: 1px solid var(--primary-color);
+    border-bottom: .2rem solid var(--primary-color);
+    border-right: 1px solid var(--primary-color);
+    border-radius: 15px;
+    padding-left: 2.5rem;
+    position: relative;
+}
+
+/* 为每种类型添加emoji图标 */
+.markdown-alert-note::before {
+    content: "📝";
+    position: absolute;
+    left: 0.8rem;
+    top: 0.5rem;
+}
+.markdown-alert-tip::before {
+    content: "💡";
+    position: absolute;
+    left: 0.8rem;
+    top: 0.5rem;
+}
+.markdown-alert-important::before {
+    content: "⭐";
+    position: absolute;
+    left: 0.8rem;
+    top: 0.5rem;
+}
+.markdown-alert-warning::before {
+    content: "⚠️";
+    position: absolute;
+    left: 0.8rem;
+    top: 0.5rem;
+}
+.markdown-alert-caution::before {
+    content: "🚨";
+    position: absolute;
+    left: 0.8rem;
+    top: 0.5rem;
+}
+
+.markdown-alert-note {
+    border-color: #007bff;
+}
+.markdown-alert-tip {
+    border-color: #28a745;
+}
+.markdown-alert-important {
+    border-color: #ffc107;
+}
+.markdown-alert-warning {
+    border-color: #dc3545;
+}
+.markdown-alert-caution {
+    border-color: #800080;
+}
