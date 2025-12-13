@@ -21,6 +21,7 @@ taxonomies = [{name = "tags", feed = true}]
 # [languages.zh-Hans]
 # title = "我的网站"
 
+# BUG 如果文件名含有 . (eg: some-v0.5.2.en.md) 会导致解析错误
 # [languages.en]
 # title = "Inhere's Site"
 # description = "Inhere's site, blogs and project docs"
@@ -32,11 +33,25 @@ highlight_code = true
 # axar, css, base16-atelierdune-light
 highlight_theme = "css"
 bottom_footnotes = true
+
+# Whether smart punctuation is enabled (changing quotes, dashes, dots in their typographic form)
+# For example, `...` into `…`, `"quote"` into `“curly”` etc
 smart_punctuation = true
 # :smile: => 😄
 render_emoji = true
 # 为外部链接添加图标
 external_links_class = "external"
+# Whether external links are to be opened in a new tab
+# If this is true, a `rel="noopener"` will always automatically be added for security reasons
+external_links_target_blank = true
+# Whether to set rel="nofollow" for all external links
+external_links_no_follow = true
+# Whether to set rel="noreferrer" for all external links
+external_links_no_referrer = true
+# This value can be "left", "right", "heading" or "none".
+# "heading" means the full heading becomes the text of the anchor.
+# See "Internal links & deep linking" in the documentation for more information.
+insert_anchor_links = "left"
 
 # When set to "true", support for GitHub-style alerts, a.k.a. callouts or admonitions, is enabled in the Markdown parser.
 # For example, this Markdown syntax:

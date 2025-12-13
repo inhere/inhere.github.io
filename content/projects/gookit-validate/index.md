@@ -14,7 +14,8 @@ tags = ["golang", "gookit", "validate"]
 `gookit/validate` ⚔ Go通用的数据验证与过滤库，使用简单，内置大部分常用验证器、过滤器，支持自定义消息、字段翻译。
 
 > [!TIP]
-> Github [https://github.com/gookit/validate](https://github.com/gookit/validate)
+> - Github 仓库 [https://github.com/gookit/validate](https://github.com/gookit/validate)
+> - 详细使用文档 [https://zread.ai/gookit/validate](https://zread.ai/gookit/validate)
 
 ## 功能特色
 

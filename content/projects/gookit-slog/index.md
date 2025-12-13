@@ -14,7 +14,9 @@ tags = ["golang", "gookit", "slog", "logger"]
 
 `gookit/slog` 📑 Go 一个易于使用的，轻量级、可配置、可扩展的日志库。支持多个级别，输出到多文件；内置文件日志处理、自动切割、清理、压缩等增强功能。
 
-> Github [https://github.com/gookit/slog](https://github.com/gookit/slog)
+> [!TIP]
+> - Github 仓库 [https://github.com/gookit/slog](https://github.com/gookit/slog)
+> - 详细使用文档 [https://zread.ai/gookit/slog](https://zread.ai/gookit/slog)
 
 **控制台日志效果:**
 

@@ -16,7 +16,8 @@ tags = ["golang", "gookit", "color"]
 包含：颜色打印，颜色代码，颜色转换，颜色混合，颜色对比等等。
 
 > [!TIP]
-> Github [https://github.com/gookit/color](https://github.com/gookit/color)
+> - Github 仓库 [https://github.com/gookit/color](https://github.com/gookit/color)
+> - 详细使用文档 [https://zread.ai/gookit/color](https://zread.ai/gookit/color)
 
 ## 功能特色
 

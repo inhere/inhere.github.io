@@ -13,7 +13,9 @@ tags = ["golang", "gookit", "goutil"]
 
 `gookit/goutil` 💪 Go 常用功能的扩展工具库。包含：数字，字符串，slice/数组，Map，结构体，反射，文本，文件，错误，时间日期，测试，CLI，命令运行，系统信息，格式化，常用信息获取等等。
 
-> Github [https://github.com/gookit/goutil](https://github.com/gookit/goutil)
+> [!TIP]
+> - Github 仓库 [https://github.com/gookit/goutil](https://github.com/gookit/goutil)
+> - 详细使用文档 [https://zread.ai/gookit/goutil](https://zread.ai/gookit/goutil)
 
 ## 功能特点
 

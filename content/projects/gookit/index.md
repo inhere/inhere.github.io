@@ -9,18 +9,10 @@ tags = ["golang", "gookit"]
 [extra]
 +++
 
-## 🎨 Gookit Projects
+gookit 组织下实现了一些简单基础的Go工具包方便开发使用。
 
-[<img src="https://github-readme-stats.vercel.app/api/pin/?username=gookit&amp;repo=color&amp;show_owner=true" alt="ReadMe Card" class="no-zoom"></img>](https://github.com/gookit/color)
-[<img src="https://github-readme-stats.vercel.app/api/pin/?username=gookit&amp;repo=goutil&amp;show_owner=true" alt="ReadMe Card" class="no-zoom"></img>](https://github.com/gookit/goutil)
-[<img src="https://github-readme-stats.vercel.app/api/pin/?username=gookit&amp;repo=config&amp;show_owner=true" alt="ReadMe Card" class="no-zoom"></img>](https://github.com/gookit/config)
-[<img src="https://github-readme-stats.vercel.app/api/pin/?username=gookit&amp;repo=validate&amp;show_owner=true" alt="ReadMe Card" class="no-zoom"></img>](https://github.com/gookit/validate)
-[<img src="https://github-readme-stats.vercel.app/api/pin/?username=gookit&amp;repo=event&amp;show_owner=true" alt="ReadMe Card" class="no-zoom"></img>](https://github.com/gookit/event)
-[<img src="https://github-readme-stats.vercel.app/api/pin/?username=gookit&amp;repo=rux&amp;show_owner=true" alt="ReadMe Card" class="no-zoom"></img>](https://github.com/gookit/rux)
-[<img src="https://github-readme-stats.vercel.app/api/pin/?username=gookit&amp;repo=slog&amp;show_owner=true" alt="ReadMe Card" class="no-zoom"></img>](https://github.com/gookit/slog)
-[<img src="https://github-readme-stats.vercel.app/api/pin/?username=gookit&amp;repo=cache&amp;show_owner=true" alt="ReadMe Card" class="no-zoom"></img>](https://github.com/gookit/cache)
-
-https://github.com/gookit 实现了一些简单基础的Go工具包方便开发使用。
+> [!TIP]
+> Github 仓库 [https://github.com/gookit](https://github.com/gookit)
 
 - [gookit/goutil](https://github.com/gookit/goutil) Go 常用的一些工具函数：数字，字符串，数组，Map，结构体，反射，文本，文件，错误，时间日期，特殊处理，格式化，常用信息获取等等
 - [gookit/slog](https://github.com/gookit/slog) 易于使用的，轻量级、可配置、可扩展的日志库。支持多个级别，输出到多文件；内置文件日志处理、自动切割、清理、压缩等增强功能
@@ -37,4 +29,4 @@ https://github.com/gookit 实现了一些简单基础的Go工具包方便开发�
 - [gookit/i18n](https://github.com/gookit/i18n) 使用INI格式文件，实现的简单方便的语言加载与管理
 - [gookit/gitw](https://github.com/gookit/gitw) 包装Git命令方便使用。生成变更记录日志，获取 repo,branch,remote 信息和一些 Git 命令工具。
 
-> 更多请查看 https://github.com/gookit
+> 更多请查看 [https://github.com/gookit](https://github.com/gookit)

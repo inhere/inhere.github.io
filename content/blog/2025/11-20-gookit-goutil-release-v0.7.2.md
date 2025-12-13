@@ -2,7 +2,7 @@
 title: gookit/goutil v0.7.2 发布：增强功能与修复，提升开发体验
 date: 2025-11-20T21:42:00
 taxonomies:
-  tags: [gookit, ai-glm]
+  tags: [gookit, ai-glm, goutil]
 ---
 
 `gookit/goutil` v0.7.2 现已发布！此版本带来了多项新功能、优化和问题修复，进一步增强了这个 Go 语言实用工具库的稳定性和易用性。
@@ -12,7 +12,7 @@ taxonomies:
 
 -  项目主页：[https://github.com/gookit/goutil](https://github.com/gookit/goutil)
 -  完整变更日志：[v0.7.2 Release Notes](https://github.com/gookit/goutil/releases/tag/v0.7.2)
--  完整文档查看 https://zread.ai/gookit/goutil
+-  完整文档查看 [https://zread.ai/gookit/goutil]https://zread.ai/gookit/goutil
 
 ## 🛠️ 主要问题修复
 
