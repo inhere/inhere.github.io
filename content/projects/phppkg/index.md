@@ -1,14 +1,13 @@
 +++
 title = "PHP Package"
 description = "The non-opinionated Rust-based commit message linter."
-weight = 20
+weight = 29
 
 [taxonomies]
-tags = ["PHP", "Toolkit"]
+tags = ["php", "toolkit"]
 
 [extra]
 +++
-
 
 ### 🎨 PHP Projects
 

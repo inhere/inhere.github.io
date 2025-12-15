@@ -1,7 +1,7 @@
 +++
 title = "gookit"
 description = "The non-opinionated Rust-based commit message linter."
-weight = 0
+weight = 15
 
 [taxonomies]
 tags = ["golang", "gookit"]

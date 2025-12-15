@@ -12,4 +12,7 @@ show_projects_first = false
 social_media_card = "img/undraw_docusaurus_react.svg"
 +++
 
-Hello, I'm Inhere. I'm a software engineer. I love to build things. I love to share my knowledge. I love to help others.
+PHP & Go & Java & Android & Flutter developer
+
+- 🔭 I’m currently working on Earth
+- 🌱 I’m currently learning Go,Java,Android,Flutter

@@ -2,6 +2,8 @@
 
 /* 为 blockquote 添加自定义样式: 类似 Github alert 的样式 */
 blockquote {
+    border-top: 1px solid #ddd;
+    border-right: 1px solid #ddd;
     border-bottom: .1rem solid var(--primary-color);
     border-radius: 10px;
     padding-top: 4px;

@@ -153,15 +153,17 @@ menu = [
     { name = "📚 Collections", url = "collections", trailing_slash = true },
     { name = "🏷️ Tags", url = "tags", trailing_slash = true },
     { name = "🗄️ Archive", url = "archive", trailing_slash = true },
-    # { name = "🐱 Github", url = "https://github.com/inhere", trailing_slash = false }
+    { name = "🐱 Github", url = "https://github.com/inhere", trailing_slash = false }
 ]
 
 # Extra menu to show on the footer, below socials section.
 footer_menu = [
-    {url = "pages/about", name = "About", trailing_slash = true},
+    {url = "pages/about", name = "🐶 About", trailing_slash = false},
     # {url = "privacy", name = "privacy", trailing_slash = true},
     # {url = "https://tabi-stats.osc.garden", name = "site_statistics", trailing_slash = true},
-    {url = "sitemap.xml", name = "Sitemap", trailing_slash = false},
+    {url = "https://github.com/gookit", name = "🐱 Gookit"},
+    {url = "https://github.com/phppkg", name = "🐱 PHPPkg"},
+    {url = "sitemap.xml", name = "📄 Sitemap", trailing_slash = false},
 ]
 
 enable_subset = true

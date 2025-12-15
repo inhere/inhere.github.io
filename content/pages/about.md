@@ -1,5 +1,5 @@
 ---
-title: About
+title: 关于 About
 slug: about
 ---
 
@@ -8,7 +8,7 @@ slug: about
 > [!NOTE]
 > 文章内容仅是我个人的小总结，资历尚浅，如有误还请指正。
 
-## 🐶About Me
+## 🐶 About Me
 
 PHP & Go & Java & Android & Flutter developer
 

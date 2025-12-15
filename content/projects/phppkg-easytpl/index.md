@@ -1,18 +1,18 @@
 +++
-title = "PHP Package - EasyTpl"
-description = "The non-opinionated Rust-based commit message linter."
+title = "PHP - EasyTpl"
+description = "easytpl - 简单快速的 PHP 模板引擎。"
 weight = 21
 
 [taxonomies]
-tags = ["PHP", "Toolkit"]
+tags = ["php", "toolkit"]
 
 [extra]
 +++
 
-# EasyTpl
+`easytpl` - ⚡️ 简单快速的 PHP 模板引擎。
 
-
-⚡️ 简单快速的 PHP 模板引擎。
+> [!TIP]
+> Github 仓库 [https://github.com/phppkg/easytpl](https://github.com/phppkg/easytpl)
 
 ## 功能特性
 
@@ -36,7 +36,7 @@ tags = ["PHP", "Toolkit"]
 
 ## 安装
 
-**composer**
+**By Composer**
 
 ```bash
 composer require phppkg/easytpl
