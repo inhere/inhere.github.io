@@ -1,0 +1,722 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet href="https://inhere.github.io/feed_style.xsl" type="text/xsl"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-Hans">
+    <tabi:metadata xmlns:tabi="https://github.com/welpo/tabi">
+        <tabi:base_url>https:&#x2F;&#x2F;inhere.github.io</tabi:base_url>
+        <tabi:separator>
+            •
+        </tabi:separator>
+        <tabi:about_feeds>这是Web Feed，又称为Atom Feed，把现在的网址复制到新闻阅读器即可订阅本站文章。造访「About Feeds」来了解更多资讯。</tabi:about_feeds>
+        <tabi:visit_the_site>造访网站</tabi:visit_the_site>
+        <tabi:recent_posts>近期文章</tabi:recent_posts>
+        <tabi:last_updated_on>更新于 $DATE</tabi:last_updated_on>
+        <tabi:default_theme></tabi:default_theme>
+        <tabi:post_listing_date>date</tabi:post_listing_date>
+        <tabi:current_section>Inhere&#x27;s Site</tabi:current_section>
+    </tabi:metadata><link rel="extra-stylesheet" href="https://inhere.github.io/skins/blue.css?h=a4dc1e94d3f5759784d2" /><title>Inhere's Site</title>
+        <subtitle>Inhere&#x27;s site, blogs and project docs</subtitle>
+    <link href="https://inhere.github.io/atom.xml" rel="self" type="application/atom+xml"/>
+    <link href="https://inhere.github.io" rel="alternate" type="text/html"/>
+    <generator uri="https://www.getzola.org/">Zola</generator><updated>2025-12-11T19:42:00+00:00</updated><id>https://inhere.github.io/atom.xml</id><entry xml:lang="zh-Hans">
+        <title>博客构建从 Docusaurus 迁移到 Zola</title>
+        <published>2025-12-11T19:42:00+00:00</published>
+        <updated>2025-12-11T19:42:00+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/blog/2025/12-11-migrate-to-zola-from-doces/" type="text/html"/>
+        <id>https://inhere.github.io/blog/2025/12-11-migrate-to-zola-from-doces/</id>
+        <summary type="html">之前使用 Docusaurus 构建博客，现在想迁移到 Zola。
+Zola 是一个rust编写的静态站点生成器，它使用 Markdown 文件来生成静态网站。它的配置文件是 config.toml，你可以在其中配置网站的标题、描述、导航栏、侧边栏等。…</summary>
+        </entry><entry xml:lang="zh-Hans">
+        <title>gookit&#x2F;goutil v0.7.2 发布：增强功能与修复，提升开发体验</title>
+        <published>2025-11-20T21:42:00+00:00</published>
+        <updated>2025-11-20T21:42:00+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/blog/2025/11-20-gookit-goutil-release-v0-7-2/" type="text/html"/>
+        <id>https://inhere.github.io/blog/2025/11-20-gookit-goutil-release-v0-7-2/</id>
+        <summary type="html">gookit/goutil v0.7.2 现已发布！此版本带来了多项新功能、优化和问题修复，进一步增强了这个 Go 语言实用工具库的稳定性和易用性。
+本次更新涉及多个模块，包括数学工具、字符串处理、文件系统操作、命令行标志处理等，旨在为开发者提供更丰富、更高效的工具集。…</summary>
+        </entry><entry xml:lang="zh-Hans">
+        <title>gookit slog release v0.5.8</title>
+        <published>2025-04-24T13:25:00+00:00</published>
+        <updated>2025-04-24T13:25:00+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/blog/2025/gookit-slog-release-v0-5-8/" type="text/html"/>
+        <id>https://inhere.github.io/blog/2025/gookit-slog-release-v0-5-8/</id>
+        <summary type="html">gookit/slog 一个易于使用的，轻量级、可配置、可扩展的日志库。支持多个级别，输出到多文件；内置文件日志处理、自动切割、清理、压缩等增强功能。
+v0.5.8 已正式发布！这一版本中带来了众多改进与修复，进一步提升了开发者的使用体验和日志处理能力。…</summary>
+        </entry><entry xml:lang="zh-Hans">
+        <title>Windows下的工具使用和配置记录</title>
+        <published>2024-08-07T21:14:00+00:00</published>
+        <updated>2024-08-07T21:14:00+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/collections/06-windows-tool-usage/" type="text/html"/>
+        <id>https://inhere.github.io/collections/06-windows-tool-usage/</id>
+        </entry><entry xml:lang="zh-Hans">
+        <title>gookit validate release v1.5.2</title>
+        <published>2024-01-24T23:25:00+00:00</published>
+        <updated>2024-01-24T23:25:00+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/blog/2024/gookit-validate-release-v1-5-2/" type="text/html"/>
+        <id>https://inhere.github.io/blog/2024/gookit-validate-release-v1-5-2/</id>
+        <summary type="html">gookit/validate Go通用的数据验证与过滤库，使用简单，内置大部分常用验证器、过滤器，支持自定义消息、字段翻译。…</summary>
+        </entry><entry xml:lang="zh-Hans">
+        <title>gookit goutil release v0.6.15</title>
+        <published>2024-01-24T23:24:00+00:00</published>
+        <updated>2024-01-24T23:24:00+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/blog/2024/01-24-gookit-goutil-release-v0-6-15-en/" type="text/html"/>
+        <id>https://inhere.github.io/blog/2024/01-24-gookit-goutil-release-v0-6-15-en/</id>
+        <summary type="html">gookit/goutil 💪 Go 常用功能的扩展工具库。包含：数字，字符串，slice/数组，Map，结构体，反射，文本，文件，错误，时间日期，测试，CLI，命令运行，系统信息，格式化，常用信息获取等等。…</summary>
+        </entry><entry xml:lang="zh-Hans">
+        <title>gookit&#x2F;goutil - Go常用功能的扩展工具库，发布 v0.6.15 版本</title>
+        <published>2024-01-24T23:24:00+00:00</published>
+        <updated>2024-01-24T23:24:00+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/blog/2024/gookit-goutil-release-v0-6-15/" type="text/html"/>
+        <id>https://inhere.github.io/blog/2024/gookit-goutil-release-v0-6-15/</id>
+        <summary type="html">gookit/goutil 💪 Go 常用功能的扩展工具库。包含：数字，字符串，slice/数组，Map，结构体，反射，文本，文件，错误，时间日期，测试，CLI，命令运行，系统信息，格式化，常用信息获取等等。
+本次 v0.6.15 版本主要是一些功能增强和修复更新。…</summary>
+        </entry><entry xml:lang="zh-Hans">
+        <title>bash 常用命令记录</title>
+        <published>2024-01-09T14:27:00+00:00</published>
+        <updated>2024-01-09T14:27:00+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/collections/04-bashchang-yong-ming-ling/" type="text/html"/>
+        <id>https://inhere.github.io/collections/04-bashchang-yong-ming-ling/</id>
+        </entry><entry xml:lang="zh-Hans">
+        <title>JetBrains 平台 IDEs 常用插件记录</title>
+        <published>2023-11-10T14:27:00+00:00</published>
+        <updated>2023-11-10T14:27:00+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/collections/my-jetbrains-ide-plugins/" type="text/html"/>
+        <id>https://inhere.github.io/collections/my-jetbrains-ide-plugins/</id>
+        </entry><entry xml:lang="zh-Hans">
+        <title>gookit&#x2F;goutil - Go常用功能的扩展工具库，发布 v0.6.14 版本</title>
+        <published>2023-10-16T15:12:00+00:00</published>
+        <updated>2023-10-16T15:12:00+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/blog/2023/gookit-goutil-release-v0-6-14/" type="text/html"/>
+        <id>https://inhere.github.io/blog/2023/gookit-goutil-release-v0-6-14/</id>
+        <summary type="html">gookit/goutil Go 常用功能的扩展工具库。包含：数字，字符串，slice/数组，Map，结构体，反射，文本，文件，错误，时间日期，测试，CLI，命令运行，系统信息，格式化，常用信息获取等等。…</summary>
+        </entry><entry xml:lang="zh-Hans">
+        <title>在Windows下使用多个版本的PHP记录</title>
+        <published>2023-10-16T15:12:00+00:00</published>
+        <updated>2023-10-16T15:12:00+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/blog/2023/use-multi-version-php-on-windows/" type="text/html"/>
+        <id>https://inhere.github.io/blog/2023/use-multi-version-php-on-windows/</id>
+        <summary type="html">在Windows下使用多个版本的PHP如何配置记录，我会同时使用 PHP7 和 PHP8版本在 Windows 下。…</summary>
+        </entry><entry xml:lang="zh-Hans">
+        <title>gookit&#x2F;goutil - Go常用功能的扩展工具库，发布 v0.6.12 版本</title>
+        <published>2023-07-25T11:12:00+00:00</published>
+        <updated>2023-07-25T11:12:00+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/blog/2023/gookit-goutil-release-v0-6-12/" type="text/html"/>
+        <id>https://inhere.github.io/blog/2023/gookit-goutil-release-v0-6-12/</id>
+        <summary type="html">gookit/goutil Go 常用功能的扩展工具库。包含：数字，字符串，slice/数组，Map，结构体，反射，文本，文件，错误，时间日期，测试，CLI，命令运行，系统信息，格式化，常用信息获取等等。…</summary>
+        </entry><entry xml:lang="zh-Hans">
+        <title>gookit&#x2F;goutil - 发布 v0.6.10 版本, Go常用功能的扩展工具库</title>
+        <published>2023-06-28T14:55:00+00:00</published>
+        <updated>2023-06-28T14:55:00+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/blog/2023/06-28-gookit-goutil-release-v0-6-10/" type="text/html"/>
+        <id>https://inhere.github.io/blog/2023/06-28-gookit-goutil-release-v0-6-10/</id>
+        <summary type="html">gookit/goutil Go 常用功能的扩展工具库。包含：数字，字符串，slice/数组，Map，结构体，反射，文本，文件，错误，时间日期，测试，CLI，命令运行，系统信息，格式化，常用信息获取等等。…</summary>
+        </entry><entry xml:lang="zh-Hans">
+        <title>gookit&#x2F;goutil - released v0.6.10, an extension library of common Go features</title>
+        <published>2023-06-28T14:55:00+00:00</published>
+        <updated>2023-06-28T14:55:00+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/blog/2023/gookit-goutil-release-v0-6-10/" type="text/html"/>
+        <id>https://inhere.github.io/blog/2023/gookit-goutil-release-v0-6-10/</id>
+        <summary type="html">gookit/goutil An extended library of Go’s common functionality. Contains: number, string, slice/array, Map, struct, reflection, text, file, error, time and date, test, CLI, command run, system information, formatting, common information acquisition, etc…</summary>
+        </entry><entry xml:lang="zh-Hans">
+        <title>gookit&#x2F;slog - release v0.5.2, Lightweight, configurable, extensible logging library</title>
+        <published>2023-06-19T17:16:00+00:00</published>
+        <updated>2023-06-19T17:16:00+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/blog/2023/06-19-gookit-slog-release-v0-5-2-en/" type="text/html"/>
+        <id>https://inhere.github.io/blog/2023/06-19-gookit-slog-release-v0-5-2-en/</id>
+        <summary type="html">gookit/slog 📑 Lightweight, configurable, extensible logging library written in Go.
+Support multi level, multi outputs and built-in multi file logger, buffers, clean, rotate-file handling…</summary>
+        </entry><entry xml:lang="zh-Hans">
+        <title>gookit&#x2F;slog - 发布 v0.5.2 版本, 易于使用的，可配置、可扩展的Go日志库</title>
+        <published>2023-06-19T17:16:00+00:00</published>
+        <updated>2023-06-19T17:16:00+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/blog/2023/06-19-gookit-slog-release-v0-5-2/" type="text/html"/>
+        <id>https://inhere.github.io/blog/2023/06-19-gookit-slog-release-v0-5-2/</id>
+        <summary type="html">gookit/slog 📑 一个易于使用的，轻量级、可配置、可扩展的日志库。支持多个级别，输出到多文件；内置文件日志处理、自动切割、清理、压缩等增强功能…</summary>
+        </entry><entry xml:lang="zh-Hans">
+        <title>gookit&#x2F;event - Go实现的轻量级的事件管理、调度程序库</title>
+        <published>2023-06-14T15:53:00+00:00</published>
+        <updated>2023-06-14T15:53:00+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/blog/2023/gookit-event-pacakge-intro/" type="text/html"/>
+        <id>https://inhere.github.io/blog/2023/gookit-event-pacakge-intro/</id>
+        <summary type="html">
+event 事件调度库
+gookit/event Go实现的轻量级的事件管理、调度程序库, 支持设置监听器的优先级, 支持使用通配符来进行一组事件的监听。…</summary>
+        </entry><entry xml:lang="zh-Hans">
+        <title>通过docker安装日志搜索服务 zincobserve(openobserve)</title>
+        <published>2023-05-26T16:41:00+00:00</published>
+        <updated>2023-05-26T16:41:00+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/blog/2023/install-log-search-zincobserve-by-docker/" type="text/html"/>
+        <id>https://inhere.github.io/blog/2023/install-log-search-zincobserve-by-docker/</id>
+        <summary type="html">在本地安装并使用日志搜索服务 zincobserve…</summary>
+        </entry><entry xml:lang="zh-Hans">
+        <title>gookit&#x2F;config - Go语言读取多种格式配置文件</title>
+        <published>2022-08-31T13:25:00+00:00</published>
+        <updated>2022-08-31T13:25:00+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/blog/2022/gookit-config-intro/" type="text/html"/>
+        <id>https://inhere.github.io/blog/2022/gookit-config-intro/</id>
+        <summary type="html">gookit/config - Go应用配置管理，支持读取多种格式 JSON(默认), JSON5, INI, Properties, YAML, TOML, HCL, ENV, Flags，多文件加载，支持数据合并，解析环境变量名等等…</summary>
+        </entry><entry xml:lang="zh-Hans">
+        <title>通过 scoop 在Windows 下安装工具</title>
+        <published>2022-07-10T14:38:00+00:00</published>
+        <updated>2022-07-10T14:38:00+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/blog/2022/install-tools-by-scoop-on-windows/" type="text/html"/>
+        <id>https://inhere.github.io/blog/2022/install-tools-by-scoop-on-windows/</id>
+        <summary type="html">scoop 是一个Windows 下的应用包安装管理工具，类似于 Linux 下的 yum,apt 和MacOs 下的 brew。
+通过使用 scoop 可以方便快速的安装常用的开发工具，会自动设置环境变量，例如 php, go, rust 等。…</summary>
+        </entry><entry xml:lang="zh-Hans">
+        <title>安装并配置 docusaurus v2站点</title>
+        <published>2022-07-09T17:13:00+00:00</published>
+        <updated>2022-07-09T17:13:00+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/blog/2022/install-and-config-docusaurus-v2-md/" type="text/html"/>
+        <id>https://inhere.github.io/blog/2022/install-and-config-docusaurus-v2-md/</id>
+        <summary type="html">简单记录一下如何安装和使用 Docusaurus 来构建自己的博客和文档站点。
+
+Docusaurus 的官方文档 https://docusaurus.io/zh-CN/docs
+…</summary>
+        </entry><entry xml:lang="zh-Hans">
+        <title>cflag - wraps and extends Go flag build pertty CLI command</title>
+        <published>2022-07-09T16:00:00+00:00</published>
+        <updated>2022-07-09T16:00:00+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/blog/2022/07-09-gookit-goutil-cflag-usage-en/" type="text/html"/>
+        <id>https://inhere.github.io/blog/2022/07-09-gookit-goutil-cflag-usage-en/</id>
+        <summary type="html">cflag - wraps and extends Go flag build pertty CLI command…</summary>
+        </entry><entry xml:lang="zh-Hans">
+        <title>cflag - 包装Go FlagSet构建简单且漂亮的命令行应用程序</title>
+        <published>2022-07-09T16:00:00+00:00</published>
+        <updated>2022-07-09T16:00:00+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/blog/2022/07-09-gookit-goutil-cflag-usage/" type="text/html"/>
+        <id>https://inhere.github.io/blog/2022/07-09-gookit-goutil-cflag-usage/</id>
+        <summary type="html">cflag - 包装和扩展 Go flag.FlagSet 以构建简单且漂亮的命令行应用程序。
+…</summary>
+        </entry><entry xml:lang="zh-Hans">
+        <title>gitw - Git 命令包装器，生成 git 变更记录日志</title>
+        <published>2022-07-06T21:00:00+00:00</published>
+        <updated>2022-07-06T21:00:00+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/blog/2022/07-06-gookit-gitw-intro-en/" type="text/html"/>
+        <id>https://inhere.github.io/blog/2022/07-06-gookit-gitw-intro-en/</id>
+        <summary type="html">gitw - Git 命令包装器，生成 git 变更记录日志，获取 repo 信息和一些 git 命令工具。
+
+包装本地 git 命令
+快速运行 git 命令
+快速查询存储库信息
+
+获取 remote, branch 详细信息
+
+
+通过 git log 快速生成版本变更日志
+
+允许自定义生成配置
+允许自定义生成过滤、样式等
+可以直接在 GitHub Actions 中使用
+
+
+…</summary>
+        </entry><entry xml:lang="zh-Hans">
+        <title>gitw - Git 命令包装器，生成 git 变更记录日志</title>
+        <published>2022-07-06T21:00:00+00:00</published>
+        <updated>2022-07-06T21:00:00+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/blog/2022/07-06-gookit-gitw-intro/" type="text/html"/>
+        <id>https://inhere.github.io/blog/2022/07-06-gookit-gitw-intro/</id>
+        <summary type="html">gitw - Git 命令包装器，生成 git 变更记录日志，获取 repo 信息和一些 git 命令工具。
+
+包装本地 git 命令
+快速运行 git 命令
+快速查询存储库信息
+
+获取 remote, branch 详细信息
+
+
+通过 git log 快速生成版本变更日志
+
+允许自定义生成配置
+允许自定义生成过滤、样式等
+可以直接在 GitHub Actions 中使用
+
+
+…</summary>
+        </entry><entry xml:lang="zh-Hans">
+        <title>slog - Lightweight, configurable, extensible Go logging library</title>
+        <published>2022-06-16T21:00:00+00:00</published>
+        <updated>2022-06-16T21:00:00+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/blog/2022/06-16-gookit-slog-intro-en/" type="text/html"/>
+        <id>https://inhere.github.io/blog/2022/06-16-gookit-slog-intro-en/</id>
+        </entry><entry xml:lang="zh-Hans">
+        <title>slog - 一个易于使用的，易扩展、可配置的日志库</title>
+        <published>2022-06-16T21:00:00+00:00</published>
+        <updated>2022-06-16T21:00:00+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/blog/2022/06-16-gookit-slog-intro/" type="text/html"/>
+        <id>https://inhere.github.io/blog/2022/06-16-gookit-slog-intro/</id>
+        <summary type="html">gookit/slog 📑 一个易于使用的，轻量级、可配置、可扩展的日志库。支持多个级别，输出到多文件；内置文件日志处理、自动切割、清理、压缩等增强功能
+…</summary>
+        </entry><entry xml:lang="zh-Hans">
+        <title>pflag - 更好的PHP命令行选项解析库</title>
+        <published>2021-10-11T15:11:00+00:00</published>
+        <updated>2021-10-11T15:11:00+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/blog/2021/pflag-better-php-command-line-parse-library/" type="text/html"/>
+        <id>https://inhere.github.io/blog/2021/pflag-better-php-command-line-parse-library/</id>
+        <summary type="html">php-toolkit/pflag 是一个PHP编写的，通用的命令行标志(选项和参数)解析库。
+
+
+Github 仓库: php-toolkit/pflag
+…</summary>
+        </entry><entry xml:lang="zh-Hans">
+        <title>学习编写bash命令自动补全</title>
+        <published>2021-08-09T11:24:00+00:00</published>
+        <updated>2021-08-09T11:24:00+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/blog/2021/08-09-learn-bash-completion/" type="text/html"/>
+        <id>https://inhere.github.io/blog/2021/08-09-learn-bash-completion/</id>
+        <summary type="html">简单学习编写bash命令自动补全…</summary>
+        </entry><entry xml:lang="zh-Hans">
+        <title>简单快速的配置自己的bash环境</title>
+        <published>2021-08-08T11:26:00+00:00</published>
+        <updated>2021-08-08T11:26:00+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/blog/2021/08-08-quick-config-bashrc/" type="text/html"/>
+        <id>https://inhere.github.io/blog/2021/08-08-quick-config-bashrc/</id>
+        <summary type="html">简单快速的配置自己的bash环境…</summary>
+        </entry><entry xml:lang="zh-Hans">
+        <title>在线书籍</title>
+        <published>2021-08-07T21:14:00+00:00</published>
+        <updated>2021-08-07T21:14:00+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/collections/05-books/" type="text/html"/>
+        <id>https://inhere.github.io/collections/05-books/</id>
+        </entry><entry xml:lang="zh-Hans">
+        <title>ZSH自动补全脚本编写</title>
+        <published>2021-07-28T22:04:00+00:00</published>
+        <updated>2021-07-28T22:04:00+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/blog/2021/07-28-zsh-completions-howto/" type="text/html"/>
+        <id>https://inhere.github.io/blog/2021/07-28-zsh-completions-howto/</id>
+        <summary type="html">
+ZSH 自动补全脚本编写
+告诉 zsh 使用哪个函数来完成命令
+命令的完成函数存储在名称以下划线 _ 开头的文件中，这些文件应放置在 $fpath 变量中列出的目录中。
+可以通过在 ~/.zshrc 文件中添加这样的行来向 $fpath 添加目录：
+fpath=(~/newdir $fpath )
+…</summary>
+        </entry><entry xml:lang="zh-Hans">
+        <title>工具收藏</title>
+        <published>2021-05-16T22:14:00+00:00</published>
+        <updated>2021-05-16T22:14:00+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/collections/04-tools/" type="text/html"/>
+        <id>https://inhere.github.io/collections/04-tools/</id>
+        </entry><entry xml:lang="zh-Hans">
+        <title>网站</title>
+        <published>2020-04-19T11:33:00+00:00</published>
+        <updated>2020-04-19T11:33:00+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/collections/01-sites/" type="text/html"/>
+        <id>https://inhere.github.io/collections/01-sites/</id>
+        <summary type="html">
+个人收藏夹
+
+大佬收藏夹
+
+panjiachen
+…</summary>
+        </entry><entry xml:lang="zh-Hans">
+        <title>资源</title>
+        <published>2020-04-12T08:58:00+00:00</published>
+        <updated>2020-04-12T08:58:00+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/collections/02-resource/" type="text/html"/>
+        <id>https://inhere.github.io/collections/02-resource/</id>
+        </entry><entry xml:lang="zh-Hans">
+        <title>Git使用手册</title>
+        <published>2019-12-25T14:27:00+00:00</published>
+        <updated>2019-12-25T14:27:00+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/collections/01-git-tutorial/" type="text/html"/>
+        <id>https://inhere.github.io/collections/01-git-tutorial/</id>
+        <summary type="html">
+Git使用手册
+
+安装
+官网下载：https://git-scm.com/downloads 下载完成后使用默认进行安装。
+安装完成后，在开始菜单里找到 Git -&gt; Git Bash，蹦出一个类似命令行窗口的东西，就说明Git安装成功！
+还需要最后一步设置，在命令行输入：
+git config --global user.name &quot;Your Name&quot;
+git config --global user.email &quot;email@example.com&quot;
+
+因为Git是分布式版本控制系统，所以，每个机器都必须自报家门：你的名字和Email地址。…</summary>
+        </entry><entry xml:lang="zh-Hans">
+        <title>My Windows Terminal Config</title>
+        <published>2019-12-08T22:04:00+00:00</published>
+        <updated>2019-12-08T22:04:00+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/blog/2019/12-08-my-windows-terminal-config-en/" type="text/html"/>
+        <id>https://inhere.github.io/blog/2019/12-08-my-windows-terminal-config-en/</id>
+        <summary type="html">My windows terminal config
+added:
+
+add git bash profile
+…</summary>
+        </entry><entry xml:lang="zh-Hans">
+        <title>Quick config vim</title>
+        <published>2019-12-07T22:04:00+00:00</published>
+        <updated>2019-12-07T22:04:00+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/blog/2019/12-07-quick-config-vim-en/" type="text/html"/>
+        <id>https://inhere.github.io/blog/2019/12-07-quick-config-vim-en/</id>
+        <summary type="html">
+My vim config
+some config files…</summary>
+        </entry><entry xml:lang="zh-Hans">
+        <title>在shell脚本里简单快速的使用颜色</title>
+        <published>2019-11-08T22:04:00+00:00</published>
+        <updated>2019-11-08T22:04:00+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/blog/2019/simple-use-color-in-shell/" type="text/html"/>
+        <id>https://inhere.github.io/blog/2019/simple-use-color-in-shell/</id>
+        <summary type="html">在shell脚本里简单快速的使用颜色的代码实现…</summary>
+        </entry><entry xml:lang="zh-Hans">
+        <title>给http.Handler包装中间件</title>
+        <published>2018-08-10T22:00:00+00:00</published>
+        <updated>2018-08-10T22:00:00+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/blog/2018/wrap-middleware-for-http-handler-in-golang/" type="text/html"/>
+        <id>https://inhere.github.io/blog/2018/wrap-middleware-for-http-handler-in-golang/</id>
+        <summary type="html">Golang 下给 http.Handler 包装中间件…</summary>
+        </entry><entry xml:lang="zh-Hans">
+        <title>Go 捕获 os.Stdout 的输出</title>
+        <published>2018-08-08T21:00:00+00:00</published>
+        <updated>2018-08-08T21:00:00+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/blog/2018/rewrite-os-stdout-in-golang/" type="text/html"/>
+        <id>https://inhere.github.io/blog/2018/rewrite-os-stdout-in-golang/</id>
+        <summary type="html">Go 里面有时候我们想捕获，或者丢弃通过fmt.Print系列方法打印到Stdout的数据…</summary>
+        </entry><entry xml:lang="zh-Hans">
+        <title>php中正则表达式的模式修饰符</title>
+        <published>2018-01-03T21:04:00+00:00</published>
+        <updated>2018-01-03T21:04:00+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/blog/2018/regex-pattern-mode-in-php/" type="text/html"/>
+        <id>https://inhere.github.io/blog/2018/regex-pattern-mode-in-php/</id>
+        <summary type="html">PHP正则表达式模式中可用的模式修饰符 — 模式修饰符…</summary>
+        </entry><entry xml:lang="zh-Hans">
+        <title>php 实现一个 Telnet 工具类</title>
+        <published>2017-05-12T09:47:34+00:00</published>
+        <updated>2017-05-12T09:47:34+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/blog/2017/implement-a-telnet-tool-in-php/" type="text/html"/>
+        <id>https://inhere.github.io/blog/2017/implement-a-telnet-tool-in-php/</id>
+        <summary type="html">使用php 里的 socket 相关函数，实现一个简单的 Telnet 工具类。
+
+支持发送命令，获取结果
+进入交互环境，类似于命令行工具telnet
+持续的监控一个命令 ，类似于命令行的 watch
+…</summary>
+        </entry><entry xml:lang="zh-Hans">
+        <title>PHP调试的强悍利器之PHPDBG</title>
+        <published>2017-04-12T08:56:34+00:00</published>
+        <updated>2017-04-12T08:56:34+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/blog/2017/debug-tool-phpdbg-usage-in-php/" type="text/html"/>
+        <id>https://inhere.github.io/blog/2017/debug-tool-phpdbg-usage-in-php/</id>
+        <summary type="html">PHPDBG是一个PHP的SAPI模块，可以在不用修改代码和不影响性能的情况下控制PHP的运行环境。
+PHPDBG的目标是成为一个轻量级、强大、易用的PHP调试平台。在php5.6和之上版本将 内部集成。…</summary>
+        </entry><entry xml:lang="zh-Hans">
+        <title>Linux的chattr与lsattr命令使用</title>
+        <published>2016-11-08T15:13:34+00:00</published>
+        <updated>2016-11-08T15:13:34+00:00</updated>
+        <author>
+            <name>inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/blog/2016/chattr-lsattr-command-in-linux/" type="text/html"/>
+        <id>https://inhere.github.io/blog/2016/chattr-lsattr-command-in-linux/</id>
+        <summary type="html">有时候你发现 用root权限都不能修改某个文件，大部分原因是曾经用chattr命令锁定该文件了。…</summary>
+        </entry><entry xml:lang="zh-Hans">
+        <title>Shell脚本使用</title>
+        <published>2016-09-24T11:28:34+00:00</published>
+        <updated>2016-09-24T11:28:34+00:00</updated>
+        <author>
+            <name>inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/blog/2016/shell-script-learn-usage/" type="text/html"/>
+        <id>https://inhere.github.io/blog/2016/shell-script-learn-usage/</id>
+        <summary type="html">Shell脚本的一些使用记录…</summary>
+        </entry><entry xml:lang="zh-Hans">
+        <title>linux 命令 sed 详解</title>
+        <published>2016-09-17T11:28:34+00:00</published>
+        <updated>2016-09-17T11:28:34+00:00</updated>
+        <author>
+            <name>inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/blog/2016/sec-command-usage-in-linux/" type="text/html"/>
+        <id>https://inhere.github.io/blog/2016/sec-command-usage-in-linux/</id>
+        <summary type="html">sed是stream editor的简称，也就是流编辑器。
+它一次处理一行内容，处理时，把当前处理的行存储在临时缓冲区中，称为“模式空间”（pattern space），
+接着用sed命令处理缓冲区中的内容，处理完成后，把缓冲区的内容送往屏幕。
+接着处理下一行，这样不断重复，直到文件末尾。…</summary>
+        </entry><entry xml:lang="zh-Hans">
+        <title>Mysql的锁机制解读</title>
+        <published>2016-09-07T21:17:34+00:00</published>
+        <updated>2016-09-07T21:17:34+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/blog/2016/lock-intro-in-mysql/" type="text/html"/>
+        <id>https://inhere.github.io/blog/2016/lock-intro-in-mysql/</id>
+        <summary type="html">Mysql的锁机制解读说明…</summary>
+        </entry><entry xml:lang="zh-Hans">
+        <title>Linux 命令神器 lsof 入门</title>
+        <published>2016-08-20T14:00:34+00:00</published>
+        <updated>2016-08-20T14:00:34+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/blog/2016/lsof-command-usage-in-linux/" type="text/html"/>
+        <id>https://inhere.github.io/blog/2016/lsof-command-usage-in-linux/</id>
+        <summary type="html">lsof 是系统管理/安全的尤伯工具。大多数时候用它来从系统获得与网络连接相关的信息，但那只是这个强大而又鲜为人知的应用的第一步。…</summary>
+        </entry><entry xml:lang="zh-Hans">
+        <title>Linux下常用压缩格式的压缩与解压方法</title>
+        <published>2016-08-16T20:25:34+00:00</published>
+        <updated>2016-08-16T20:25:34+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/blog/2016/compress-and-uncompress-command-in-linux/" type="text/html"/>
+        <id>https://inhere.github.io/blog/2016/compress-and-uncompress-command-in-linux/</id>
+        <summary type="html">Linux下常用压缩格式的压缩与解压方法使用说明…</summary>
+        </entry><entry xml:lang="zh-Hans">
+        <title>linux下的find文件查找命令与grep文件内容查找命令</title>
+        <published>2016-08-04T23:34:34+00:00</published>
+        <updated>2016-08-04T23:34:34+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/blog/2016/the-find-and-grep-usage-on-linux/" type="text/html"/>
+        <id>https://inhere.github.io/blog/2016/the-find-and-grep-usage-on-linux/</id>
+        <summary type="html">linux下的find文件查找命令与grep文件内容查找命令的使用。
+在使用linux时，经常需要进行文件查找。其中查找的命令主要有find和grep。两个命令是有区的。…</summary>
+        </entry><entry xml:lang="zh-Hans">
+        <title>git创建和使用补丁patch</title>
+        <published>2016-07-31T15:03:34+00:00</published>
+        <updated>2016-07-31T15:03:34+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/blog/2016/create-and-apply-patch-in-git/" type="text/html"/>
+        <id>https://inhere.github.io/blog/2016/create-and-apply-patch-in-git/</id>
+        <summary type="html">在git中创建和使用补丁patch记录…</summary>
+        </entry><entry xml:lang="zh-Hans">
+        <title>vim使用vimgrep在其他文件中或者文件夹中搜索字符串</title>
+        <published>2016-07-26T20:44:34+00:00</published>
+        <updated>2016-07-26T20:44:34+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/blog/2016/use-vimgrep-search-file-contents-in-vim/" type="text/html"/>
+        <id>https://inhere.github.io/blog/2016/use-vimgrep-search-file-contents-in-vim/</id>
+        <summary type="html">vim中可以使用vimgrep在其他文件中或者文件夹中搜索字符串…</summary>
+        </entry><entry xml:lang="zh-Hans">
+        <title>linux 终端下上传下载命令 sftp,scp</title>
+        <published>2016-07-15T17:40:34+00:00</published>
+        <updated>2016-07-15T17:40:34+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/blog/2016/use-scp-or-sftp-up-down-files-in-linux/" type="text/html"/>
+        <id>https://inhere.github.io/blog/2016/use-scp-or-sftp-up-down-files-in-linux/</id>
+        <summary type="html">在linux或者mac 终端下上传下载命令 sftp,scp 的简单使用介绍…</summary>
+        </entry><entry xml:lang="zh-Hans">
+        <title>composer.json 中的 scripts 脚本</title>
+        <published>2016-05-17T17:21:34+00:00</published>
+        <updated>2016-05-17T17:21:34+00:00</updated>
+        <author>
+            <name>inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/blog/2016/scripts-in-php-composer-json/" type="text/html"/>
+        <id>https://inhere.github.io/blog/2016/scripts-in-php-composer-json/</id>
+        <summary type="html">’scripts’脚本 – 在 Composer 中，可以是一个 PHP 回调（定义为静态方法）或任何命令行可执行的命令。脚本对于在 Composer 运行过程中，执行一个资源包的自定义代码或包专用命令是非常有用的。…</summary>
+        </entry><entry xml:lang="zh-Hans">
+        <title>Nginx配置文件中的变量的编写使用</title>
+        <published>2016-05-13T17:21:34+00:00</published>
+        <updated>2016-05-13T17:21:34+00:00</updated>
+        <author>
+            <name>inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/blog/2016/custom-vars-usage-in-ngnix-config/" type="text/html"/>
+        <id>https://inhere.github.io/blog/2016/custom-vars-usage-in-ngnix-config/</id>
+        <summary type="html">Nginx配置文件中的变量的编写使用,包括从常用的rewrite等方面来深入变量的相关定义,需要的朋友可以参考下…</summary>
+        </entry><entry xml:lang="zh-Hans">
+        <title>Nginx内置变量大全</title>
+        <published>2016-05-13T16:51:34+00:00</published>
+        <updated>2016-05-13T16:51:34+00:00</updated>
+        <author>
+            <name>inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/blog/2016/nginx-built-in-vars-refers/" type="text/html"/>
+        <id>https://inhere.github.io/blog/2016/nginx-built-in-vars-refers/</id>
+        <summary type="html">在配置基于nginx服务器的网站时，必然会用到 nginx内置变量 ，下面笔者将它整理成列表，把最新版本的变量列出来，以方便做配置时查询…</summary>
+        </entry><entry xml:lang="zh-Hans">
+        <title>vim 使用记录</title>
+        <published>2016-04-11T21:51:34+00:00</published>
+        <updated>2016-04-11T21:51:34+00:00</updated>
+        <author>
+            <name>inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/blog/2016/vim-usage-records/" type="text/html"/>
+        <id>https://inhere.github.io/blog/2016/vim-usage-records/</id>
+        <summary type="html">vim 使用记录, 常用快捷键和命令…</summary>
+        </entry><entry xml:lang="zh-Hans">
+        <title>git 使用记录</title>
+        <published>2016-04-11T16:51:34+00:00</published>
+        <updated>2016-04-11T16:51:34+00:00</updated>
+        <author>
+            <name>inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/blog/2016/04-11-git-usage-records/" type="text/html"/>
+        <id>https://inhere.github.io/blog/2016/04-11-git-usage-records/</id>
+        <summary type="html">git 使用一些记录，常用命令和一些特殊选项…</summary>
+        </entry><entry xml:lang="zh-Hans">
+        <title>安装centos 7 后的一些设置记录</title>
+        <published>2016-04-09T16:51:34+00:00</published>
+        <updated>2016-04-09T16:51:34+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/blog/2016/centos7-init-setting-after-install/" type="text/html"/>
+        <id>https://inhere.github.io/blog/2016/centos7-init-setting-after-install/</id>
+        <summary type="html">安装centos 7 后的一些常用设置记录…</summary>
+        </entry><entry xml:lang="zh-Hans">
+        <title>git 找回丢失 commit</title>
+        <published>2016-04-01T12:30:34+00:00</published>
+        <updated>2016-04-01T12:30:34+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/blog/2016/revert-lost-commit-by-git-reflog/" type="text/html"/>
+        <id>https://inhere.github.io/blog/2016/revert-lost-commit-by-git-reflog/</id>
+        <summary type="html">在使用git的过程中，常有失误的时候，有时把需要的东西给删了或者使用rebase覆盖掉了一些有用的代码。
+不过没有关系，git给了我们一层安全网，让们能有机会把失去的东西给找回来。…</summary>
+        </entry><entry xml:lang="zh-Hans">
+        <title>Ubuntu 下挂载以及卸载Windows分区</title>
+        <published>2016-03-16T13:00:34+00:00</published>
+        <updated>2016-03-16T13:00:34+00:00</updated>
+        <author>
+            <name>inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/blog/2016/mount-windows-pattern-on-ubuntu/" type="text/html"/>
+        <id>https://inhere.github.io/blog/2016/mount-windows-pattern-on-ubuntu/</id>
+        <summary type="html">如何在Linux(Ubuntu) 下挂载以及卸载Windows分区, 自动挂载…</summary>
+        </entry>
+</feed>
