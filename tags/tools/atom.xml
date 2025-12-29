@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet href="https://inhere.github.io/feed_style.xsl" type="text/xsl"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-Hans">
+    <tabi:metadata xmlns:tabi="https://github.com/welpo/tabi">
+        <tabi:base_url>https:&#x2F;&#x2F;inhere.github.io</tabi:base_url>
+        <tabi:separator>
+            •
+        </tabi:separator>
+        <tabi:about_feeds>这是Web Feed，又称为Atom Feed，把现在的网址复制到新闻阅读器即可订阅本站文章。造访「About Feeds」来了解更多资讯。</tabi:about_feeds>
+        <tabi:visit_the_site>造访网站</tabi:visit_the_site>
+        <tabi:recent_posts>近期文章</tabi:recent_posts>
+        <tabi:last_updated_on>更新于 $DATE</tabi:last_updated_on>
+        <tabi:default_theme></tabi:default_theme>
+        <tabi:post_listing_date>date</tabi:post_listing_date>
+        <tabi:current_section>tools</tabi:current_section>
+    </tabi:metadata><link rel="extra-stylesheet" href="https://inhere.github.io/skins/blue.css?h=a4dc1e94d3f5759784d2" /><title>Inhere's Site - tools</title>
+        <subtitle>Inhere&#x27;s site, blogs and project docs</subtitle>
+    <link href="https://inhere.github.io/tags/tools/atom.xml" rel="self" type="application/atom+xml"/>
+    <link href="https://inhere.github.io/tags/tools/" rel="alternate" type="text/html"/>
+    <generator uri="https://www.getzola.org/">Zola</generator><updated>2024-08-07T21:14:00+00:00</updated><id>https://inhere.github.io/tags/tools/atom.xml</id><entry xml:lang="zh-Hans">
+        <title>Windows下的工具使用和配置记录</title>
+        <published>2024-08-07T21:14:00+00:00</published>
+        <updated>2024-08-07T21:14:00+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/collections/06-windows-tool-usage/" type="text/html"/>
+        <id>https://inhere.github.io/collections/06-windows-tool-usage/</id>
+        </entry><entry xml:lang="zh-Hans">
+        <title>Linux的chattr与lsattr命令使用</title>
+        <published>2016-11-08T15:13:34+00:00</published>
+        <updated>2016-11-08T15:13:34+00:00</updated>
+        <author>
+            <name>inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/blog/2016/chattr-lsattr-command-in-linux/" type="text/html"/>
+        <id>https://inhere.github.io/blog/2016/chattr-lsattr-command-in-linux/</id>
+        <summary type="html">有时候你发现 用root权限都不能修改某个文件，大部分原因是曾经用chattr命令锁定该文件了。…</summary>
+        </entry><entry xml:lang="zh-Hans">
+        <title>linux 命令 sed 详解</title>
+        <published>2016-09-17T11:28:34+00:00</published>
+        <updated>2016-09-17T11:28:34+00:00</updated>
+        <author>
+            <name>inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/blog/2016/sec-command-usage-in-linux/" type="text/html"/>
+        <id>https://inhere.github.io/blog/2016/sec-command-usage-in-linux/</id>
+        <summary type="html">sed是stream editor的简称，也就是流编辑器。
+它一次处理一行内容，处理时，把当前处理的行存储在临时缓冲区中，称为“模式空间”（pattern space），
+接着用sed命令处理缓冲区中的内容，处理完成后，把缓冲区的内容送往屏幕。
+接着处理下一行，这样不断重复，直到文件末尾。…</summary>
+        </entry><entry xml:lang="zh-Hans">
+        <title>Linux 命令神器 lsof 入门</title>
+        <published>2016-08-20T14:00:34+00:00</published>
+        <updated>2016-08-20T14:00:34+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/blog/2016/lsof-command-usage-in-linux/" type="text/html"/>
+        <id>https://inhere.github.io/blog/2016/lsof-command-usage-in-linux/</id>
+        <summary type="html">lsof 是系统管理/安全的尤伯工具。大多数时候用它来从系统获得与网络连接相关的信息，但那只是这个强大而又鲜为人知的应用的第一步。…</summary>
+        </entry><entry xml:lang="zh-Hans">
+        <title>Linux下常用压缩格式的压缩与解压方法</title>
+        <published>2016-08-16T20:25:34+00:00</published>
+        <updated>2016-08-16T20:25:34+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/blog/2016/compress-and-uncompress-command-in-linux/" type="text/html"/>
+        <id>https://inhere.github.io/blog/2016/compress-and-uncompress-command-in-linux/</id>
+        <summary type="html">Linux下常用压缩格式的压缩与解压方法使用说明…</summary>
+        </entry><entry xml:lang="zh-Hans">
+        <title>linux下的find文件查找命令与grep文件内容查找命令</title>
+        <published>2016-08-04T23:34:34+00:00</published>
+        <updated>2016-08-04T23:34:34+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/blog/2016/the-find-and-grep-usage-on-linux/" type="text/html"/>
+        <id>https://inhere.github.io/blog/2016/the-find-and-grep-usage-on-linux/</id>
+        <summary type="html">linux下的find文件查找命令与grep文件内容查找命令的使用。
+在使用linux时，经常需要进行文件查找。其中查找的命令主要有find和grep。两个命令是有区的。…</summary>
+        </entry><entry xml:lang="zh-Hans">
+        <title>git创建和使用补丁patch</title>
+        <published>2016-07-31T15:03:34+00:00</published>
+        <updated>2016-07-31T15:03:34+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/blog/2016/create-and-apply-patch-in-git/" type="text/html"/>
+        <id>https://inhere.github.io/blog/2016/create-and-apply-patch-in-git/</id>
+        <summary type="html">在git中创建和使用补丁patch记录…</summary>
+        </entry><entry xml:lang="zh-Hans">
+        <title>vim使用vimgrep在其他文件中或者文件夹中搜索字符串</title>
+        <published>2016-07-26T20:44:34+00:00</published>
+        <updated>2016-07-26T20:44:34+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/blog/2016/use-vimgrep-search-file-contents-in-vim/" type="text/html"/>
+        <id>https://inhere.github.io/blog/2016/use-vimgrep-search-file-contents-in-vim/</id>
+        <summary type="html">vim中可以使用vimgrep在其他文件中或者文件夹中搜索字符串…</summary>
+        </entry>
+</feed>
