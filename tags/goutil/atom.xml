@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet href="https://inhere.github.io/feed_style.xsl" type="text/xsl"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-Hans">
+    <tabi:metadata xmlns:tabi="https://github.com/welpo/tabi">
+        <tabi:base_url>https:&#x2F;&#x2F;inhere.github.io</tabi:base_url>
+        <tabi:separator>
+            •
+        </tabi:separator>
+        <tabi:about_feeds>这是Web Feed，又称为Atom Feed，把现在的网址复制到新闻阅读器即可订阅本站文章。造访「About Feeds」来了解更多资讯。</tabi:about_feeds>
+        <tabi:visit_the_site>造访网站</tabi:visit_the_site>
+        <tabi:recent_posts>近期文章</tabi:recent_posts>
+        <tabi:last_updated_on>更新于 $DATE</tabi:last_updated_on>
+        <tabi:default_theme></tabi:default_theme>
+        <tabi:post_listing_date>date</tabi:post_listing_date>
+        <tabi:current_section>goutil</tabi:current_section>
+    </tabi:metadata><link rel="extra-stylesheet" href="https://inhere.github.io/skins/blue.css?h=a4dc1e94d3f5759784d2" /><title>Inhere's Site - goutil</title>
+        <subtitle>Inhere&#x27;s site, blogs and project docs</subtitle>
+    <link href="https://inhere.github.io/tags/goutil/atom.xml" rel="self" type="application/atom+xml"/>
+    <link href="https://inhere.github.io/tags/goutil/" rel="alternate" type="text/html"/>
+    <generator uri="https://www.getzola.org/">Zola</generator><updated>2025-11-20T21:42:00+00:00</updated><id>https://inhere.github.io/tags/goutil/atom.xml</id><entry xml:lang="zh-Hans">
+        <title>gookit&#x2F;goutil v0.7.2 发布：增强功能与修复，提升开发体验</title>
+        <published>2025-11-20T21:42:00+00:00</published>
+        <updated>2025-11-20T21:42:00+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/blog/2025/11-20-gookit-goutil-release-v0-7-2/" type="text/html"/>
+        <id>https://inhere.github.io/blog/2025/11-20-gookit-goutil-release-v0-7-2/</id>
+        <summary type="html">gookit/goutil v0.7.2 现已发布！此版本带来了多项新功能、优化和问题修复，进一步增强了这个 Go 语言实用工具库的稳定性和易用性。
+本次更新涉及多个模块，包括数学工具、字符串处理、文件系统操作、命令行标志处理等，旨在为开发者提供更丰富、更高效的工具集。…</summary>
+        </entry><entry xml:lang="zh-Hans">
+        <title>gookit goutil release v0.6.15</title>
+        <published>2024-01-24T23:24:00+00:00</published>
+        <updated>2024-01-24T23:24:00+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/blog/2024/01-24-gookit-goutil-release-v0-6-15-en/" type="text/html"/>
+        <id>https://inhere.github.io/blog/2024/01-24-gookit-goutil-release-v0-6-15-en/</id>
+        <summary type="html">gookit/goutil 💪 Go 常用功能的扩展工具库。包含：数字，字符串，slice/数组，Map，结构体，反射，文本，文件，错误，时间日期，测试，CLI，命令运行，系统信息，格式化，常用信息获取等等。…</summary>
+        </entry><entry xml:lang="zh-Hans">
+        <title>gookit&#x2F;goutil - Go常用功能的扩展工具库，发布 v0.6.15 版本</title>
+        <published>2024-01-24T23:24:00+00:00</published>
+        <updated>2024-01-24T23:24:00+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/blog/2024/gookit-goutil-release-v0-6-15/" type="text/html"/>
+        <id>https://inhere.github.io/blog/2024/gookit-goutil-release-v0-6-15/</id>
+        <summary type="html">gookit/goutil 💪 Go 常用功能的扩展工具库。包含：数字，字符串，slice/数组，Map，结构体，反射，文本，文件，错误，时间日期，测试，CLI，命令运行，系统信息，格式化，常用信息获取等等。
+本次 v0.6.15 版本主要是一些功能增强和修复更新。…</summary>
+        </entry><entry xml:lang="zh-Hans">
+        <title>gookit&#x2F;goutil - Go常用功能的扩展工具库，发布 v0.6.14 版本</title>
+        <published>2023-10-16T15:12:00+00:00</published>
+        <updated>2023-10-16T15:12:00+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/blog/2023/gookit-goutil-release-v0-6-14/" type="text/html"/>
+        <id>https://inhere.github.io/blog/2023/gookit-goutil-release-v0-6-14/</id>
+        <summary type="html">gookit/goutil Go 常用功能的扩展工具库。包含：数字，字符串，slice/数组，Map，结构体，反射，文本，文件，错误，时间日期，测试，CLI，命令运行，系统信息，格式化，常用信息获取等等。…</summary>
+        </entry><entry xml:lang="zh-Hans">
+        <title>gookit&#x2F;goutil - Go常用功能的扩展工具库，发布 v0.6.12 版本</title>
+        <published>2023-07-25T11:12:00+00:00</published>
+        <updated>2023-07-25T11:12:00+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/blog/2023/gookit-goutil-release-v0-6-12/" type="text/html"/>
+        <id>https://inhere.github.io/blog/2023/gookit-goutil-release-v0-6-12/</id>
+        <summary type="html">gookit/goutil Go 常用功能的扩展工具库。包含：数字，字符串，slice/数组，Map，结构体，反射，文本，文件，错误，时间日期，测试，CLI，命令运行，系统信息，格式化，常用信息获取等等。…</summary>
+        </entry><entry xml:lang="zh-Hans">
+        <title>gookit&#x2F;goutil - 发布 v0.6.10 版本, Go常用功能的扩展工具库</title>
+        <published>2023-06-28T14:55:00+00:00</published>
+        <updated>2023-06-28T14:55:00+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/blog/2023/06-28-gookit-goutil-release-v0-6-10/" type="text/html"/>
+        <id>https://inhere.github.io/blog/2023/06-28-gookit-goutil-release-v0-6-10/</id>
+        <summary type="html">gookit/goutil Go 常用功能的扩展工具库。包含：数字，字符串，slice/数组，Map，结构体，反射，文本，文件，错误，时间日期，测试，CLI，命令运行，系统信息，格式化，常用信息获取等等。…</summary>
+        </entry><entry xml:lang="zh-Hans">
+        <title>gookit&#x2F;goutil - released v0.6.10, an extension library of common Go features</title>
+        <published>2023-06-28T14:55:00+00:00</published>
+        <updated>2023-06-28T14:55:00+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/blog/2023/gookit-goutil-release-v0-6-10/" type="text/html"/>
+        <id>https://inhere.github.io/blog/2023/gookit-goutil-release-v0-6-10/</id>
+        <summary type="html">gookit/goutil An extended library of Go’s common functionality. Contains: number, string, slice/array, Map, struct, reflection, text, file, error, time and date, test, CLI, command run, system information, formatting, common information acquisition, etc…</summary>
+        </entry>
+</feed>
