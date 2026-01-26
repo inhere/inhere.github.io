@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet href="https://inhere.github.io/feed_style.xsl" type="text/xsl"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-Hans">
+    <tabi:metadata xmlns:tabi="https://github.com/welpo/tabi">
+        <tabi:base_url>https:&#x2F;&#x2F;inhere.github.io</tabi:base_url>
+        <tabi:separator>
+            •
+        </tabi:separator>
+        <tabi:about_feeds>这是Web Feed，又称为Atom Feed，把现在的网址复制到新闻阅读器即可订阅本站文章。造访「About Feeds」来了解更多资讯。</tabi:about_feeds>
+        <tabi:visit_the_site>造访网站</tabi:visit_the_site>
+        <tabi:recent_posts>近期文章</tabi:recent_posts>
+        <tabi:last_updated_on>更新于 $DATE</tabi:last_updated_on>
+        <tabi:default_theme></tabi:default_theme>
+        <tabi:post_listing_date>date</tabi:post_listing_date>
+        <tabi:current_section>composer</tabi:current_section>
+    </tabi:metadata><link rel="extra-stylesheet" href="https://inhere.github.io/skins/blue.css?h=a4dc1e94d3f5759784d2" /><title>Inhere's Site - composer</title>
+        <subtitle>Inhere&#x27;s site, blogs and project docs</subtitle>
+    <link href="https://inhere.github.io/tags/composer/atom.xml" rel="self" type="application/atom+xml"/>
+    <link href="https://inhere.github.io/tags/composer/" rel="alternate" type="text/html"/>
+    <generator uri="https://www.getzola.org/">Zola</generator><updated>2016-05-17T17:21:34+00:00</updated><id>https://inhere.github.io/tags/composer/atom.xml</id><entry xml:lang="zh-Hans">
+        <title>composer.json 中的 scripts 脚本</title>
+        <published>2016-05-17T17:21:34+00:00</published>
+        <updated>2016-05-17T17:21:34+00:00</updated>
+        <author>
+            <name>inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/blog/2016/scripts-in-php-composer-json/" type="text/html"/>
+        <id>https://inhere.github.io/blog/2016/scripts-in-php-composer-json/</id>
+        <summary type="html">’scripts’脚本 – 在 Composer 中，可以是一个 PHP 回调（定义为静态方法）或任何命令行可执行的命令。脚本对于在 Composer 运行过程中，执行一个资源包的自定义代码或包专用命令是非常有用的。…</summary>
+        </entry>
+</feed>

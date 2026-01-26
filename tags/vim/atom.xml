@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet href="https://inhere.github.io/feed_style.xsl" type="text/xsl"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-Hans">
+    <tabi:metadata xmlns:tabi="https://github.com/welpo/tabi">
+        <tabi:base_url>https:&#x2F;&#x2F;inhere.github.io</tabi:base_url>
+        <tabi:separator>
+            •
+        </tabi:separator>
+        <tabi:about_feeds>这是Web Feed，又称为Atom Feed，把现在的网址复制到新闻阅读器即可订阅本站文章。造访「About Feeds」来了解更多资讯。</tabi:about_feeds>
+        <tabi:visit_the_site>造访网站</tabi:visit_the_site>
+        <tabi:recent_posts>近期文章</tabi:recent_posts>
+        <tabi:last_updated_on>更新于 $DATE</tabi:last_updated_on>
+        <tabi:default_theme></tabi:default_theme>
+        <tabi:post_listing_date>date</tabi:post_listing_date>
+        <tabi:current_section>vim</tabi:current_section>
+    </tabi:metadata><link rel="extra-stylesheet" href="https://inhere.github.io/skins/blue.css?h=a4dc1e94d3f5759784d2" /><title>Inhere's Site - vim</title>
+        <subtitle>Inhere&#x27;s site, blogs and project docs</subtitle>
+    <link href="https://inhere.github.io/tags/vim/atom.xml" rel="self" type="application/atom+xml"/>
+    <link href="https://inhere.github.io/tags/vim/" rel="alternate" type="text/html"/>
+    <generator uri="https://www.getzola.org/">Zola</generator><updated>2019-12-07T22:04:00+00:00</updated><id>https://inhere.github.io/tags/vim/atom.xml</id><entry xml:lang="zh-Hans">
+        <title>Quick config vim</title>
+        <published>2019-12-07T22:04:00+00:00</published>
+        <updated>2019-12-07T22:04:00+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/blog/2019/12-07-quick-config-vim-en/" type="text/html"/>
+        <id>https://inhere.github.io/blog/2019/12-07-quick-config-vim-en/</id>
+        <summary type="html">
+My vim config
+some config files…</summary>
+        </entry><entry xml:lang="zh-Hans">
+        <title>vim使用vimgrep在其他文件中或者文件夹中搜索字符串</title>
+        <published>2016-07-26T20:44:34+00:00</published>
+        <updated>2016-07-26T20:44:34+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/blog/2016/use-vimgrep-search-file-contents-in-vim/" type="text/html"/>
+        <id>https://inhere.github.io/blog/2016/use-vimgrep-search-file-contents-in-vim/</id>
+        <summary type="html">vim中可以使用vimgrep在其他文件中或者文件夹中搜索字符串…</summary>
+        </entry><entry xml:lang="zh-Hans">
+        <title>vim 使用记录</title>
+        <published>2016-04-11T21:51:34+00:00</published>
+        <updated>2016-04-11T21:51:34+00:00</updated>
+        <author>
+            <name>inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/blog/2016/vim-usage-records/" type="text/html"/>
+        <id>https://inhere.github.io/blog/2016/vim-usage-records/</id>
+        <summary type="html">vim 使用记录, 常用快捷键和命令…</summary>
+        </entry>
+</feed>

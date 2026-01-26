@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet href="https://inhere.github.io/feed_style.xsl" type="text/xsl"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-Hans">
+    <tabi:metadata xmlns:tabi="https://github.com/welpo/tabi">
+        <tabi:base_url>https:&#x2F;&#x2F;inhere.github.io</tabi:base_url>
+        <tabi:separator>
+            •
+        </tabi:separator>
+        <tabi:about_feeds>这是Web Feed，又称为Atom Feed，把现在的网址复制到新闻阅读器即可订阅本站文章。造访「About Feeds」来了解更多资讯。</tabi:about_feeds>
+        <tabi:visit_the_site>造访网站</tabi:visit_the_site>
+        <tabi:recent_posts>近期文章</tabi:recent_posts>
+        <tabi:last_updated_on>更新于 $DATE</tabi:last_updated_on>
+        <tabi:default_theme></tabi:default_theme>
+        <tabi:post_listing_date>date</tabi:post_listing_date>
+        <tabi:current_section>docusaurus</tabi:current_section>
+    </tabi:metadata><link rel="extra-stylesheet" href="https://inhere.github.io/skins/blue.css?h=a4dc1e94d3f5759784d2" /><title>Inhere's Site - docusaurus</title>
+        <subtitle>Inhere&#x27;s site, blogs and project docs</subtitle>
+    <link href="https://inhere.github.io/tags/docusaurus/atom.xml" rel="self" type="application/atom+xml"/>
+    <link href="https://inhere.github.io/tags/docusaurus/" rel="alternate" type="text/html"/>
+    <generator uri="https://www.getzola.org/">Zola</generator><updated>2025-12-11T19:42:00+00:00</updated><id>https://inhere.github.io/tags/docusaurus/atom.xml</id><entry xml:lang="zh-Hans">
+        <title>博客构建从 Docusaurus 迁移到 Zola</title>
+        <published>2025-12-11T19:42:00+00:00</published>
+        <updated>2025-12-11T19:42:00+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/blog/2025/12-11-migrate-to-zola-from-doces/" type="text/html"/>
+        <id>https://inhere.github.io/blog/2025/12-11-migrate-to-zola-from-doces/</id>
+        <summary type="html">之前使用 Docusaurus 构建博客，现在想迁移到 Zola。
+Zola 是一个rust编写的静态站点生成器，它使用 Markdown 文件来生成静态网站。它的配置文件是 config.toml，你可以在其中配置网站的标题、描述、导航栏、侧边栏等。…</summary>
+        </entry><entry xml:lang="zh-Hans">
+        <title>安装并配置 docusaurus v2站点</title>
+        <published>2022-07-09T17:13:00+00:00</published>
+        <updated>2022-07-09T17:13:00+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/blog/2022/install-and-config-docusaurus-v2-md/" type="text/html"/>
+        <id>https://inhere.github.io/blog/2022/install-and-config-docusaurus-v2-md/</id>
+        <summary type="html">简单记录一下如何安装和使用 Docusaurus 来构建自己的博客和文档站点。
+
+Docusaurus 的官方文档 https://docusaurus.io/zh-CN/docs
+…</summary>
+        </entry>
+</feed>
