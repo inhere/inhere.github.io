@@ -31,7 +31,8 @@ taxonomies = [{name = "tags", feed = true}]
 # When set to "true", all code blocks are highlighted.
 # highlight_code = true
 # axar, css, base16-atelierdune-light
-highlight_theme = "css"
+# highlight_theme = "css"
+highlighting = true
 bottom_footnotes = true
 
 # Whether smart punctuation is enabled (changing quotes, dashes, dots in their typographic form)
