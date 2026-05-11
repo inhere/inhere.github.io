@@ -29,7 +29,7 @@ taxonomies = [{name = "tags", feed = true}]
 # Configuration of the Markdown rendering
 [markdown]
 # When set to "true", all code blocks are highlighted.
-highlight_code = true
+# highlight_code = true
 # axar, css, base16-atelierdune-light
 highlight_theme = "css"
 bottom_footnotes = true
