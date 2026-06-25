@@ -28,11 +28,6 @@ taxonomies = [{name = "tags", feed = true}]
 
 # Configuration of the Markdown rendering
 [markdown]
-# When set to "true", all code blocks are highlighted.
-# highlight_code = true
-# axar, css, base16-atelierdune-light
-# highlight_theme = "css"
-highlighting = true
 bottom_footnotes = true
 
 # Whether smart punctuation is enabled (changing quotes, dashes, dots in their typographic form)
@@ -69,6 +64,10 @@ insert_anchor_links = "left"
 # where the CSS class name suffix may be `note`, `tip`, `important`, `warning`, or `caution`, depending on the alert type.
 # Visual appearance depends on theme-level support; refer to your theme's documentation for more information.
 github_alerts = true
+
+[markdown.highlighting]
+style = "inline"
+theme = "github-light"
 
 # Various slugification strategies, see below for details
 # Defaults to everything being a slug

@@ -6,14 +6,25 @@ Build by [Zola](https://github.com/getzola/zola)
 
 - https://inhere.github.io
 
-## Quick generate new doc
+## Start
+
+### 本地构建
 
 ```bash
-kite run script/cgen.php -h
-kite run script/cgen.php --name install-tools-by-scoop-on-windows --tags tool,windows,scoop
+zola build
+# 开发 server
+zola serve
 ```
 
-## 初始化
+### AI skills
+
+- content-rewrite, article-writing, blog-writing-guide
+- bird-fast
+- humanizer, humanizer-zh
+
+> from https://skills.sh, https://skillsmp.com
+
+## 初始化主题
 
 使用 zola 的主题 [tabi](https://github.com/welpo/tabi) 进行构建
 
