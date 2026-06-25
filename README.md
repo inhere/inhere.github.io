@@ -18,11 +18,17 @@ zola serve
 
 ### AI skills
 
-- content-rewrite, article-writing, blog-writing-guide
-- bird-fast
-- humanizer, humanizer-zh
+```bash
+skillc add -S https://github.com/affaan-m/ECC --skill article-writing
+# content-rewrite
+skillc add -S https://github.com/zc277584121/marketing-skills --skill content-rewrite
+# blog-writing-guide
+skillc add -S https://skills.sh/sickn33/antigravity-awesome-skills blog-writing-guide
+skillc add -S https://github.com/blader/humanizer humanizer
+skillc add -S https://github.com/op7418/Humanizer-zh  humanizer-zh
+```
 
-> from https://skills.sh, https://skillsmp.com
+> install by [skillc](https://github.com/inhere/skillc.git), find skills from https://skills.sh, https://skillsmp.com
 
 ## 初始化主题
 

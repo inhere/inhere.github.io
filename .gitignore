@@ -22,3 +22,5 @@ yarn-error.log*
 /.idea
 # Generated files
 public/
+.claude/
+.agents/
