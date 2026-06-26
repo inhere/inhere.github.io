@@ -3,6 +3,7 @@ title: gookit/goutil - 发布 v0.6.10 版本, Go常用功能的扩展工具库
 taxonomies:
   tags: [gookit,golang,goutil]
 date: 2023-06-28T14:55:00
+slug: gookit-goutil-release-v0.6.10
 # authors: inhere
 # gen by: kite run script/cgen.php --name gookit-goutil-release-v0.6.10 --tags gookit,golang,goutil
 ---
@@ -246,4 +247,3 @@ fmt.Println(start, end)
 更多使用说明请看 [README](https://github.com/gookit/slog/blob/master/README.zh-CN.md) 以及相关方法的单元测试
 
 > **Github**: https://github.com/gookit/goutil
-

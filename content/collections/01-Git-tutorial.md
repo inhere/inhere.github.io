@@ -1,6 +1,7 @@
 ---
 title: Git使用手册
 date: 2019-12-25T14:27:00
+slug: Git-tutorial
 tags:
   - git
 ---
@@ -413,4 +414,3 @@ collaborate (参见命令: git help workflows)
 ## 参考文档
 
 <https://www.liaoxuefeng.com/wiki/896043488029600>
-

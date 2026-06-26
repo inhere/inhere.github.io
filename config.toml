@@ -14,17 +14,15 @@ compile_sass = true
 minify_html = true
 # 生成搜索索引
 build_search_index = false # TODO 默认不支持中文索引,暂时关闭
-default_language = "zh-Hans" # en, zh-Hans
 # default_language = "zh_CN" zh, zh-CN, zh-Hans
+default_language = "zh-Hans" # en, zh-Hans
 taxonomies = [{name = "tags", feed = true}]
 
-# [languages.zh-Hans]
-# title = "我的网站"
-
-# BUG 如果文件名含有 . (eg: some-v0.5.2.en.md) 会导致解析错误
-# [languages.en]
-# title = "Inhere's Site"
-# description = "Inhere's site, blogs and project docs"
+# 25.12.06 BUG 如果文件名含有 . (eg: some-v0.5.2.en.md) 会导致解析错误
+[languages.en]
+title = "Inhere's Site"
+description = "Inhere's site, blogs and project docs"
+taxonomies = [{name = "tags", feed = true}]
 
 # Configuration of the Markdown rendering
 [markdown]

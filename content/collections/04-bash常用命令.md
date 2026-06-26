@@ -1,6 +1,7 @@
 ---
 title: bash 常用命令记录
 date: 2024-01-09T14:27:00
+slug: bash常用命令
 tags:
   - bash
 # authors: inhere
