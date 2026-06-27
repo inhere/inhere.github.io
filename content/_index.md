@@ -3,7 +3,7 @@ title = "Latest posts"
 sort_by = "date"
 
 [extra]
-header = {title = "Hello! I'm Inhere", img = "img/avatar.jpg", img_alt = "hello" }
+header = {title = "Hello! I'm Inhere", img = "img/home-header-poster.png", img_alt = "Developer workspace illustration" }
 section_path = "blog/_index.md"
 max_posts = 4
 projects_path = "projects/_index.md"

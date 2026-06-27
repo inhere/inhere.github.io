@@ -70,12 +70,36 @@ def validate_glm_size(value: str) -> None:
         raise SystemExit(f"--glm-size exceeds 2^22 pixels, got: {value}")
 
 
-def request_glm_image(prompt: str, size: str, out_bg: Path) -> Image.Image:
+def parse_crop(value: str) -> tuple[int, int, int, int]:
+    try:
+        parts = [int(part.strip()) for part in value.split(",")]
+    except ValueError as err:
+        raise SystemExit(f"--bg-crop must use left,top,right,bottom pixels, got: {value}") from err
+    if len(parts) != 4 or any(part < 0 for part in parts):
+        raise SystemExit(f"--bg-crop must use four non-negative pixel values, got: {value}")
+    return parts[0], parts[1], parts[2], parts[3]
+
+
+def crop_background(img: Image.Image, crop: tuple[int, int, int, int]) -> Image.Image:
+    left, top, right, bottom = crop
+    if not any(crop):
+        return img
+    if left + right >= img.width or top + bottom >= img.height:
+        raise SystemExit(f"--bg-crop is larger than source image size {img.size}")
+    return img.crop((left, top, img.width - right, img.height - bottom))
+
+
+def request_glm_image(prompt: str, size: str, out_bg: Path, watermark_enabled: bool) -> Image.Image:
     token = os.getenv("BIGMODEL_API_KEY")
     if not token:
         raise SystemExit("BIGMODEL_API_KEY is missing. Put it in project .env or the shell environment.")
 
-    payload = json.dumps({"model": "glm-image", "prompt": prompt, "size": size}).encode("utf-8")
+    payload = json.dumps({
+        "model": "glm-image",
+        "prompt": prompt,
+        "size": size,
+        "watermark_enabled": watermark_enabled,
+    }).encode("utf-8")
     req = urllib.request.Request(
         API_URL,
         data=payload,
@@ -166,6 +190,7 @@ def overlay(img: Image.Image, args: argparse.Namespace, size: tuple[int, int]) -
     draw.text((76, 134), args.subtitle, font=sub_font, fill=(82, 100, 112, 255))
 
     flow = [part.strip() for part in args.flow.split("|") if part.strip()]
+    flow_subtitles = [part.strip() for part in args.flow_subtitles.split("|") if part.strip()]
     card_w, card_h, gap = 280, 126, 56
     total = len(flow) * card_w + max(0, len(flow) - 1) * gap
     x = max(54, (w - total) // 2)
@@ -176,7 +201,7 @@ def overlay(img: Image.Image, args: argparse.Namespace, size: tuple[int, int]) -
         x2 = x1 + card_w
         draw_card(draw, (x1, y, x2, y + card_h), colors[idx % len(colors)])
         draw.text((x1 + 20, y + 32), label, font=mono_bold, fill=(20, 39, 52, 255))
-        sub = ["current writer", "rotated file", "compressed", "cleaned"][min(idx, 3)]
+        sub = flow_subtitles[idx] if idx < len(flow_subtitles) else ["current writer", "rotated file", "compressed", "cleaned"][min(idx, 3)]
         draw.text((x1 + 20, y + 80), sub, font=small, fill=(86, 103, 115, 255))
         if idx < len(flow) - 1:
             ax1 = x2 + 14
@@ -199,9 +224,10 @@ def overlay(img: Image.Image, args: argparse.Namespace, size: tuple[int, int]) -
 def main() -> int:
     parser = argparse.ArgumentParser(description="Generate a GLM blog poster with deterministic local text overlay.")
     parser.add_argument("--prompt", help="Prompt for GLM background. Ask for no text/logos/watermarks.")
-    parser.add_argument("--title", required=True)
+    parser.add_argument("--title", default="")
     parser.add_argument("--subtitle", default="")
     parser.add_argument("--flow", default="app.log|app.20260624.log|app.20260624.log.gz")
+    parser.add_argument("--flow-subtitles", default="")
     parser.add_argument("--command", default="filecleaner --dry-run -c filecleaner.json")
     parser.add_argument("--note", default="keep 7 days / max 20 backups")
     parser.add_argument("--size", default="1280x720", help="Final poster size.")
@@ -213,6 +239,9 @@ def main() -> int:
     parser.add_argument("--out", required=True)
     parser.add_argument("--bg-out", default="output/imagegen/poster-bg.png")
     parser.add_argument("--from-bg", help="Reuse an existing raw background image and only redraw the local text overlay.")
+    parser.add_argument("--bg-crop", default="0,0,0,0", help="Crop raw background before overlay: left,top,right,bottom pixels.")
+    parser.add_argument("--background-only", action="store_true", help="Save the cropped background as --out without local text overlay.")
+    parser.add_argument("--watermark", action="store_true", help="Enable GLM watermark. Default is disabled.")
     parser.add_argument("--local-only", action="store_true", help="Skip GLM and use a generated local background.")
     args = parser.parse_args()
 
@@ -220,6 +249,7 @@ def main() -> int:
     load_env(root)
     width, height = parse_size(args.size, "--size")
     size = (width, height)
+    bg_crop = parse_crop(args.bg_crop)
     out = Path(args.out)
     bg_out = Path(args.bg_out)
 
@@ -233,9 +263,15 @@ def main() -> int:
         if not args.prompt:
             raise SystemExit("--prompt is required unless --from-bg or --local-only is used.")
         validate_glm_size(args.glm_size)
-        bg = request_glm_image(args.prompt, args.glm_size, bg_out)
+        bg = request_glm_image(args.prompt, args.glm_size, bg_out, args.watermark)
 
-    final = overlay(bg, args, size)
+    bg = crop_background(bg, bg_crop)
+    if args.background_only:
+        final = cover_crop(bg, size)
+    else:
+        if not args.title:
+            raise SystemExit("--title is required unless --background-only is used.")
+        final = overlay(bg, args, size)
     out.parent.mkdir(parents=True, exist_ok=True)
     final.save(out)
     print(out)

@@ -2,12 +2,14 @@
 name: glm-blog-poster
 description: Generate reusable technical blog poster images with GLM Image backgrounds plus local deterministic text overlays. Use when creating article cover images, blog hero posters, release post graphics, or technical diagrams that need AI visual polish but accurate titles, commands, file names, or flow labels.
 metadata:
-  version: 0.1.0
+  version: 0.2.0
 ---
 
 # GLM Blog Poster
 
 Use `scripts/make_poster.py` to generate a background with BigModel `glm-image`, then overlay accurate text locally with Pillow. This keeps model-generated visual texture separate from exact article text, commands, package names, and file names.
+
+GLM requests send `watermark_enabled: false` by default. Pass `--watermark` only when a watermark is explicitly wanted.
 
 ## Workflow
 
@@ -36,6 +38,7 @@ python .agents/skills/glm-blog-poster/scripts/make_poster.py \
 ```bash
 python .agents/skills/glm-blog-poster/scripts/make_poster.py \
   --from-bg output/imagegen/rotatefile-glm-bg.png \
+  --bg-crop 0,0,220,120 \
   --title "rotatefile" \
   --subtitle "log rotation, gzip, and cleanup for Go" \
   --flow "app.log|app.20260624.log|app.20260624.log.gz" \
@@ -71,5 +74,7 @@ For a final `1280x720` poster, use these candidate background sizes:
 - Ask the image model for a background with no text, no logos, and no watermark.
 - Put exact text, commands, package names, versions, and file names in the local overlay, not in the model prompt.
 - Keep raw GLM output images under `output/imagegen/` and reuse them with `--from-bg` when only the overlay text changes.
+- If the GLM background has a corner watermark, reuse the raw image with `--bg-crop left,top,right,bottom` to crop that edge before overlay.
+- Use `--background-only` for square or small header images that should not have local overlay text.
 - Use `--local-only` for quick validation when no API key is available.
 - Keep generated project assets under `static/img/blog/` unless the user names another destination.
