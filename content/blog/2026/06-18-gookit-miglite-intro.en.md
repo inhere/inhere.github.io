@@ -3,7 +3,7 @@ title: "miglite: raw SQL migrations for Go projects"
 date: 2026-06-18T15:36:21
 taxonomies:
   tags: [gookit, golang, miglite, database]
-slug: gookit-miglite-intro-en
+slug: gookit-miglite-intro
 ---
 
 Database migration tools usually pick one of two lanes. Some describe schema changes in their own DSL and generate SQL for you. Others take the SQL you already wrote, run it in order, and record what has been applied.

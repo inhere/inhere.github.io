@@ -3,7 +3,7 @@ title: "rotatefile: log rotation, compression, and cleanup for Go"
 date: 2026-06-24T21:11:54
 taxonomies:
   tags: [gookit, golang, rotatefile, logger]
-slug: gookit-rotatefile-intro-en
+slug: gookit-rotatefile-intro
 ---
 
 Go's standard logging packages can write to an `io.Writer`, but they do not decide when a log file should rotate, how many old files to keep, or when disk usage should be capped. Once a service writes logs to local files, those details become part of the system.

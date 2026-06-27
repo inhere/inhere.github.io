@@ -3,7 +3,7 @@ title: "GCli v3.5 release: shell completion, command middleware, grouped help an
 date: 2026-06-06T08:47:26
 taxonomies:
   tags: [gookit, golang, gcli, cli]
-slug: gookit-gcli-release-v3.5.0-en
+slug: gookit-gcli-release-v3.5.0
 ---
 
 `GCli` is a command-line application and tool library for Go. This post covers the main changes from `v3.3.1` to the recently released `v3.5`, including the v3.4 cycle.

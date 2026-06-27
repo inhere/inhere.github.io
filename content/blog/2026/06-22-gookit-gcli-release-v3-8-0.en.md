@@ -3,7 +3,7 @@ title: "GCli v3.8: shared options, doc generation, and safer binding"
 date: 2026-06-22T08:26:03
 taxonomies:
   tags: [gookit, golang, gcli, cli]
-slug: gookit-gcli-release-v3.8.0-en
+slug: gookit-gcli-release-v3.8.0
 ---
 
 GCli v3.8 is out. Since v3.5, the project has added friendlier argument parsing, richer struct binding, type-safe generic flag helpers, inherited command options, and built-in markdown/man-page generation.
