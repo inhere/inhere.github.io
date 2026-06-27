@@ -55,16 +55,6 @@ git submodule update --remote themes/tabi
 - 同一篇文章的不同语言必须使用相同 `slug`。不要在英文 `slug` 后追加 `-en`，否则主题语言切换会把 `/blog/.../slug/` 拼成 `/en/blog/.../slug/`，但实际页面会生成到 `/en/blog/.../slug-en/`，导致 404。
 - `slug` 尽量只使用小写字母、数字和短横线；版本号里的点号写成短横线，例如 `v3-8-0`，避免 Zola slugify 后路径和预期不一致。
 
-```
-
-#
-inhere:
-  name: inhere
-  title: docs maintainer
-  url: https://github.com/inhere
-  image_url: https://github.com/inhere.png
-```
-
 ## 部署
 
 使用 [zola-deploy-action](https://github.com/shalzz/zola-deploy-action) 进行部署
