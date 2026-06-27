@@ -1,0 +1,4 @@
+interface:
+  display_name: "GLM Blog Poster"
+  short_description: "Generate blog posters with GLM plus local text"
+  default_prompt: "Use $glm-blog-poster to generate a technical blog poster for my article."
