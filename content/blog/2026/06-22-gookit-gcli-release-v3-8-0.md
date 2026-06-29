@@ -1,14 +1,14 @@
 ---
-title: GCli v3.8 发布：共享选项、文档生成和更宽容的参数解析
+title: GCli v3.8：共享选项、文档生成和参数重排
 date: 2026-06-22T08:26:03
 taxonomies:
   tags: [gookit, golang, gcli, cli]
 slug: gookit-gcli-release-v3.8.0
 ---
 
-GCli v3.8 已发布。相比 v3.5，这个周期补了几块 CLI 框架里经常会用到的能力：参数可以写在位置参数之后，结构体绑定支持更多 Go 类型，父命令可以定义会被子命令继承的共享选项，还能直接生成 markdown 和 man 文档。
+GCli v3.8 这一轮补的不是花哨功能，而是写复杂 CLI 时经常会撞到的几个缺口：参数可以写在位置参数后面，结构体绑定支持更多 Go 类型，父命令可以定义会被子命令继承的共享选项，还能直接生成 markdown 和 man 文档。
 
-如果你维护的是多级命令，而不是只有一两个子命令的小工具，v3.8 值得看一下。
+如果你的 CLI 已经有多级命令、共享配置和文档生成需求，这版会少写不少胶水代码。
 
 ![GCli v3.8 发布海报](/img/blog/gcli-v3-8-poster.png)
 
@@ -18,9 +18,9 @@ GCli v3.8 已发布。相比 v3.5，这个周期补了几块 CLI 框架里经常
 - API 文档：[https://pkg.go.dev/github.com/gookit/gcli/v3](https://pkg.go.dev/github.com/gookit/gcli/v3)
 - 完整变更：[v3.5.0...v3.8.0](https://github.com/gookit/gcli/compare/v3.5.0...v3.8.0)
 
-## 这次主要改了什么
+## v3.8 补了哪些缺口
 
-从 v3.6 到 v3.8，变化主要集中在 6 个地方：
+先把范围列出来：
 
 - 参数乱序自动重排：`myapp build src/ --name tom` 也能解析到 `--name`。
 - 结构体绑定支持 `[]string`、`[]int`、`[]bool`、`time.Duration`、`map[string]string` 和 `enum`。
@@ -33,20 +33,20 @@ GCli v3.8 已发布。相比 v3.5，这个周期补了几块 CLI 框架里经常
 
 ## 参数可以写在位置参数后面
 
-GCli 以前和标准库 `flag` 一样，遇到第一个非 flag 参数后就停止解析选项。因此下面这种输入里，`--name tom` 可能不会按预期进入选项解析：
+GCli 以前和标准库 `flag` 一样，遇到第一个非 flag 参数后就停止解析选项。下面这种输入里，`--name tom` 可能不会按预期进入选项解析：
 
 ```bash
 myapp build src/ --name tom
 ```
 
-从 v3.6 开始，GCli 会在解析前把参数调整到更适合解析的顺序。所以下面两种写法现在结果一致：
+从 v3.6 开始，GCli 会在解析前做一次参数重排。下面两种写法现在结果一致：
 
 ```bash
 myapp build --name tom src/
 myapp build src/ --name tom
 ```
 
-这个功能默认开启。它会处理常见边界：取值型选项会带上自己的值，bool 选项不会误吞后续参数，`--opt=val`、负数、单独的 `-` 和 `--` 之后的内容也会保留原语义。
+这个功能默认开启。边界也做了处理：取值型选项会带上自己的值，bool 选项不会误吞后续参数，`--opt=val`、负数、单独的 `-` 和 `--` 之后的内容都会保留原语义。
 
 多级命令里也做了限制：只重排最终执行命令的参数。遇到子命令名后，父命令和子命令的选项不会混在一起。
 
@@ -63,7 +63,7 @@ gflag.WithReorderArgs(false)
 
 ## 结构体绑定支持更多 Go 类型
 
-结构体绑定是 GCli 里用得比较多的功能。v3.7 之前，如果要绑定列表、map 或时长，经常要用 `gflag.Strings`、`KVString` 这类辅助类型。现在可以直接使用常见 Go 类型：
+结构体绑定是 GCli 里很常用的一块。v3.7 之前，如果要绑定列表、map 或时长，经常要绕到 `gflag.Strings`、`KVString` 这类辅助类型上。现在可以直接使用常见 Go 类型：
 
 ```go
 type deployOpts struct {
@@ -83,14 +83,14 @@ c.MustFromStruct(&deployOpts{})
 myapp deploy -n a -n b -p 80 -p 443 --ttl 1h30m -m k1=v1 -m k2=v2 -l go
 ```
 
-这里有几件事是新的：
+实际变化有几条：
 
 - `[]string`、`[]int`、`[]bool` 会绑定成可重复选项。
 - `time.Duration` 使用 Go 原生时长格式，例如 `1h30m`。
 - `map[string]string` 支持重复传入 `key=value`。
 - `enum:"go,php,java"` 会用于补全候选值，也会在解析时做成员校验。
 
-实现上，结构体绑定器不再使用 `unsafe`，改为通过 `reflect.Value.Addr().Interface()` 获取字段指针。这是内部实现变化，但对长期维护更友好。
+实现上，结构体绑定器不再使用 `unsafe`，改为通过 `reflect.Value.Addr().Interface()` 获取字段指针。用户侧基本无感，但维护成本低一些。
 
 另外，匿名嵌套结构体现在在 `named`、`simple`、`field` 三种标签规则下都会展开。v3.8 还修复了内嵌未导出类型此前不会展开的问题。
 
@@ -125,9 +125,9 @@ gflag.BindVar(&c.Flags, &langs, gflag.NewOpt("langs", "language list", nil))
 
 ## SharedOpts 补上了父子命令之间的中间层
 
-v3.8 最重要的变化是 `Command.SharedOpts()`。
+v3.8 里最值得单独拿出来说的是 `Command.SharedOpts()`。
 
-GCli 以前有应用级全局选项和命令级局部选项，但缺少一个“父命令定义，子命令继承”的中间层。`SharedOpts()` 就是这个层级，语义接近 cobra 的 `PersistentFlags`。
+GCli 以前有应用级全局选项和命令级局部选项，但缺少一个“父命令定义，子命令继承”的中间层。`SharedOpts()` 补的就是这层语义，接近 cobra 的 `PersistentFlags`。
 
 ```go
 var gitDir string
@@ -158,7 +158,7 @@ myapp git status arg --git-dir /x
 - `Required` 的共享选项会在最终执行的叶子命令上校验。
 - 子命令帮助中，祖先命令继承来的选项会放到 `Inherited Options` 分组。
 
-底层新增了 `Parser.InheritOptsFrom(src, category...)`，会按底层 `flag.Value` 重新注册继承来的选项，所以父子命令写的是同一个绑定变量。
+底层新增了 `Parser.InheritOptsFrom(src, category...)`，继承选项会按底层 `flag.Value` 重新注册，所以父子命令写的是同一个绑定变量。
 
 ## docgen 可以直接生成 markdown 和 man page
 
@@ -189,11 +189,11 @@ app.Add(builtin.GenDoc())
 ./cliapp gendoc -f man -o ./man
 ```
 
-生成器会处理一些命令行文档里常见的细节：清理 Examples 里的颜色标签，展开 `{$fullCmd}` 这类内置变量，保留多行示例，并在应用概览里写入版本信息。选项表也会通过 `gflag.CliOpt.TypeName()` 带上类型。
+生成器会顺手处理命令行文档里容易漏掉的小细节：清理 Examples 里的颜色标签，展开 `{$fullCmd}` 这类内置变量，保留多行示例，并在应用概览里写入版本信息。选项表也会通过 `gflag.CliOpt.TypeName()` 带上类型。
 
 ## 迁移注意点
 
-这个周期有两处可能需要改代码。
+从 v3.5 升上来，有两处可能需要改代码。
 
 事件包改名：
 
@@ -210,7 +210,7 @@ app.Add(builtin.GenDoc())
 
 `App.Opts()` 仍然返回进程级的 `*GlobalOpts`，所以 `app.Opts().Verbose`、`app.Opts() == gcli.GOpts()` 这类用法不变。移动的是那些描述单个 App 解析状态的字段，避免同一进程内多个 `App` 实例互相影响。
 
-参数自动重排也是行为变化，但它是更宽容的变化。如果你确实依赖旧行为，可以设置 `Config.DisableReorderArgs = true`。
+参数自动重排也是行为变化，只是它通常会让输入更宽容。如果你确实依赖旧行为，可以设置 `Config.DisableReorderArgs = true`。
 
 ## 升级
 
