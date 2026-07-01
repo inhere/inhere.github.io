@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet href="https://inhere.github.io/feed_style.xsl" type="text/xsl"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <tabi:metadata xmlns:tabi="https://github.com/welpo/tabi">
+        <tabi:base_url>https:&#x2F;&#x2F;inhere.github.io</tabi:base_url>
+        <tabi:separator>
+            •
+        </tabi:separator>
+        <tabi:about_feeds>This is a web feed, also known as an Atom feed. Subscribe by copying the URL from the address bar into your newsreader. Visit About Feeds to learn more and get started. It&#x27;s free.</tabi:about_feeds>
+        <tabi:visit_the_site>Visit website</tabi:visit_the_site>
+        <tabi:recent_posts>Recent posts</tabi:recent_posts>
+        <tabi:last_updated_on>Updated on $DATE</tabi:last_updated_on>
+        <tabi:default_theme></tabi:default_theme>
+        <tabi:post_listing_date>date</tabi:post_listing_date>
+        <tabi:current_section>golang</tabi:current_section>
+    </tabi:metadata><link rel="extra-stylesheet" href="https://inhere.github.io/skins/blue.css?h=a4dc1e94d3f5759784d2" /><title>Inhere's Site - golang</title>
+        <subtitle>Inhere&#x27;s site, blogs and project docs</subtitle>
+    <link href="https://inhere.github.io/en/tags/golang/atom.xml" rel="self" type="application/atom+xml"/>
+    <link href="https://inhere.github.io/en/tags/golang/" rel="alternate" type="text/html"/>
+    <generator uri="https://www.getzola.org/">Zola</generator><updated>2026-06-24T21:11:54+00:00</updated><id>https://inhere.github.io/en/tags/golang/atom.xml</id><entry xml:lang="en">
+        <title>rotatefile: log rotation, compression, and cleanup for Go</title>
+        <published>2026-06-24T21:11:54+00:00</published>
+        <updated>2026-06-24T21:11:54+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/en/blog/2026/gookit-rotatefile-intro/" type="text/html"/>
+        <id>https://inhere.github.io/en/blog/2026/gookit-rotatefile-intro/</id>
+        <summary type="html">Go’s standard logging packages can write to an io.Writer, but they do not decide when a log file should rotate, how many old files to keep, or when disk usage should be capped. Once a service writes logs to local files, those details become part of the system.
+github.com/gookit/rotatefile stays deliberately small: it provides an io.Writer with file rotation, gzip compression, and cleanup. You can keep using log/slog, log, zap, or gookit/slog; rotatefile only handles the file lifecycle.
+…</summary>
+        </entry><entry xml:lang="en">
+        <title>GCli v3.8: shared options, doc generation, and safer binding</title>
+        <published>2026-06-22T08:26:03+00:00</published>
+        <updated>2026-06-22T08:26:03+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/en/blog/2026/gookit-gcli-release-v3-8-0/" type="text/html"/>
+        <id>https://inhere.github.io/en/blog/2026/gookit-gcli-release-v3-8-0/</id>
+        <summary type="html">GCli v3.8 is out. Since v3.5, the project has added friendlier argument parsing, richer struct binding, type-safe generic flag helpers, inherited command options, and built-in markdown/man-page generation.
+If you maintain a nested CLI rather than a small command wrapper, this release is worth a closer look.
+…</summary>
+        </entry><entry xml:lang="en">
+        <title>miglite: raw SQL migrations for Go projects</title>
+        <published>2026-06-18T15:36:21+00:00</published>
+        <updated>2026-06-18T15:36:21+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/en/blog/2026/gookit-miglite-intro/" type="text/html"/>
+        <id>https://inhere.github.io/en/blog/2026/gookit-miglite-intro/</id>
+        <summary type="html">Database migration tools usually pick one of two lanes. Some describe schema changes in their own DSL and generate SQL for you. Others take the SQL you already wrote, run it in order, and record what has been applied.
+github.com/gookit/miglite stays in the second lane. It does not replace SQL, and the library does not pull database drivers into your dependency tree by default. It discovers migration files, parses UP/DOWN sections, runs SQL in a transaction, and records the migration status in the database.
+…</summary>
+        </entry><entry xml:lang="en">
+        <title>GCli v3.5 release: shell completion, command middleware, grouped help and more</title>
+        <published>2026-06-06T08:47:26+00:00</published>
+        <updated>2026-06-06T08:47:26+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/en/blog/2026/gookit-gcli-release-v3-5-0/" type="text/html"/>
+        <id>https://inhere.github.io/en/blog/2026/gookit-gcli-release-v3-5-0/</id>
+        <summary type="html">GCli is a command-line application and tool library for Go. This post covers the main changes from v3.3.1 to the recently released v3.5, including the v3.4 cycle.
+These updates focus on developer experience and underlying stability. If you write CLI tools in Go, a few of these features are worth upgrading for…</summary>
+        </entry><entry xml:lang="en">
+        <title>gookit goutil release v0.6.15</title>
+        <published>2024-01-24T23:24:00+00:00</published>
+        <updated>2024-01-24T23:24:00+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/en/blog/2024/01-24-gookit-goutil-release-v0-6-15/" type="text/html"/>
+        <id>https://inhere.github.io/en/blog/2024/01-24-gookit-goutil-release-v0-6-15/</id>
+        <summary type="html">gookit/goutil 💪 Go 常用功能的扩展工具库。包含：数字，字符串，slice/数组，Map，结构体，反射，文本，文件，错误，时间日期，测试，CLI，命令运行，系统信息，格式化，常用信息获取等等。…</summary>
+        </entry><entry xml:lang="en">
+        <title>gookit&#x2F;goutil - released v0.6.10, an extension library of common Go features</title>
+        <published>2023-06-28T14:55:00+00:00</published>
+        <updated>2023-06-28T14:55:00+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/en/blog/2023/gookit-goutil-release-v0-6-10/" type="text/html"/>
+        <id>https://inhere.github.io/en/blog/2023/gookit-goutil-release-v0-6-10/</id>
+        <summary type="html">gookit/goutil An extended library of Go’s common functionality. Contains: number, string, slice/array, Map, struct, reflection, text, file, error, time and date, test, CLI, command run, system information, formatting, common information acquisition, etc…</summary>
+        </entry><entry xml:lang="en">
+        <title>gookit&#x2F;slog - release v0.5.2, Lightweight, configurable, extensible logging library</title>
+        <published>2023-06-19T17:16:00+00:00</published>
+        <updated>2023-06-19T17:16:00+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/en/blog/2023/06-19-gookit-slog-release-v0-5-2/" type="text/html"/>
+        <id>https://inhere.github.io/en/blog/2023/06-19-gookit-slog-release-v0-5-2/</id>
+        <summary type="html">gookit/slog 📑 Lightweight, configurable, extensible logging library written in Go.
+Support multi level, multi outputs and built-in multi file logger, buffers, clean, rotate-file handling…</summary>
+        </entry><entry xml:lang="en">
+        <title>cflag - wraps and extends Go flag build pertty CLI command</title>
+        <published>2022-07-09T16:00:00+00:00</published>
+        <updated>2022-07-09T16:00:00+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/en/blog/2022/07-09-gookit-goutil-cflag-usage/" type="text/html"/>
+        <id>https://inhere.github.io/en/blog/2022/07-09-gookit-goutil-cflag-usage/</id>
+        <summary type="html">cflag - wraps and extends Go flag build pertty CLI command…</summary>
+        </entry><entry xml:lang="en">
+        <title>gitw - Git 命令包装器，生成 git 变更记录日志</title>
+        <published>2022-07-06T21:00:00+00:00</published>
+        <updated>2022-07-06T21:00:00+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/en/blog/2022/07-06-gookit-gitw-intro/" type="text/html"/>
+        <id>https://inhere.github.io/en/blog/2022/07-06-gookit-gitw-intro/</id>
+        <summary type="html">gitw - Git 命令包装器，生成 git 变更记录日志，获取 repo 信息和一些 git 命令工具。
+
+包装本地 git 命令
+快速运行 git 命令
+快速查询存储库信息
+
+获取 remote, branch 详细信息
+
+
+通过 git log 快速生成版本变更日志
+
+允许自定义生成配置
+允许自定义生成过滤、样式等
+可以直接在 GitHub Actions 中使用
+
+
+…</summary>
+        </entry><entry xml:lang="en">
+        <title>slog - Lightweight, configurable, extensible Go logging library</title>
+        <published>2022-06-16T21:00:00+00:00</published>
+        <updated>2022-06-16T21:00:00+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/en/blog/2022/06-16-gookit-slog-intro/" type="text/html"/>
+        <id>https://inhere.github.io/en/blog/2022/06-16-gookit-slog-intro/</id>
+        </entry>
+</feed>

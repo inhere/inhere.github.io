@@ -1,0 +1,353 @@
+<!doctype html><html lang=zh-Hans><head><meta charset=UTF-8><meta content="default-src 'self';font-src 'self' data:;img-src 'self' https://* data:;media-src 'self';style-src 'self';frame-src player.vimeo.com https://www.youtube-nocookie.com;connect-src 'self';script-src 'self' 'self'" http-equiv=Content-Security-Policy><meta content="width=device-width,initial-scale=1.0" name=viewport><meta content=https://inhere.github.io name=base><title>
+Inhere's Site • php 实现一个 Telnet 工具类</title><link href=https://inhere.github.io/icons/favicon.ico rel=icon type=image/png><link title="Inhere's Site - Atom Feed" href=https://inhere.github.io/atom.xml rel=alternate type=application/atom+xml><link href="https://inhere.github.io/custom_subset.css?h=0b9535a28bc3d5bf2321" rel=stylesheet><link href="https://inhere.github.io/main.css?h=be7f63312b6c5c196cba" rel=stylesheet><link href="https://inhere.github.io/custom.css?h=b0b090835487d694b863" rel=stylesheet><link href="https://inhere.github.io/skins/blue.css?h=a4dc1e94d3f5759784d2" rel=stylesheet><meta content="light dark" name=color-scheme><meta content="使用php 里的 socket 相关函数，实现一个简单的 Telnet 工具类。
+
+支持发送命令，获取结果
+进入交互环境，类似于命令行工具telnet
+持续的监控一个命令 ，类似于命令行的 watch
+…" name=description><meta content="使用php 里的 socket 相关函数，实现一个简单的 Telnet 工具类。
+
+支持发送命令，获取结果
+进入交互环境，类似于命令行工具telnet
+持续的监控一个命令 ，类似于命令行的 watch
+…" property=og:description><meta content="php 实现一个 Telnet 工具类" property=og:title><meta content=article property=og:type><meta content=zh_CN property=og:locale:alternate><link href=https://inhere.github.io/blog/2017/implement-a-telnet-tool-in-php/ hreflang=zh-Hans rel=alternate><meta content=https://inhere.github.io/blog/2017/implement-a-telnet-tool-in-php/ property=og:url><meta content="Inhere's Site" property=og:site_name><noscript><link href=https://inhere.github.io/no_js.css rel=stylesheet></noscript><script src=https://inhere.github.io/js/initializeTheme.min.js></script><script defer src=https://inhere.github.io/js/themeSwitcher.min.js></script><body><a href=#main-content id=skip-link>跳到内容</a><header><nav class=navbar><div class=nav-title><a class=home-title href=https://inhere.github.io/>Inhere's Site</a></div><div class=nav-navs><ul><li><a class="nav-links no-hover-padding" href=https://inhere.github.io/blog/>📝 Blog </a><li><a class="nav-links no-hover-padding" href=https://inhere.github.io/projects/>🚀 Projects </a><li><a class="nav-links no-hover-padding" href=https://inhere.github.io/collections/>📚 Collections </a><li><a class="nav-links no-hover-padding" href=https://inhere.github.io/tags/>🏷️ Tags </a><li><a class="nav-links no-hover-padding" href=https://inhere.github.io/archive/>🗄️ Archive </a><li><a class="nav-links no-hover-padding" href=https://github.com/inhere>🐱 Github </a><li class=menu-icons-container><ul class=menu-icons-group><li class=language-switcher><details class=dropdown><summary aria-haspopup=true aria-label=语言选择 role=button title=语言选择><div class=language-switcher-icon></div></summary> <div class=dropdown-content role=menu>简体中文<a aria-label=English href=https://inhere.github.io/en/blog/2017/implement-a-telnet-tool-in-php/ lang=en role=menuitem>English</a></div></details><li class="theme-switcher-wrapper js"><div aria-label=切换到暗模式 aria-pressed=false class=theme-switcher role=button tabindex=0 title=切换到暗/亮模式></div><div class="theme-resetter arrow" aria-hidden=true aria-label=将模式重置为网站默认值 role=button tabindex=0 title=将模式重置为网站默认值></div></ul></ul></div></nav></header><div class=content id=main-content><main><article class=h-entry><h1 class="p-name article-title">php 实现一个 Telnet 工具类</h1><a class="u-url u-uid" href=https://inhere.github.io/blog/2017/implement-a-telnet-tool-in-php/></a><ul class=meta><span class="hidden p-author h-card"> <a class=u-url href=https://inhere.github.io rel=author title=Inhere>Inhere</a> </span><li><time class=dt-published datetime=2017-05-12T09:47:34>12 5月 2017</time><li title="127 字"><span aria-hidden=true class=separator>•</span>1 分钟阅读<li class=tag><span aria-hidden=true class=separator>•</span>标签: <li class=tag><a class=p-category href=https://inhere.github.io/tags/php/>php</a>, <li class=tag><a class=p-category href=https://inhere.github.io/tags/socket/>socket</a>, <li class=tag><a class=p-category href=https://inhere.github.io/tags/telnet/>telnet</a></ul><section class="e-content body"><p>使用php 里的 socket 相关函数，实现一个简单的 Telnet 工具类。<ul><li>支持发送命令，获取结果<li>进入交互环境，类似于命令行工具telnet<li>持续的监控一个命令 ，类似于命令行的 watch</ul><span id=continue-reading></span><p>可选择使用三种连接方式<ul><li>fsockopen - php 内置函数<li>socket - 需要 <code>sockets</code> 扩展<li>stream - 使用 <code>stream_*</code> 相关函数</ul><p>完整代码<a rel="noopener nofollow noreferrer external" class=external href=https://gist.github.com/inhere/f39d2d1641b2282e54ecefa84a5af8b4#file-telnet-php target=_blank>源文件</a>：<pre class=giallo style=color:#24292e;background-color:#fff><code data-lang=php><span class=giallo-l><span style=color:#d73a49>&lt;?</span><span style=color:#005cc5>php</span></span>
+<span class=giallo-l></span>
+<span class=giallo-l><span style=color:#6a737d>/**</span></span>
+<span class=giallo-l><span style=color:#6a737d> * Class Telnet</span></span>
+<span class=giallo-l><span style=color:#6a737d> */</span></span>
+<span class=giallo-l><span style=color:#d73a49>class</span><span style=color:#6f42c1> Telnet</span></span>
+<span class=giallo-l><span>{</span></span>
+<span class=giallo-l><span style=color:#d73a49>    const</span><span style=color:#005cc5> DRIVER_SOCKET</span><span style=color:#d73a49> =</span><span style=color:#032f62> 'socket'</span><span>;</span></span>
+<span class=giallo-l><span style=color:#d73a49>    const</span><span style=color:#005cc5> DRIVER_STREAM</span><span style=color:#d73a49> =</span><span style=color:#032f62> 'stream'</span><span>;</span></span>
+<span class=giallo-l><span style=color:#d73a49>    const</span><span style=color:#005cc5> DRIVER_FSOCK</span><span style=color:#d73a49> =</span><span style=color:#032f62> 'fsock'</span><span>;</span></span>
+<span class=giallo-l></span>
+<span class=giallo-l><span style=color:#6a737d>    /**</span></span>
+<span class=giallo-l><span style=color:#6a737d>     * </span><span style=color:#d73a49>@var array</span></span>
+<span class=giallo-l><span style=color:#6a737d>     */</span></span>
+<span class=giallo-l><span style=color:#d73a49>    private static</span><span> $availableDrivers</span><span style=color:#d73a49> =</span><span> [</span></span>
+<span class=giallo-l><span style=color:#032f62>        'socket'</span><span style=color:#d73a49> =></span><span style=color:#032f62> 'socket_create'</span><span>,</span></span>
+<span class=giallo-l><span style=color:#032f62>        'stream'</span><span style=color:#d73a49> =></span><span style=color:#032f62> 'stream_socket_client'</span><span>,</span></span>
+<span class=giallo-l><span style=color:#032f62>        'fsock'</span><span style=color:#d73a49> =></span><span style=color:#032f62> 'fsockopen'</span><span>,</span></span>
+<span class=giallo-l><span>    ];</span></span>
+<span class=giallo-l></span>
+<span class=giallo-l><span style=color:#6a737d>    /**</span></span>
+<span class=giallo-l><span style=color:#6a737d>     * </span><span style=color:#d73a49>@var resource</span></span>
+<span class=giallo-l><span style=color:#6a737d>     */</span></span>
+<span class=giallo-l><span style=color:#d73a49>    private</span><span> $sock;</span></span>
+<span class=giallo-l></span>
+<span class=giallo-l><span style=color:#6a737d>    /**</span></span>
+<span class=giallo-l><span style=color:#6a737d>     * </span><span style=color:#d73a49>@var string</span></span>
+<span class=giallo-l><span style=color:#6a737d>     */</span></span>
+<span class=giallo-l><span style=color:#d73a49>    private</span><span> $driver;</span></span>
+<span class=giallo-l></span>
+<span class=giallo-l><span style=color:#6a737d>    /**</span></span>
+<span class=giallo-l><span style=color:#6a737d>     * </span><span style=color:#d73a49>@var string</span></span>
+<span class=giallo-l><span style=color:#6a737d>     */</span></span>
+<span class=giallo-l><span style=color:#d73a49>    private</span><span> $host;</span></span>
+<span class=giallo-l></span>
+<span class=giallo-l><span style=color:#6a737d>    /**</span></span>
+<span class=giallo-l><span style=color:#6a737d>     * </span><span style=color:#d73a49>@var int</span></span>
+<span class=giallo-l><span style=color:#6a737d>     */</span></span>
+<span class=giallo-l><span style=color:#d73a49>    private</span><span> $port;</span></span>
+<span class=giallo-l></span>
+<span class=giallo-l><span style=color:#6a737d>    /**</span></span>
+<span class=giallo-l><span style=color:#6a737d>     * </span><span style=color:#d73a49>@var array</span></span>
+<span class=giallo-l><span style=color:#6a737d>     */</span></span>
+<span class=giallo-l><span style=color:#d73a49>    private</span><span> $config</span><span style=color:#d73a49> =</span><span> [</span></span>
+<span class=giallo-l><span style=color:#032f62>        'driver'</span><span style=color:#d73a49> =></span><span style=color:#032f62> ''</span><span>,</span><span style=color:#6a737d> // 'fsock' 'stream' 'socket'. if is empry, will auto select.</span></span>
+<span class=giallo-l></span>
+<span class=giallo-l><span style=color:#6a737d>        // 设置阻塞或者非阻塞模式</span></span>
+<span class=giallo-l><span style=color:#032f62>        'blocking'</span><span style=color:#d73a49> =></span><span style=color:#005cc5> true</span><span>,</span></span>
+<span class=giallo-l></span>
+<span class=giallo-l><span style=color:#6a737d>        // 10s</span></span>
+<span class=giallo-l><span style=color:#032f62>        'timeout'</span><span style=color:#d73a49> =></span><span style=color:#005cc5> 10</span><span>,</span></span>
+<span class=giallo-l></span>
+<span class=giallo-l><span style=color:#6a737d>        // max watch time 180s, when use watch</span></span>
+<span class=giallo-l><span style=color:#032f62>        'max_watch_time'</span><span style=color:#d73a49> =></span><span style=color:#005cc5> 180</span><span>,</span></span>
+<span class=giallo-l><span>    ];</span></span>
+<span class=giallo-l></span>
+<span class=giallo-l><span style=color:#6a737d>    /**</span></span>
+<span class=giallo-l><span style=color:#6a737d>     * Telnet constructor.</span></span>
+<span class=giallo-l><span style=color:#6a737d>     * </span><span style=color:#d73a49>@param string</span><span style=color:#6a737d> $host</span></span>
+<span class=giallo-l><span style=color:#6a737d>     * </span><span style=color:#d73a49>@param int</span><span style=color:#6a737d> $port</span></span>
+<span class=giallo-l><span style=color:#6a737d>     * </span><span style=color:#d73a49>@param array</span><span style=color:#6a737d> $config</span></span>
+<span class=giallo-l><span style=color:#6a737d>     */</span></span>
+<span class=giallo-l><span style=color:#d73a49>    public function</span><span style=color:#005cc5> __construct</span><span>($host</span><span style=color:#d73a49> =</span><span style=color:#032f62> '127.0.0.1'</span><span>, $port</span><span style=color:#d73a49> =</span><span style=color:#005cc5> 80</span><span>,</span><span style=color:#d73a49> array</span><span> $config</span><span style=color:#d73a49> =</span><span> [])</span></span>
+<span class=giallo-l><span>    {</span></span>
+<span class=giallo-l><span style=color:#005cc5>        $this</span><span style=color:#d73a49>-></span><span>host</span><span style=color:#d73a49> =</span><span> $host</span><span style=color:#d73a49> ?:</span><span style=color:#032f62> '127.0.0.1'</span><span>;</span></span>
+<span class=giallo-l><span style=color:#005cc5>        $this</span><span style=color:#d73a49>-></span><span>port</span><span style=color:#d73a49> =</span><span> $port</span><span style=color:#d73a49> ?:</span><span style=color:#005cc5> 80</span><span>;</span></span>
+<span class=giallo-l></span>
+<span class=giallo-l><span style=color:#005cc5>        $this</span><span style=color:#d73a49>-></span><span style=color:#6f42c1>setConfig</span><span>($config);</span></span>
+<span class=giallo-l></span>
+<span class=giallo-l><span style=color:#005cc5>        $this</span><span style=color:#d73a49>-></span><span style=color:#6f42c1>init</span><span>();</span></span>
+<span class=giallo-l></span>
+<span class=giallo-l><span style=color:#005cc5>        $this</span><span style=color:#d73a49>-></span><span style=color:#6f42c1>connect</span><span>(</span><span style=color:#005cc5>$this</span><span style=color:#d73a49>-></span><span>host,</span><span style=color:#005cc5> $this</span><span style=color:#d73a49>-></span><span>port);</span></span>
+<span class=giallo-l><span>    }</span></span>
+<span class=giallo-l></span>
+<span class=giallo-l><span style=color:#d73a49>    protected function</span><span style=color:#6f42c1> init</span><span>()</span></span>
+<span class=giallo-l><span>    {</span></span>
+<span class=giallo-l><span>        $driver</span><span style=color:#d73a49> =</span><span style=color:#005cc5> $this</span><span style=color:#d73a49>-></span><span>config[</span><span style=color:#032f62>'driver'</span><span>];</span></span>
+<span class=giallo-l></span>
+<span class=giallo-l><span style=color:#d73a49>        if</span><span> (</span><span style=color:#d73a49>!</span><span>$driver</span><span style=color:#d73a49> || !</span><span style=color:#005cc5>isset</span><span>(</span><span style=color:#d73a49>self::</span><span>$availableDrivers[$driver])) {</span></span>
+<span class=giallo-l><span style=color:#d73a49>            foreach</span><span> (</span><span style=color:#d73a49>self::</span><span>$availableDrivers</span><span style=color:#d73a49> as</span><span> $name</span><span style=color:#d73a49> =></span><span> $funcName) {</span></span>
+<span class=giallo-l><span style=color:#d73a49>                if</span><span> (</span><span style=color:#005cc5>function_exists</span><span>($funcName)) {</span></span>
+<span class=giallo-l><span>                    $driver</span><span style=color:#d73a49> =</span><span> $name;</span></span>
+<span class=giallo-l><span style=color:#d73a49>                    break</span><span>;</span></span>
+<span class=giallo-l><span>                }</span></span>
+<span class=giallo-l><span>            }</span></span>
+<span class=giallo-l><span>        }</span></span>
+<span class=giallo-l></span>
+<span class=giallo-l><span style=color:#005cc5>        $this</span><span style=color:#d73a49>-></span><span>driver</span><span style=color:#d73a49> =</span><span> $driver;</span></span>
+<span class=giallo-l><span>    }</span></span>
+<span class=giallo-l></span>
+<span class=giallo-l><span style=color:#6a737d>    /**</span></span>
+<span class=giallo-l><span style=color:#6a737d>     * </span><span style=color:#d73a49>@param string</span><span style=color:#6a737d> $host</span></span>
+<span class=giallo-l><span style=color:#6a737d>     * </span><span style=color:#d73a49>@param string</span><span style=color:#6a737d> $port</span></span>
+<span class=giallo-l><span style=color:#6a737d>     */</span></span>
+<span class=giallo-l><span style=color:#d73a49>    protected function</span><span style=color:#6f42c1> connect</span><span>($host, $port)</span></span>
+<span class=giallo-l><span>    {</span></span>
+<span class=giallo-l><span style=color:#d73a49>        try</span><span> {</span></span>
+<span class=giallo-l><span style=color:#005cc5>            $this</span><span style=color:#d73a49>-></span><span style=color:#6f42c1>doConnect</span><span>($host, $port,</span><span style=color:#005cc5> $this</span><span style=color:#d73a49>-></span><span>driver);</span></span>
+<span class=giallo-l><span>        }</span><span style=color:#d73a49> catch</span><span> (</span><span style=color:#005cc5>\Exception</span><span> $e) {</span></span>
+<span class=giallo-l><span style=color:#d73a49>            throw new</span><span style=color:#005cc5> \RuntimeException</span><span>(</span><span style=color:#032f62>"Use {</span><span style=color:#005cc5>$this</span><span style=color:#d73a49>-></span><span>driver</span><span style=color:#032f62>} connect to the server {</span><span>$host</span><span style=color:#032f62>}:{</span><span>$port</span><span style=color:#032f62>} failed, ERROR({</span><span>$e</span><span style=color:#d73a49>-></span><span style=color:#6f42c1>getCode</span><span style=color:#032f62>()}): {</span><span>$e</span><span style=color:#d73a49>-></span><span style=color:#6f42c1>getMessage</span><span style=color:#032f62>()}"</span><span>,</span><span style=color:#d73a49> -</span><span style=color:#005cc5>500</span><span>);</span></span>
+<span class=giallo-l><span>        }</span></span>
+<span class=giallo-l><span>    }</span></span>
+<span class=giallo-l></span>
+<span class=giallo-l><span style=color:#6a737d>    /**</span></span>
+<span class=giallo-l><span style=color:#6a737d>     * </span><span style=color:#d73a49>@param string</span><span style=color:#6a737d> $host</span></span>
+<span class=giallo-l><span style=color:#6a737d>     * </span><span style=color:#d73a49>@param string</span><span style=color:#6a737d> $port</span></span>
+<span class=giallo-l><span style=color:#6a737d>     * </span><span style=color:#d73a49>@param string</span><span style=color:#6a737d> $driver</span></span>
+<span class=giallo-l><span style=color:#6a737d>     */</span></span>
+<span class=giallo-l><span style=color:#d73a49>    protected function</span><span style=color:#6f42c1> doConnect</span><span>($host, $port, $driver)</span></span>
+<span class=giallo-l><span>    {</span></span>
+<span class=giallo-l><span>        $errNo</span><span style=color:#d73a49> =</span><span> $errStr</span><span style=color:#d73a49> =</span><span style=color:#005cc5> null</span><span>;</span></span>
+<span class=giallo-l></span>
+<span class=giallo-l><span style=color:#d73a49>        switch</span><span> ($driver) {</span></span>
+<span class=giallo-l><span style=color:#d73a49>            case self::</span><span style=color:#005cc5>DRIVER_SOCKET</span><span>:</span></span>
+<span class=giallo-l><span style=color:#005cc5>                $this</span><span style=color:#d73a49>-></span><span>sock</span><span style=color:#d73a49> =</span><span style=color:#005cc5> socket_create</span><span>(</span><span style=color:#005cc5>AF_INET</span><span>,</span><span style=color:#005cc5> SOCK_STREAM</span><span>,</span><span style=color:#005cc5> SOL_TCP</span><span>);</span></span>
+<span class=giallo-l><span style=color:#d73a49>                if</span><span> (</span><span style=color:#005cc5>$this</span><span style=color:#d73a49>-></span><span>sock</span><span style=color:#d73a49> ===</span><span style=color:#005cc5> false</span><span>) {</span></span>
+<span class=giallo-l><span style=color:#d73a49>                    throw new</span><span style=color:#005cc5> \RuntimeException</span><span>(</span><span style=color:#032f62>'socket_create() failed. Reason: '</span><span style=color:#d73a49> .</span><span style=color:#005cc5> socket_strerror</span><span>(</span><span style=color:#005cc5>socket_last_error</span><span>()),</span><span style=color:#d73a49> -</span><span style=color:#005cc5>400</span><span>);</span></span>
+<span class=giallo-l><span>                }</span></span>
+<span class=giallo-l></span>
+<span class=giallo-l><span style=color:#d73a49>                if</span><span> (</span><span style=color:#005cc5>socket_connect</span><span>(</span><span style=color:#005cc5>$this</span><span style=color:#d73a49>-></span><span>sock, $host, $port)</span><span style=color:#d73a49> ===</span><span style=color:#005cc5> false</span><span>) {</span></span>
+<span class=giallo-l><span style=color:#d73a49>                    throw new</span><span style=color:#005cc5> \RuntimeException</span><span>(</span><span style=color:#032f62>'socket_connect() failed. Reason: '</span><span style=color:#d73a49> .</span><span style=color:#005cc5> socket_strerror</span><span>(</span><span style=color:#005cc5>socket_last_error</span><span>()),</span><span style=color:#d73a49> -</span><span style=color:#005cc5>450</span><span>);</span></span>
+<span class=giallo-l><span>                }</span></span>
+<span class=giallo-l></span>
+<span class=giallo-l><span style=color:#d73a49>                if</span><span> (</span><span style=color:#005cc5>$this</span><span style=color:#d73a49>-></span><span>config[</span><span style=color:#032f62>'blocking'</span><span>]) {</span></span>
+<span class=giallo-l><span style=color:#005cc5>                    socket_set_block</span><span>(</span><span style=color:#005cc5>$this</span><span style=color:#d73a49>-></span><span>sock);</span></span>
+<span class=giallo-l><span>                }</span><span style=color:#d73a49> else</span><span> {</span></span>
+<span class=giallo-l><span style=color:#005cc5>                    socket_set_nonblock</span><span>(</span><span style=color:#005cc5>$this</span><span style=color:#d73a49>-></span><span>sock);</span></span>
+<span class=giallo-l><span>                }</span></span>
+<span class=giallo-l></span>
+<span class=giallo-l><span style=color:#005cc5>                socket_set_option</span><span>(</span><span style=color:#005cc5>$this</span><span style=color:#d73a49>-></span><span>sock,</span><span style=color:#005cc5> SOL_SOCKET</span><span>,</span><span style=color:#005cc5> SO_RCVTIMEO</span><span>, [</span></span>
+<span class=giallo-l><span style=color:#032f62>                    'sec'</span><span style=color:#d73a49> =></span><span style=color:#005cc5> $this</span><span style=color:#d73a49>-></span><span>config[</span><span style=color:#032f62>'timeout'</span><span>],</span></span>
+<span class=giallo-l><span style=color:#032f62>                    'usec'</span><span style=color:#d73a49> =></span><span style=color:#005cc5> null</span></span>
+<span class=giallo-l><span>                ]);</span></span>
+<span class=giallo-l><span style=color:#d73a49>                break</span><span>;</span></span>
+<span class=giallo-l></span>
+<span class=giallo-l><span style=color:#d73a49>            case self::</span><span style=color:#005cc5>DRIVER_STREAM</span><span>:</span></span>
+<span class=giallo-l><span style=color:#005cc5>                $this</span><span style=color:#d73a49>-></span><span>sock</span><span style=color:#d73a49> =</span><span style=color:#005cc5> stream_socket_client</span><span>(</span></span>
+<span class=giallo-l><span style=color:#032f62>                    "tcp://{</span><span>$host</span><span style=color:#032f62>}:{</span><span>$port</span><span style=color:#032f62>}"</span><span>,</span></span>
+<span class=giallo-l><span>                    $errNo,</span></span>
+<span class=giallo-l><span>                    $errStr,</span></span>
+<span class=giallo-l><span style=color:#005cc5>                    $this</span><span style=color:#d73a49>-></span><span>config[</span><span style=color:#032f62>'timeout'</span><span>],</span></span>
+<span class=giallo-l><span style=color:#005cc5>                    STREAM_CLIENT_CONNECT</span><span style=color:#d73a49> |</span><span style=color:#005cc5> STREAM_CLIENT_PERSISTENT</span></span>
+<span class=giallo-l><span>                );</span></span>
+<span class=giallo-l><span style=color:#d73a49>                break</span><span>;</span></span>
+<span class=giallo-l></span>
+<span class=giallo-l><span style=color:#d73a49>            case self::</span><span style=color:#005cc5>DRIVER_FSOCK</span><span>:</span></span>
+<span class=giallo-l><span style=color:#d73a49>            default</span><span>:</span></span>
+<span class=giallo-l><span style=color:#005cc5>                $this</span><span style=color:#d73a49>-></span><span>sock</span><span style=color:#d73a49> =</span><span style=color:#005cc5> fsockopen</span><span>($host, $port, $errNo, $errStr,</span><span style=color:#005cc5> $this</span><span style=color:#d73a49>-></span><span>config[</span><span style=color:#032f62>'timeout'</span><span>]);</span></span>
+<span class=giallo-l><span style=color:#d73a49>                break</span><span>;</span></span>
+<span class=giallo-l><span>        }</span></span>
+<span class=giallo-l></span>
+<span class=giallo-l><span style=color:#d73a49>        if</span><span> (</span><span style=color:#d73a49>!</span><span style=color:#005cc5>$this</span><span style=color:#d73a49>-></span><span>sock) {</span></span>
+<span class=giallo-l><span style=color:#d73a49>            throw new</span><span style=color:#005cc5> \RuntimeException</span><span>(</span><span style=color:#032f62>"Connect to the {</span><span>$host</span><span style=color:#032f62>}:{</span><span>$port</span><span style=color:#032f62>} failed, ERROR: </span><span>$errNo</span><span style=color:#032f62> - </span><span>$errStr</span><span style=color:#032f62>"</span><span>,</span><span style=color:#d73a49> -</span><span style=color:#005cc5>500</span><span>);</span></span>
+<span class=giallo-l><span>        }</span></span>
+<span class=giallo-l></span>
+<span class=giallo-l><span style=color:#d73a49>        if</span><span> ($driver</span><span style=color:#d73a49> !== self::</span><span style=color:#005cc5>DRIVER_SOCKET</span><span>) {</span></span>
+<span class=giallo-l><span style=color:#005cc5>            stream_set_blocking</span><span>(</span><span style=color:#005cc5>$this</span><span style=color:#d73a49>-></span><span>sock,</span><span style=color:#005cc5> $this</span><span style=color:#d73a49>-></span><span>config[</span><span style=color:#032f62>'blocking'</span><span>]</span><span style=color:#d73a49> ?</span><span style=color:#005cc5> 1</span><span style=color:#d73a49> :</span><span style=color:#005cc5> 0</span><span>);</span></span>
+<span class=giallo-l><span style=color:#005cc5>            stream_set_timeout</span><span>(</span><span style=color:#005cc5>$this</span><span style=color:#d73a49>-></span><span>sock,</span><span style=color:#005cc5> $this</span><span style=color:#d73a49>-></span><span>config[</span><span style=color:#032f62>'timeout'</span><span>],</span><span style=color:#005cc5> 0</span><span>);</span></span>
+<span class=giallo-l><span>        }</span></span>
+<span class=giallo-l><span>    }</span></span>
+<span class=giallo-l></span>
+<span class=giallo-l><span style=color:#6a737d>    /**</span></span>
+<span class=giallo-l><span style=color:#6a737d>     * watch a command</span></span>
+<span class=giallo-l><span style=color:#6a737d>     * </span><span style=color:#d73a49>@param  string</span><span style=color:#6a737d>  $command</span></span>
+<span class=giallo-l><span style=color:#6a737d>     * </span><span style=color:#d73a49>@param  integer</span><span style=color:#6a737d> $interval (ms)</span></span>
+<span class=giallo-l><span style=color:#6a737d>     */</span></span>
+<span class=giallo-l><span style=color:#d73a49>    public function</span><span style=color:#6f42c1> watch</span><span>($command, $interval</span><span style=color:#d73a49> =</span><span style=color:#005cc5> 500</span><span>)</span></span>
+<span class=giallo-l><span>    {</span></span>
+<span class=giallo-l><span>        $count</span><span style=color:#d73a49> =</span><span style=color:#005cc5> 0</span><span>;</span></span>
+<span class=giallo-l><span>        $activeTime</span><span style=color:#d73a49> =</span><span style=color:#005cc5> time</span><span>();</span></span>
+<span class=giallo-l><span>        $maxTime</span><span style=color:#d73a49> =</span><span> (</span><span style=color:#d73a49>int</span><span>)</span><span style=color:#005cc5>$this</span><span style=color:#d73a49>-></span><span>config[</span><span style=color:#032f62>'max_watch_time'</span><span>];</span></span>
+<span class=giallo-l><span>        $intervalUs</span><span style=color:#d73a49> =</span><span> $interval</span><span style=color:#d73a49> *</span><span style=color:#005cc5> 1000</span><span>;</span></span>
+<span class=giallo-l></span>
+<span class=giallo-l><span style=color:#005cc5>        echo</span><span style=color:#032f62> "watch command: </span><span>$command</span><span style=color:#032f62>, refresh interval: {</span><span>$interval</span><span style=color:#032f62>}ms</span><span style=color:#005cc5>\n</span><span style=color:#032f62>"</span><span>;</span></span>
+<span class=giallo-l></span>
+<span class=giallo-l><span style=color:#d73a49>        while</span><span> (</span><span style=color:#005cc5>true</span><span>) {</span></span>
+<span class=giallo-l><span>            $count</span><span style=color:#d73a49>++</span><span>;</span></span>
+<span class=giallo-l><span>            $result</span><span style=color:#d73a49> =</span><span style=color:#005cc5> $this</span><span style=color:#d73a49>-></span><span style=color:#6f42c1>command</span><span>($command);</span></span>
+<span class=giallo-l></span>
+<span class=giallo-l><span style=color:#d73a49>            if</span><span> (</span><span style=color:#005cc5>0</span><span style=color:#d73a49> ===</span><span style=color:#005cc5> strpos</span><span>($result,</span><span style=color:#032f62> 'ERR'</span><span>)) {</span></span>
+<span class=giallo-l><span style=color:#005cc5>                echo</span><span style=color:#032f62> "</span><span>$result</span><span style=color:#005cc5>\n</span><span style=color:#032f62>"</span><span>;</span></span>
+<span class=giallo-l><span style=color:#005cc5>                echo</span><span style=color:#032f62> "error command: </span><span>$command</span><span style=color:#032f62>. "</span><span>;</span></span>
+<span class=giallo-l><span style=color:#d73a49>                break</span><span>;</span></span>
+<span class=giallo-l><span>            }</span></span>
+<span class=giallo-l></span>
+<span class=giallo-l><span style=color:#6a737d>            // clear screen before output</span></span>
+<span class=giallo-l><span style=color:#005cc5>            echo</span><span style=color:#032f62> "</span><span style=color:#005cc5>\033</span><span style=color:#032f62>[2JThe {</span><span>$count</span><span style=color:#032f62>} times watch {</span><span>$command</span><span style=color:#032f62>} result(refresh interval: {</span><span>$interval</span><span style=color:#032f62>}ms):</span><span style=color:#005cc5>\n</span><span style=color:#032f62>{</span><span>$result</span><span style=color:#032f62>}</span><span style=color:#005cc5>\n</span><span style=color:#032f62>"</span><span>;</span></span>
+<span class=giallo-l></span>
+<span class=giallo-l><span style=color:#d73a49>            if</span><span> ($maxTime</span><span style=color:#d73a49> ></span><span style=color:#005cc5> 0</span><span style=color:#d73a49> &&</span><span style=color:#005cc5> time</span><span>()</span><span style=color:#d73a49> -</span><span> $activeTime</span><span style=color:#d73a49> >=</span><span> $maxTime) {</span></span>
+<span class=giallo-l><span style=color:#005cc5>                echo</span><span style=color:#032f62> "watch time end. "</span><span>;</span></span>
+<span class=giallo-l><span style=color:#d73a49>                break</span><span>;</span></span>
+<span class=giallo-l><span>            }</span></span>
+<span class=giallo-l></span>
+<span class=giallo-l><span style=color:#005cc5>            usleep</span><span>($intervalUs);</span></span>
+<span class=giallo-l><span>        }</span></span>
+<span class=giallo-l></span>
+<span class=giallo-l><span style=color:#005cc5>        echo</span><span style=color:#032f62> "Quit</span><span style=color:#005cc5>\n</span><span style=color:#032f62>"</span><span>;</span></span>
+<span class=giallo-l><span>    }</span></span>
+<span class=giallo-l></span>
+<span class=giallo-l><span style=color:#6a737d>    /**</span></span>
+<span class=giallo-l><span style=color:#6a737d>     * into interactive environment</span></span>
+<span class=giallo-l><span style=color:#6a737d>     */</span></span>
+<span class=giallo-l><span style=color:#d73a49>    public function</span><span style=color:#6f42c1> interactive</span><span>()</span></span>
+<span class=giallo-l><span>    {</span></span>
+<span class=giallo-l><span style=color:#005cc5>        echo</span><span style=color:#032f62> "welcome! please input command('quit' or 'exit' to Quit).</span><span style=color:#005cc5>\n</span><span style=color:#032f62> "</span><span>;</span></span>
+<span class=giallo-l></span>
+<span class=giallo-l><span style=color:#d73a49>        while</span><span> (</span><span style=color:#005cc5>true</span><span>) {</span></span>
+<span class=giallo-l><span style=color:#005cc5>            echo</span><span style=color:#032f62> "> "</span><span>;</span></span>
+<span class=giallo-l><span style=color:#d73a49>            if</span><span> ($cmd</span><span style=color:#d73a49> =</span><span style=color:#005cc5> trim</span><span>(</span><span style=color:#005cc5>fgets</span><span>(</span><span style=color:#005cc5>\STDIN</span><span>))) {</span></span>
+<span class=giallo-l><span style=color:#6a737d>                // echo "input command: $cmd\n";</span></span>
+<span class=giallo-l><span style=color:#d73a49>                if</span><span> ($cmd</span><span style=color:#d73a49> ===</span><span style=color:#032f62> 'quit'</span><span style=color:#d73a49> ||</span><span> $cmd</span><span style=color:#d73a49> ===</span><span style=color:#032f62> 'exit'</span><span>) {</span></span>
+<span class=giallo-l><span style=color:#005cc5>                    echo</span><span style=color:#032f62> "Quit. Bye</span><span style=color:#005cc5>\n</span><span style=color:#032f62>"</span><span>;</span></span>
+<span class=giallo-l><span style=color:#d73a49>                    break</span><span>;</span></span>
+<span class=giallo-l><span>                }</span></span>
+<span class=giallo-l></span>
+<span class=giallo-l><span style=color:#005cc5>                echo $this</span><span style=color:#d73a49>-></span><span style=color:#6f42c1>command</span><span>($cmd)</span><span style=color:#d73a49> .</span><span style=color:#005cc5> PHP_EOL</span><span>;</span></span>
+<span class=giallo-l><span>            }</span></span>
+<span class=giallo-l></span>
+<span class=giallo-l><span style=color:#005cc5>            usleep</span><span>(</span><span style=color:#005cc5>50000</span><span>);</span></span>
+<span class=giallo-l><span>        }</span></span>
+<span class=giallo-l></span>
+<span class=giallo-l><span style=color:#005cc5>        $this</span><span style=color:#d73a49>-></span><span style=color:#6f42c1>close</span><span>();</span></span>
+<span class=giallo-l><span>    }</span></span>
+<span class=giallo-l></span>
+<span class=giallo-l><span style=color:#6a737d>    /**</span></span>
+<span class=giallo-l><span style=color:#6a737d>     * send command</span></span>
+<span class=giallo-l><span style=color:#6a737d>     * </span><span style=color:#d73a49>@param  string</span><span style=color:#6a737d> $command</span></span>
+<span class=giallo-l><span style=color:#6a737d>     * </span><span style=color:#d73a49>@param bool</span><span style=color:#6a737d> $readResult</span></span>
+<span class=giallo-l><span style=color:#6a737d>     * </span><span style=color:#d73a49>@param int</span><span style=color:#6a737d> $readSize</span></span>
+<span class=giallo-l><span style=color:#6a737d>     * </span><span style=color:#d73a49>@return false</span><span style=color:#6a737d>|</span><span style=color:#d73a49>int</span><span style=color:#6a737d>|</span><span style=color:#d73a49>string</span></span>
+<span class=giallo-l><span style=color:#6a737d>     */</span></span>
+<span class=giallo-l><span style=color:#d73a49>    public function</span><span style=color:#6f42c1> command</span><span>($command, $readResult</span><span style=color:#d73a49> =</span><span style=color:#005cc5> true</span><span>, $readSize</span><span style=color:#d73a49> =</span><span style=color:#005cc5> 1024</span><span>)</span></span>
+<span class=giallo-l><span>    {</span></span>
+<span class=giallo-l><span>        $len</span><span style=color:#d73a49> =</span><span style=color:#005cc5> $this</span><span style=color:#d73a49>-></span><span style=color:#6f42c1>write</span><span>(</span><span style=color:#005cc5>trim</span><span>($command)</span><span style=color:#d73a49> .</span><span style=color:#032f62> "</span><span style=color:#005cc5>\r\n</span><span style=color:#032f62>"</span><span>);</span></span>
+<span class=giallo-l></span>
+<span class=giallo-l><span style=color:#d73a49>        if</span><span> ($readResult) {</span></span>
+<span class=giallo-l><span style=color:#d73a49>            return</span><span style=color:#005cc5> $this</span><span style=color:#d73a49>-></span><span style=color:#6f42c1>read</span><span>($readSize);</span></span>
+<span class=giallo-l><span>        }</span></span>
+<span class=giallo-l></span>
+<span class=giallo-l><span style=color:#d73a49>        return</span><span> $len;</span></span>
+<span class=giallo-l><span>    }</span></span>
+<span class=giallo-l></span>
+<span class=giallo-l><span style=color:#6a737d>    /**</span></span>
+<span class=giallo-l><span style=color:#6a737d>     * write</span></span>
+<span class=giallo-l><span style=color:#6a737d>     * </span><span style=color:#d73a49>@param  string</span><span style=color:#6a737d> $buffer</span></span>
+<span class=giallo-l><span style=color:#6a737d>     * </span><span style=color:#d73a49>@return int</span><span style=color:#6a737d>|</span><span style=color:#d73a49>false</span></span>
+<span class=giallo-l><span style=color:#6a737d>     */</span></span>
+<span class=giallo-l><span style=color:#d73a49>    public function</span><span style=color:#6f42c1> write</span><span>($buffer)</span></span>
+<span class=giallo-l><span>    {</span></span>
+<span class=giallo-l><span style=color:#d73a49>        if</span><span> (</span><span style=color:#005cc5>$this</span><span style=color:#d73a49>-></span><span>driver</span><span style=color:#d73a49> === self::</span><span style=color:#005cc5>DRIVER_SOCKET</span><span>) {</span></span>
+<span class=giallo-l><span style=color:#d73a49>            return</span><span style=color:#005cc5> socket_write</span><span>(</span><span style=color:#005cc5>$this</span><span style=color:#d73a49>-></span><span>sock, $buffer,</span><span style=color:#005cc5> strlen</span><span>($buffer));</span></span>
+<span class=giallo-l><span>        }</span><span style=color:#d73a49> else</span><span> {</span></span>
+<span class=giallo-l><span style=color:#6a737d>            // $buffer = str_replace(chr(255), chr(255) . chr(255), $buffer);</span></span>
+<span class=giallo-l><span style=color:#d73a49>            return</span><span style=color:#005cc5> fwrite</span><span>(</span><span style=color:#005cc5>$this</span><span style=color:#d73a49>-></span><span>sock, $buffer);</span></span>
+<span class=giallo-l><span>        }</span></span>
+<span class=giallo-l><span>    }</span></span>
+<span class=giallo-l></span>
+<span class=giallo-l><span style=color:#6a737d>    /**</span></span>
+<span class=giallo-l><span style=color:#6a737d>     * read</span></span>
+<span class=giallo-l><span style=color:#6a737d>     * </span><span style=color:#d73a49>@param  integer</span><span style=color:#6a737d> $size</span></span>
+<span class=giallo-l><span style=color:#6a737d>     * </span><span style=color:#d73a49>@return string</span><span style=color:#6a737d>|</span><span style=color:#d73a49>false</span></span>
+<span class=giallo-l><span style=color:#6a737d>     */</span></span>
+<span class=giallo-l><span style=color:#d73a49>    public function</span><span style=color:#6f42c1> read</span><span>($size</span><span style=color:#d73a49> =</span><span style=color:#005cc5> 1024</span><span>)</span></span>
+<span class=giallo-l><span>    {</span></span>
+<span class=giallo-l><span style=color:#d73a49>        if</span><span> (</span><span style=color:#005cc5>$this</span><span style=color:#d73a49>-></span><span>driver</span><span style=color:#d73a49> === self::</span><span style=color:#005cc5>DRIVER_SOCKET</span><span>) {</span></span>
+<span class=giallo-l><span style=color:#d73a49>            return</span><span style=color:#005cc5> socket_read</span><span>(</span><span style=color:#005cc5>$this</span><span style=color:#d73a49>-></span><span>sock, $size);</span></span>
+<span class=giallo-l><span>        }</span><span style=color:#d73a49> else</span><span> {</span></span>
+<span class=giallo-l><span style=color:#d73a49>            return</span><span style=color:#005cc5> fread</span><span>(</span><span style=color:#005cc5>$this</span><span style=color:#d73a49>-></span><span>sock, $size);</span></span>
+<span class=giallo-l><span>        }</span></span>
+<span class=giallo-l><span>    }</span></span>
+<span class=giallo-l></span>
+<span class=giallo-l><span style=color:#d73a49>    public function</span><span style=color:#6f42c1> close</span><span>()</span></span>
+<span class=giallo-l><span>    {</span></span>
+<span class=giallo-l><span style=color:#d73a49>        if</span><span> (</span><span style=color:#005cc5>$this</span><span style=color:#d73a49>-></span><span>sock) {</span></span>
+<span class=giallo-l><span style=color:#d73a49>            if</span><span> (</span><span style=color:#005cc5>$this</span><span style=color:#d73a49>-></span><span>driver</span><span style=color:#d73a49> === self::</span><span style=color:#005cc5>DRIVER_SOCKET</span><span>) {</span></span>
+<span class=giallo-l><span style=color:#005cc5>                socket_close</span><span>(</span><span style=color:#005cc5>$this</span><span style=color:#d73a49>-></span><span>sock);</span></span>
+<span class=giallo-l><span>            }</span><span style=color:#d73a49> else</span><span> {</span></span>
+<span class=giallo-l><span style=color:#005cc5>                fclose</span><span>(</span><span style=color:#005cc5>$this</span><span style=color:#d73a49>-></span><span>sock);</span></span>
+<span class=giallo-l><span>            }</span></span>
+<span class=giallo-l></span>
+<span class=giallo-l><span style=color:#005cc5>            $this</span><span style=color:#d73a49>-></span><span>sock</span><span style=color:#d73a49> =</span><span style=color:#005cc5> null</span><span>;</span></span>
+<span class=giallo-l><span>        }</span></span>
+<span class=giallo-l><span>    }</span></span>
+<span class=giallo-l></span>
+<span class=giallo-l><span style=color:#6a737d>    /**</span></span>
+<span class=giallo-l><span style=color:#6a737d>     * </span><span style=color:#d73a49>@return resource</span></span>
+<span class=giallo-l><span style=color:#6a737d>     */</span></span>
+<span class=giallo-l><span style=color:#d73a49>    public function</span><span style=color:#6f42c1> getSock</span><span>()</span></span>
+<span class=giallo-l><span>    {</span></span>
+<span class=giallo-l><span style=color:#d73a49>        return</span><span style=color:#005cc5> $this</span><span style=color:#d73a49>-></span><span>sock;</span></span>
+<span class=giallo-l><span>    }</span></span>
+<span class=giallo-l></span>
+<span class=giallo-l><span style=color:#6a737d>    /**</span></span>
+<span class=giallo-l><span style=color:#6a737d>     * </span><span style=color:#d73a49>@return array</span></span>
+<span class=giallo-l><span style=color:#6a737d>     */</span></span>
+<span class=giallo-l><span style=color:#d73a49>    public function</span><span style=color:#6f42c1> getConfig</span><span>()</span></span>
+<span class=giallo-l><span>    {</span></span>
+<span class=giallo-l><span style=color:#d73a49>        return</span><span style=color:#005cc5> $this</span><span style=color:#d73a49>-></span><span>config;</span></span>
+<span class=giallo-l><span>    }</span></span>
+<span class=giallo-l></span>
+<span class=giallo-l><span style=color:#6a737d>    /**</span></span>
+<span class=giallo-l><span style=color:#6a737d>     * </span><span style=color:#d73a49>@param array</span><span style=color:#6a737d> $config</span></span>
+<span class=giallo-l><span style=color:#6a737d>     */</span></span>
+<span class=giallo-l><span style=color:#d73a49>    public function</span><span style=color:#6f42c1> setConfig</span><span>(</span><span style=color:#d73a49>array</span><span> $config)</span></span>
+<span class=giallo-l><span>    {</span></span>
+<span class=giallo-l><span style=color:#d73a49>        if</span><span> ($config) {</span></span>
+<span class=giallo-l><span style=color:#005cc5>            $this</span><span style=color:#d73a49>-></span><span>config</span><span style=color:#d73a49> =</span><span style=color:#005cc5> array_merge</span><span>(</span><span style=color:#005cc5>$this</span><span style=color:#d73a49>-></span><span>config, $config);</span></span>
+<span class=giallo-l><span>        }</span></span>
+<span class=giallo-l><span>    }</span></span>
+<span class=giallo-l></span>
+<span class=giallo-l><span style=color:#d73a49>    public function</span><span style=color:#005cc5> __destruct</span><span>()</span></span>
+<span class=giallo-l><span>    {</span></span>
+<span class=giallo-l><span style=color:#005cc5>        $this</span><span style=color:#d73a49>-></span><span style=color:#6f42c1>close</span><span>();</span></span>
+<span class=giallo-l><span>    }</span></span>
+<span class=giallo-l><span>}</span></span></code></pre><h2 id=jian-dan-shi-yong><a aria-label="Anchor link for: jian-dan-shi-yong" class="header-anchor no-hover-padding" href=#jian-dan-shi-yong><span aria-hidden=true class=link-icon></span></a> 简单使用</h2><p>编写一个简单的入口文件<code>telnet.php</code>：<pre class=giallo style=color:#24292e;background-color:#fff><code data-lang=php><span class=giallo-l><span style=color:#d73a49>global</span><span> $argv;</span></span>
+<span class=giallo-l><span>$opts</span><span style=color:#d73a49> =</span><span style=color:#005cc5> getopt</span><span>(</span><span style=color:#032f62>'h'</span><span>, [</span><span style=color:#032f62>'help'</span><span>]);</span></span>
+<span class=giallo-l></span>
+<span class=giallo-l><span style=color:#d73a49>if</span><span> (</span><span style=color:#005cc5>isset</span><span>($opts[</span><span style=color:#032f62>'h'</span><span>])</span><span style=color:#d73a49> ||</span><span style=color:#005cc5> isset</span><span>($opts[</span><span style=color:#032f62>'help'</span><span>])) {</span></span>
+<span class=giallo-l><span>    $script</span><span style=color:#d73a49> =</span><span style=color:#005cc5> array_shift</span><span>($argv);</span></span>
+<span class=giallo-l><span>    $help</span><span style=color:#d73a49> =</span><span style=color:#032f62> &lt;&lt;&lt;</span><span style=color:#d73a49>EOF</span></span>
+<span class=giallo-l><span style=color:#032f62>Start a telnet client.</span></span>
+<span class=giallo-l></span>
+<span class=giallo-l><span style=color:#032f62>Usage:</span></span>
+<span class=giallo-l><span style=color:#032f62>  php </span><span>$script</span><span style=color:#032f62> HOST [PORT]</span></span>
+<span class=giallo-l></span>
+<span class=giallo-l><span style=color:#032f62>Options:</span></span>
+<span class=giallo-l><span style=color:#032f62>  -h,--help  Show this help information</span></span>
+<span class=giallo-l><span style=color:#005cc5>\n</span></span>
+<span class=giallo-l><span style=color:#d73a49>EOF</span><span>;</span></span>
+<span class=giallo-l><span style=color:#d73a49>    exit</span><span>($help);</span></span>
+<span class=giallo-l><span>}</span></span>
+<span class=giallo-l></span>
+<span class=giallo-l><span>$host</span><span style=color:#d73a49> =</span><span style=color:#005cc5> isset</span><span>($argv[</span><span style=color:#005cc5>1</span><span>])</span><span style=color:#d73a49> ?</span><span> $argv[</span><span style=color:#005cc5>1</span><span>]</span><span style=color:#d73a49> :</span><span style=color:#032f62> '127.0.0.1'</span><span>;</span></span>
+<span class=giallo-l><span>$port</span><span style=color:#d73a49> =</span><span style=color:#005cc5> isset</span><span>($argv[</span><span style=color:#005cc5>2</span><span>])</span><span style=color:#d73a49> ?</span><span> $argv[</span><span style=color:#005cc5>2</span><span>]</span><span style=color:#d73a49> :</span><span style=color:#005cc5> 4730</span><span>;</span></span>
+<span class=giallo-l></span>
+<span class=giallo-l><span style=color:#005cc5>echo</span><span style=color:#032f62> "Connect to the server {</span><span>$host</span><span style=color:#032f62>}:{</span><span>$port</span><span style=color:#032f62>}</span><span style=color:#005cc5>\n</span><span style=color:#032f62>"</span><span>;</span></span>
+<span class=giallo-l></span>
+<span class=giallo-l><span>$tt</span><span style=color:#d73a49> = new</span><span style=color:#005cc5> Telnet</span><span>($host, $port);</span></span>
+<span class=giallo-l></span>
+<span class=giallo-l><span style=color:#6a737d>// echo $tt->command('status');</span></span>
+<span class=giallo-l><span style=color:#6a737d>// $tt->watch('status');</span></span>
+<span class=giallo-l><span>$tt</span><span style=color:#d73a49>-></span><span style=color:#6f42c1>interactive</span><span>();</span><span style=color:#6a737d> // 进入交互环境，类似于命令行工具telnet</span></span></code></pre><p>调用：<pre class=giallo style=color:#24292e;background-color:#fff><code data-lang=shellscript><span class=giallo-l><span style=color:#6f42c1>php</span><span style=color:#032f62> telnet.php</span><span style=color:#005cc5> 127.0.0.1 11211</span></span></code></pre></section></article></main><div id=button-container><div id=toc-floating-container><input class=toggle id=toc-toggle type=checkbox><label class=button for=toc-toggle id=toc-button title=切换目录><svg viewbox="0 -960 960 960" xmlns=http://www.w3.org/2000/svg><path d="M414.82-193.094q-18.044 0-30.497-12.32-12.453-12.319-12.453-30.036t12.453-30.086q12.453-12.37 30.497-12.37h392.767q17.237 0 29.927 12.487 12.69 12.486 12.69 30.203 0 17.716-12.69 29.919t-29.927 12.203H414.82Zm0-244.833q-18.044 0-30.497-12.487Q371.87-462.9 371.87-480.45t12.453-29.92q12.453-12.369 30.497-12.369h392.767q17.237 0 29.927 12.511 12.69 12.512 12.69 29.845 0 17.716-12.69 30.086-12.69 12.37-29.927 12.37H414.82Zm0-245.167q-18.044 0-30.497-12.32t-12.453-30.037q0-17.716 12.453-30.086 12.453-12.369 30.497-12.369h392.767q17.237 0 29.927 12.486 12.69 12.487 12.69 30.203 0 17.717-12.69 29.92-12.69 12.203-29.927 12.203H414.82ZM189.379-156.681q-32.652 0-55.878-22.829t-23.226-55.731q0-32.549 23.15-55.647 23.151-23.097 55.95-23.097 32.799 0 55.313 23.484 22.515 23.484 22.515 56.246 0 32.212-22.861 54.893-22.861 22.681-54.963 22.681Zm0-245.167q-32.652 0-55.878-23.134-23.226-23.135-23.226-55.623 0-32.487 23.467-55.517t56.12-23.03q32.102 0 54.721 23.288 22.62 23.288 22.62 55.775 0 32.488-22.861 55.364-22.861 22.877-54.963 22.877Zm-.82-244.833q-32.224 0-55.254-23.288-23.03-23.289-23.03-55.623 0-32.333 23.271-55.364 23.272-23.03 55.495-23.03 32.224 0 55.193 23.288 22.969 23.289 22.969 55.622 0 32.334-23.21 55.364-23.21 23.031-55.434 23.031Z"/></svg></label><div class=toc-content><div class=toc-container><ul><li><a href=https://inhere.github.io/blog/2017/implement-a-telnet-tool-in-php/#jian-dan-shi-yong>简单使用</a></ul></div></div></div><a class=no-hover-padding href=# id=top-button title=返回页面顶部> <svg viewbox="0 0 20 20" fill=currentColor><path d="M3.293 9.707a1 1 0 010-1.414l6-6a1 1 0 011.414 0l6 6a1 1 0 01-1.414 1.414L11 5.414V17a1 1 0 11-2 0V5.414L4.707 9.707a1 1 0 01-1.414 0z"/></svg> </a></div><span class=hidden id=copy-success> 已复制! </span><span class=hidden id=copy-init> 复制代码到剪贴板 </span><script defer src=https://inhere.github.io/js/copyCodeToClipboard.min.js></script></div><footer><section><nav class="socials nav-navs"><ul><li><a class="nav-links no-hover-padding social" rel="noopener noreferrer" href=https://inhere.github.io/atom.xml target=_blank> <img alt=feed loading=lazy src=https://inhere.github.io/social_icons/rss.svg title=feed> </a><li><a class="nav-links no-hover-padding social" rel="noopener noreferrer me" href=https://github.com/inhere/ target=_blank> <img alt=github loading=lazy src=https://inhere.github.io/social_icons/github.svg title=github> </a></ul></nav><nav class=nav-navs><small> <ul><li><a class="nav-links no-hover-padding" href=https://inhere.github.io/pages/about> 🐶 About </a><li><a class="nav-links no-hover-padding" href=https://github.com/gookit> 🐱 Gookit </a><li><a class="nav-links no-hover-padding" href=https://github.com/phppkg> 🐱 PHPPkg </a><li><a class="nav-links no-hover-padding" href=https://inhere.github.io/sitemap.xml> 📄 Sitemap </a></ul> </small></nav><div class=credits><small> 网站基于 <a rel="noopener noreferrer" href=https://www.getzola.org target=_blank>Zola</a> 和 <a rel="noopener noreferrer" href=https://github.com/welpo/tabi target=_blank>tabi</a> • <a rel="noopener noreferrer" href=https://github.com/inhere/inhere.github.io target=_blank> 查看原始码 </a></small></div></section></footer>

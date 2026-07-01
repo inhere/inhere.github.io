@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet href="https://inhere.github.io/feed_style.xsl" type="text/xsl"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-Hans">
+    <tabi:metadata xmlns:tabi="https://github.com/welpo/tabi">
+        <tabi:base_url>https:&#x2F;&#x2F;inhere.github.io</tabi:base_url>
+        <tabi:separator>
+            •
+        </tabi:separator>
+        <tabi:about_feeds>这是Web Feed，又称为Atom Feed，把现在的网址复制到新闻阅读器即可订阅本站文章。造访「About Feeds」来了解更多资讯。</tabi:about_feeds>
+        <tabi:visit_the_site>造访网站</tabi:visit_the_site>
+        <tabi:recent_posts>近期文章</tabi:recent_posts>
+        <tabi:last_updated_on>更新于 $DATE</tabi:last_updated_on>
+        <tabi:default_theme></tabi:default_theme>
+        <tabi:post_listing_date>date</tabi:post_listing_date>
+        <tabi:current_section>logger</tabi:current_section>
+    </tabi:metadata><link rel="extra-stylesheet" href="https://inhere.github.io/skins/blue.css?h=a4dc1e94d3f5759784d2" /><title>Inhere's Site - logger</title>
+        <subtitle>Inhere&#x27;s site, blogs and project docs</subtitle>
+    <link href="https://inhere.github.io/tags/logger/atom.xml" rel="self" type="application/atom+xml"/>
+    <link href="https://inhere.github.io/tags/logger/" rel="alternate" type="text/html"/>
+    <generator uri="https://www.getzola.org/">Zola</generator><updated>2026-06-24T21:11:54+00:00</updated><id>https://inhere.github.io/tags/logger/atom.xml</id><entry xml:lang="zh-Hans">
+        <title>rotatefile：给 Go 日志补上文件轮转、压缩和清理</title>
+        <published>2026-06-24T21:11:54+00:00</published>
+        <updated>2026-06-24T21:11:54+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/blog/2026/gookit-rotatefile-intro/" type="text/html"/>
+        <id>https://inhere.github.io/blog/2026/gookit-rotatefile-intro/</id>
+        <summary type="html">Go 标准库能把日志写到 io.Writer，但不会管文件什么时候切、旧文件留多久、磁盘占用怎么收。项目一旦开始写本地日志，这些问题迟早会冒出来。
+github.com/gookit/rotatefile 做的事情很窄：提供一个支持轮转、压缩和清理的 io.Writer。你可以继续用标准库 log/slog、log、zap 或 gookit/slog，只把文件轮转这部分交给它。
+…</summary>
+        </entry><entry xml:lang="zh-Hans">
+        <title>gookit slog release v0.5.8</title>
+        <published>2025-04-24T13:25:00+00:00</published>
+        <updated>2025-04-24T13:25:00+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/blog/2025/gookit-slog-release-v0-5-8/" type="text/html"/>
+        <id>https://inhere.github.io/blog/2025/gookit-slog-release-v0-5-8/</id>
+        <summary type="html">gookit/slog 一个易于使用的，轻量级、可配置、可扩展的日志库。支持多个级别，输出到多文件；内置文件日志处理、自动切割、清理、压缩等增强功能。
+v0.5.8 已正式发布！这一版本中带来了众多改进与修复，进一步提升了开发者的使用体验和日志处理能力。…</summary>
+        </entry><entry xml:lang="zh-Hans">
+        <title>gookit&#x2F;slog - 发布 v0.5.2 版本, 易于使用的，可配置、可扩展的Go日志库</title>
+        <published>2023-06-19T17:16:00+00:00</published>
+        <updated>2023-06-19T17:16:00+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/blog/2023/gookit-slog-release-v0-5-2/" type="text/html"/>
+        <id>https://inhere.github.io/blog/2023/gookit-slog-release-v0-5-2/</id>
+        <summary type="html">gookit/slog 📑 一个易于使用的，轻量级、可配置、可扩展的日志库。支持多个级别，输出到多文件；内置文件日志处理、自动切割、清理、压缩等增强功能…</summary>
+        </entry><entry xml:lang="zh-Hans">
+        <title>slog - 一个易于使用的，易扩展、可配置的日志库</title>
+        <published>2022-06-16T21:00:00+00:00</published>
+        <updated>2022-06-16T21:00:00+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/blog/2022/06-16-gookit-slog-intro/" type="text/html"/>
+        <id>https://inhere.github.io/blog/2022/06-16-gookit-slog-intro/</id>
+        <summary type="html">gookit/slog 📑 一个易于使用的，轻量级、可配置、可扩展的日志库。支持多个级别，输出到多文件；内置文件日志处理、自动切割、清理、压缩等增强功能
+…</summary>
+        </entry>
+</feed>
