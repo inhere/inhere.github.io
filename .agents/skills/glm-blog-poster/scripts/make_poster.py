@@ -12,7 +12,7 @@ from urllib.error import HTTPError
 from io import BytesIO
 from pathlib import Path
 
-from PIL import Image, ImageDraw, ImageFont
+from PIL import Image, ImageColor, ImageDraw, ImageFont
 
 
 API_URL = "https://open.bigmodel.cn/api/paas/v4/images/generations"
@@ -78,6 +78,14 @@ def parse_crop(value: str) -> tuple[int, int, int, int]:
     if len(parts) != 4 or any(part < 0 for part in parts):
         raise SystemExit(f"--bg-crop must use four non-negative pixel values, got: {value}")
     return parts[0], parts[1], parts[2], parts[3]
+
+
+def parse_color(value: str, label: str) -> tuple[int, int, int, int]:
+    try:
+        r, g, b = ImageColor.getrgb(value)
+    except ValueError as err:
+        raise SystemExit(f"{label} must be a valid color, got: {value}") from err
+    return r, g, b, 255
 
 
 def crop_background(img: Image.Image, crop: tuple[int, int, int, int]) -> Image.Image:
@@ -186,8 +194,8 @@ def overlay(img: Image.Image, args: argparse.Namespace, size: tuple[int, int]) -
     small = font("segoeui.ttf", 21)
 
     draw.rectangle((0, 0, w, h), fill=(246, 249, 250, 75))
-    draw.text((70, 52), args.title, font=title_font, fill=(18, 36, 50, 255))
-    draw.text((76, 134), args.subtitle, font=sub_font, fill=(82, 100, 112, 255))
+    draw.text((70, 52), args.title, font=title_font, fill=parse_color(args.title_color, "--title-color"))
+    draw.text((76, 134), args.subtitle, font=sub_font, fill=parse_color(args.subtitle_color, "--subtitle-color"))
 
     flow = [part.strip() for part in args.flow.split("|") if part.strip()]
     flow_subtitles = [part.strip() for part in args.flow_subtitles.split("|") if part.strip()]
@@ -226,6 +234,8 @@ def main() -> int:
     parser.add_argument("--prompt", help="Prompt for GLM background. Ask for no text/logos/watermarks.")
     parser.add_argument("--title", default="")
     parser.add_argument("--subtitle", default="")
+    parser.add_argument("--title-color", default="#122432")
+    parser.add_argument("--subtitle-color", default="#526470")
     parser.add_argument("--flow", default="app.log|app.20260624.log|app.20260624.log.gz")
     parser.add_argument("--flow-subtitles", default="")
     parser.add_argument("--command", default="filecleaner --dry-run -c filecleaner.json")
