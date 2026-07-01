@@ -15,7 +15,7 @@ The slow part is often not the project itself. It is the central package index i
 <!-- more -->
 
 - Project: [https://github.com/inherelab/eget](https://github.com/inherelab/eget)
-- Latest release: [v1.8.2](https://github.com/inherelab/eget/releases/tag/v1.8.2)
+- Latest release: [v1.8.x](https://github.com/inherelab/eget/releases/latest)
 - Documentation: [README.md](https://github.com/inherelab/eget/blob/main/README.md)
 
 ## Start with a GitHub repository
