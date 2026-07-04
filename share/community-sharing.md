@@ -33,9 +33,13 @@
 
 ### Reddit
 
-地址: https://www.reddit.com/r/golang/
+地址: https://www.reddit.com
 
-推荐：`r/golang`
+推荐社区：
+
+- https://www.reddit.com/r/golang/ 
+- https://www.reddit.com/r/commandline/ 
+- https://www.reddit.com/r/opensource/ 
 
 适合 Go 工具、库、CLI、工程取舍讨论。语气要像普通社区成员分享经验，不要像产品发布。
 
@@ -105,7 +109,7 @@ Feedback wanted: a small raw-SQL migration tool for Go
 
 ### Gophers Slack
 
-地址: https://invite.slack.golangbridge.org/，已加入后访问: https://gophers.slack.com/
+地址: https://invite.slack.golangbridge.org/ ，已加入后访问: https://gophers.slack.com/
 
 适合发到 `#projects`、`#tools`、`#databases` 等频道。文案要短。
 
