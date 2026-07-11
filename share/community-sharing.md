@@ -178,12 +178,6 @@ Repo: https://github.com/gookit/miglite
 
 适合偏正式的工程总结。不要写成公司公告。重点讲“为什么 raw SQL migration 仍然有价值”。
 
-### Mastodon
-
-地址:  https://joinmastodon.org/
-
-适合开源语气，类似 X，但更社区化。文案可以短一点，少一点营销词。
-
 ## 中文社区
 
 ### V2EX
