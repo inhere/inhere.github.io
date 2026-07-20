@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet href="https://inhere.github.io/feed_style.xsl" type="text/xsl"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-Hans">
+    <tabi:metadata xmlns:tabi="https://github.com/welpo/tabi">
+        <tabi:base_url>https:&#x2F;&#x2F;inhere.github.io</tabi:base_url>
+        <tabi:separator>
+            •
+        </tabi:separator>
+        <tabi:about_feeds>这是Web Feed，又称为Atom Feed，把现在的网址复制到新闻阅读器即可订阅本站文章。造访「About Feeds」来了解更多资讯。</tabi:about_feeds>
+        <tabi:visit_the_site>造访网站</tabi:visit_the_site>
+        <tabi:recent_posts>近期文章</tabi:recent_posts>
+        <tabi:last_updated_on>更新于 $DATE</tabi:last_updated_on>
+        <tabi:default_theme></tabi:default_theme>
+        <tabi:post_listing_date>date</tabi:post_listing_date>
+        <tabi:current_section>cli</tabi:current_section>
+    </tabi:metadata><link rel="extra-stylesheet" href="https://inhere.github.io/skins/blue.css?h=a4dc1e94d3f5759784d2" /><title>Inhere's Site - cli</title>
+        <subtitle>Inhere&#x27;s site, blogs and project docs</subtitle>
+    <link href="https://inhere.github.io/tags/cli/atom.xml" rel="self" type="application/atom+xml"/>
+    <link href="https://inhere.github.io/tags/cli/" rel="alternate" type="text/html"/>
+    <generator uri="https://www.getzola.org/">Zola</generator><updated>2026-07-04T16:20:00+00:00</updated><id>https://inhere.github.io/tags/cli/atom.xml</id><entry xml:lang="zh-Hans">
+        <title>cliui：给 Go CLI 程序补一层顺手的终端 UI</title>
+        <published>2026-07-04T16:20:00+00:00</published>
+        <updated>2026-07-04T16:20:00+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/blog/2026/gookit-cliui-intro/" type="text/html"/>
+        <id>https://inhere.github.io/blog/2026/gookit-cliui-intro/</id>
+        <summary type="html">很多 CLI 程序一开始都很简单：解析参数，跑任务，打印几行结果。等功能多起来之后，问题就变成了另一种样子：配置要排版，错误要醒目，安装和下载要显示进度，交互选择还要能在真实终端和 CI 日志里都工作。
+github.com/gookit/cliui 处理的就是这类“还没到完整 TUI，但已经不适合全靠 fmt.Println”的场景。它把常用终端 UI 拆成三个包：show、interact、progress，分别负责结构化输出、交互输入和进度显示。
+…</summary>
+        </entry><entry xml:lang="zh-Hans">
+        <title>eget：不用等中央仓库，直接安装 GitHub 和任意下载站的工具</title>
+        <published>2026-07-01T21:18:00+00:00</published>
+        <updated>2026-07-01T21:18:00+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/blog/2026/eget-intro/" type="text/html"/>
+        <id>https://inhere.github.io/blog/2026/eget-intro/</id>
+        <summary type="html">AI 时代来了之后，各种应用、命令行工具的发布节奏明显变快了。GitHub 上每天都有新工具冒出来，一个活跃项目一天发几个版本也不奇怪。
+问题是：中央仓库经常慢半拍。快速尝试一个新工具，想试一个刚修好的 bug，或者跟进刚发的新功能，可能要等包维护者更新 formula、bucket、manifest。eget 解决的是这段空窗期：直接从 release、下载站或内部规则里拿到二进制。
+…</summary>
+        </entry><entry xml:lang="zh-Hans">
+        <title>GCli v3.8：共享选项、文档生成和参数重排</title>
+        <published>2026-06-22T08:26:03+00:00</published>
+        <updated>2026-06-22T08:26:03+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/blog/2026/gookit-gcli-release-v3-8-0/" type="text/html"/>
+        <id>https://inhere.github.io/blog/2026/gookit-gcli-release-v3-8-0/</id>
+        <summary type="html">GCli v3.8 这一轮补的不是花哨功能，而是写复杂 CLI 时经常会撞到的几个缺口：参数可以写在位置参数后面，结构体绑定支持更多 Go 类型，父命令可以定义会被子命令继承的共享选项，还能直接生成 markdown 和 man 文档。
+如果你的 CLI 已经有多级命令、共享配置和文档生成需求，这版会少写不少胶水代码。
+…</summary>
+        </entry><entry xml:lang="zh-Hans">
+        <title>GCli v3.5 发布：自动补全、命令中间件、帮助信息分组、结构体绑定优化等</title>
+        <published>2026-06-06T08:47:26+00:00</published>
+        <updated>2026-06-06T08:47:26+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/blog/2026/gookit-gcli-release-v3-5-0/" type="text/html"/>
+        <id>https://inhere.github.io/blog/2026/gookit-gcli-release-v3-5-0/</id>
+        <summary type="html">GCli 是一个用 Go 编写的命令行应用与工具库。本文汇总了从 v3.3.1 到最近发布的 v3.5（包含 v3.4 周期）的主要改动。
+这次更新主要集中在开发体验优化和底层健壮性修复上。如果你在用 Go 写 CLI 工具，这次更新里有几个比较实用的功能。…</summary>
+        </entry><entry xml:lang="zh-Hans">
+        <title>cflag - 包装Go FlagSet构建简单且漂亮的命令行应用程序</title>
+        <published>2022-07-09T16:00:00+00:00</published>
+        <updated>2022-07-09T16:00:00+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/blog/2022/07-09-gookit-goutil-cflag-usage/" type="text/html"/>
+        <id>https://inhere.github.io/blog/2022/07-09-gookit-goutil-cflag-usage/</id>
+        <summary type="html">cflag - 包装和扩展 Go flag.FlagSet 以构建简单且漂亮的命令行应用程序。
+…</summary>
+        </entry><entry xml:lang="zh-Hans">
+        <title>pflag - 更好的PHP命令行选项解析库</title>
+        <published>2021-10-11T15:11:00+00:00</published>
+        <updated>2021-10-11T15:11:00+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/blog/2021/pflag-better-php-command-line-parse-library/" type="text/html"/>
+        <id>https://inhere.github.io/blog/2021/pflag-better-php-command-line-parse-library/</id>
+        <summary type="html">php-toolkit/pflag 是一个PHP编写的，通用的命令行标志(选项和参数)解析库。
+
+
+Github 仓库: php-toolkit/pflag
+…</summary>
+        </entry>
+</feed>

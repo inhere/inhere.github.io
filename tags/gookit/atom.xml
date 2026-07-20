@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet href="https://inhere.github.io/feed_style.xsl" type="text/xsl"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-Hans">
+    <tabi:metadata xmlns:tabi="https://github.com/welpo/tabi">
+        <tabi:base_url>https:&#x2F;&#x2F;inhere.github.io</tabi:base_url>
+        <tabi:separator>
+            •
+        </tabi:separator>
+        <tabi:about_feeds>这是Web Feed，又称为Atom Feed，把现在的网址复制到新闻阅读器即可订阅本站文章。造访「About Feeds」来了解更多资讯。</tabi:about_feeds>
+        <tabi:visit_the_site>造访网站</tabi:visit_the_site>
+        <tabi:recent_posts>近期文章</tabi:recent_posts>
+        <tabi:last_updated_on>更新于 $DATE</tabi:last_updated_on>
+        <tabi:default_theme></tabi:default_theme>
+        <tabi:post_listing_date>date</tabi:post_listing_date>
+        <tabi:current_section>gookit</tabi:current_section>
+    </tabi:metadata><link rel="extra-stylesheet" href="https://inhere.github.io/skins/blue.css?h=a4dc1e94d3f5759784d2" /><title>Inhere's Site - gookit</title>
+        <subtitle>Inhere&#x27;s site, blogs and project docs</subtitle>
+    <link href="https://inhere.github.io/tags/gookit/atom.xml" rel="self" type="application/atom+xml"/>
+    <link href="https://inhere.github.io/tags/gookit/" rel="alternate" type="text/html"/>
+    <generator uri="https://www.getzola.org/">Zola</generator><updated>2026-07-04T16:20:00+00:00</updated><id>https://inhere.github.io/tags/gookit/atom.xml</id><entry xml:lang="zh-Hans">
+        <title>cliui：给 Go CLI 程序补一层顺手的终端 UI</title>
+        <published>2026-07-04T16:20:00+00:00</published>
+        <updated>2026-07-04T16:20:00+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/blog/2026/gookit-cliui-intro/" type="text/html"/>
+        <id>https://inhere.github.io/blog/2026/gookit-cliui-intro/</id>
+        <summary type="html">很多 CLI 程序一开始都很简单：解析参数，跑任务，打印几行结果。等功能多起来之后，问题就变成了另一种样子：配置要排版，错误要醒目，安装和下载要显示进度，交互选择还要能在真实终端和 CI 日志里都工作。
+github.com/gookit/cliui 处理的就是这类“还没到完整 TUI，但已经不适合全靠 fmt.Println”的场景。它把常用终端 UI 拆成三个包：show、interact、progress，分别负责结构化输出、交互输入和进度显示。
+…</summary>
+        </entry><entry xml:lang="zh-Hans">
+        <title>rotatefile：给 Go 日志补上文件轮转、压缩和清理</title>
+        <published>2026-06-24T21:11:54+00:00</published>
+        <updated>2026-06-24T21:11:54+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/blog/2026/gookit-rotatefile-intro/" type="text/html"/>
+        <id>https://inhere.github.io/blog/2026/gookit-rotatefile-intro/</id>
+        <summary type="html">Go 标准库能把日志写到 io.Writer，但不会管文件什么时候切、旧文件留多久、磁盘占用怎么收。项目一旦开始写本地日志，这些问题迟早会冒出来。
+github.com/gookit/rotatefile 做的事情很窄：提供一个支持轮转、压缩和清理的 io.Writer。你可以继续用标准库 log/slog、log、zap 或 gookit/slog，只把文件轮转这部分交给它。
+…</summary>
+        </entry><entry xml:lang="zh-Hans">
+        <title>GCli v3.8：共享选项、文档生成和参数重排</title>
+        <published>2026-06-22T08:26:03+00:00</published>
+        <updated>2026-06-22T08:26:03+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/blog/2026/gookit-gcli-release-v3-8-0/" type="text/html"/>
+        <id>https://inhere.github.io/blog/2026/gookit-gcli-release-v3-8-0/</id>
+        <summary type="html">GCli v3.8 这一轮补的不是花哨功能，而是写复杂 CLI 时经常会撞到的几个缺口：参数可以写在位置参数后面，结构体绑定支持更多 Go 类型，父命令可以定义会被子命令继承的共享选项，还能直接生成 markdown 和 man 文档。
+如果你的 CLI 已经有多级命令、共享配置和文档生成需求，这版会少写不少胶水代码。
+…</summary>
+        </entry><entry xml:lang="zh-Hans">
+        <title>miglite：用原始 SQL 文件管理数据库迁移</title>
+        <published>2026-06-18T15:36:21+00:00</published>
+        <updated>2026-06-18T15:36:21+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/blog/2026/gookit-miglite-intro/" type="text/html"/>
+        <id>https://inhere.github.io/blog/2026/gookit-miglite-intro/</id>
+        <summary type="html">数据库迁移工具有两类。一类想帮你描述表结构，再生成 SQL；另一类只管把你写好的 SQL 按顺序跑完，并记录哪些已经执行过。
+github.com/gookit/miglite 选的是后者。它不试图替代 SQL，也不默认拉一堆数据库驱动进来。它做的事情很窄：发现迁移文件、解析 UP/DOWN 区块、在事务里执行 SQL，并把执行状态记到数据库里。
+…</summary>
+        </entry><entry xml:lang="zh-Hans">
+        <title>GCli v3.5 发布：自动补全、命令中间件、帮助信息分组、结构体绑定优化等</title>
+        <published>2026-06-06T08:47:26+00:00</published>
+        <updated>2026-06-06T08:47:26+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/blog/2026/gookit-gcli-release-v3-5-0/" type="text/html"/>
+        <id>https://inhere.github.io/blog/2026/gookit-gcli-release-v3-5-0/</id>
+        <summary type="html">GCli 是一个用 Go 编写的命令行应用与工具库。本文汇总了从 v3.3.1 到最近发布的 v3.5（包含 v3.4 周期）的主要改动。
+这次更新主要集中在开发体验优化和底层健壮性修复上。如果你在用 Go 写 CLI 工具，这次更新里有几个比较实用的功能。…</summary>
+        </entry><entry xml:lang="zh-Hans">
+        <title>gookit&#x2F;goutil v0.7.2 发布：增强功能与修复，提升开发体验</title>
+        <published>2025-11-20T21:42:00+00:00</published>
+        <updated>2025-11-20T21:42:00+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/blog/2025/11-20-gookit-goutil-release-v0-7-2/" type="text/html"/>
+        <id>https://inhere.github.io/blog/2025/11-20-gookit-goutil-release-v0-7-2/</id>
+        <summary type="html">gookit/goutil v0.7.2 现已发布！此版本带来了多项新功能、优化和问题修复，进一步增强了这个 Go 语言实用工具库的稳定性和易用性。
+本次更新涉及多个模块，包括数学工具、字符串处理、文件系统操作、命令行标志处理等，旨在为开发者提供更丰富、更高效的工具集。…</summary>
+        </entry><entry xml:lang="zh-Hans">
+        <title>gookit slog release v0.5.8</title>
+        <published>2025-04-24T13:25:00+00:00</published>
+        <updated>2025-04-24T13:25:00+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/blog/2025/gookit-slog-release-v0-5-8/" type="text/html"/>
+        <id>https://inhere.github.io/blog/2025/gookit-slog-release-v0-5-8/</id>
+        <summary type="html">gookit/slog 一个易于使用的，轻量级、可配置、可扩展的日志库。支持多个级别，输出到多文件；内置文件日志处理、自动切割、清理、压缩等增强功能。
+v0.5.8 已正式发布！这一版本中带来了众多改进与修复，进一步提升了开发者的使用体验和日志处理能力。…</summary>
+        </entry><entry xml:lang="zh-Hans">
+        <title>gookit validate release v1.5.2</title>
+        <published>2024-01-24T23:25:00+00:00</published>
+        <updated>2024-01-24T23:25:00+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/blog/2024/gookit-validate-release-v1-5-2/" type="text/html"/>
+        <id>https://inhere.github.io/blog/2024/gookit-validate-release-v1-5-2/</id>
+        <summary type="html">gookit/validate Go通用的数据验证与过滤库，使用简单，内置大部分常用验证器、过滤器，支持自定义消息、字段翻译。…</summary>
+        </entry><entry xml:lang="zh-Hans">
+        <title>gookit&#x2F;goutil - Go常用功能的扩展工具库，发布 v0.6.15 版本</title>
+        <published>2024-01-24T23:24:00+00:00</published>
+        <updated>2024-01-24T23:24:00+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/blog/2024/gookit-goutil-release-v0-6-15/" type="text/html"/>
+        <id>https://inhere.github.io/blog/2024/gookit-goutil-release-v0-6-15/</id>
+        <summary type="html">gookit/goutil 💪 Go 常用功能的扩展工具库。包含：数字，字符串，slice/数组，Map，结构体，反射，文本，文件，错误，时间日期，测试，CLI，命令运行，系统信息，格式化，常用信息获取等等。
+本次 v0.6.15 版本主要是一些功能增强和修复更新。…</summary>
+        </entry><entry xml:lang="zh-Hans">
+        <title>gookit&#x2F;goutil - Go常用功能的扩展工具库，发布 v0.6.14 版本</title>
+        <published>2023-10-16T15:12:00+00:00</published>
+        <updated>2023-10-16T15:12:00+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/blog/2023/gookit-goutil-release-v0-6-14/" type="text/html"/>
+        <id>https://inhere.github.io/blog/2023/gookit-goutil-release-v0-6-14/</id>
+        <summary type="html">gookit/goutil Go 常用功能的扩展工具库。包含：数字，字符串，slice/数组，Map，结构体，反射，文本，文件，错误，时间日期，测试，CLI，命令运行，系统信息，格式化，常用信息获取等等。…</summary>
+        </entry><entry xml:lang="zh-Hans">
+        <title>gookit&#x2F;goutil - Go常用功能的扩展工具库，发布 v0.6.12 版本</title>
+        <published>2023-07-25T11:12:00+00:00</published>
+        <updated>2023-07-25T11:12:00+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/blog/2023/gookit-goutil-release-v0-6-12/" type="text/html"/>
+        <id>https://inhere.github.io/blog/2023/gookit-goutil-release-v0-6-12/</id>
+        <summary type="html">gookit/goutil Go 常用功能的扩展工具库。包含：数字，字符串，slice/数组，Map，结构体，反射，文本，文件，错误，时间日期，测试，CLI，命令运行，系统信息，格式化，常用信息获取等等。…</summary>
+        </entry><entry xml:lang="zh-Hans">
+        <title>gookit&#x2F;goutil - 发布 v0.6.10 版本, Go常用功能的扩展工具库</title>
+        <published>2023-06-28T14:55:00+00:00</published>
+        <updated>2023-06-28T14:55:00+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/blog/2023/gookit-goutil-release-v0-6-10/" type="text/html"/>
+        <id>https://inhere.github.io/blog/2023/gookit-goutil-release-v0-6-10/</id>
+        <summary type="html">gookit/goutil Go 常用功能的扩展工具库。包含：数字，字符串，slice/数组，Map，结构体，反射，文本，文件，错误，时间日期，测试，CLI，命令运行，系统信息，格式化，常用信息获取等等。…</summary>
+        </entry><entry xml:lang="zh-Hans">
+        <title>gookit&#x2F;slog - 发布 v0.5.2 版本, 易于使用的，可配置、可扩展的Go日志库</title>
+        <published>2023-06-19T17:16:00+00:00</published>
+        <updated>2023-06-19T17:16:00+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/blog/2023/gookit-slog-release-v0-5-2/" type="text/html"/>
+        <id>https://inhere.github.io/blog/2023/gookit-slog-release-v0-5-2/</id>
+        <summary type="html">gookit/slog 📑 一个易于使用的，轻量级、可配置、可扩展的日志库。支持多个级别，输出到多文件；内置文件日志处理、自动切割、清理、压缩等增强功能…</summary>
+        </entry><entry xml:lang="zh-Hans">
+        <title>gookit&#x2F;event - Go实现的轻量级的事件管理、调度程序库</title>
+        <published>2023-06-14T15:53:00+00:00</published>
+        <updated>2023-06-14T15:53:00+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/blog/2023/gookit-event-pacakge-intro/" type="text/html"/>
+        <id>https://inhere.github.io/blog/2023/gookit-event-pacakge-intro/</id>
+        <summary type="html">
+event 事件调度库
+gookit/event Go实现的轻量级的事件管理、调度程序库, 支持设置监听器的优先级, 支持使用通配符来进行一组事件的监听。…</summary>
+        </entry><entry xml:lang="zh-Hans">
+        <title>gookit&#x2F;config - Go语言读取多种格式配置文件</title>
+        <published>2022-08-31T13:25:00+00:00</published>
+        <updated>2022-08-31T13:25:00+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/blog/2022/gookit-config-intro/" type="text/html"/>
+        <id>https://inhere.github.io/blog/2022/gookit-config-intro/</id>
+        <summary type="html">gookit/config - Go应用配置管理，支持读取多种格式 JSON(默认), JSON5, INI, Properties, YAML, TOML, HCL, ENV, Flags，多文件加载，支持数据合并，解析环境变量名等等…</summary>
+        </entry><entry xml:lang="zh-Hans">
+        <title>cflag - 包装Go FlagSet构建简单且漂亮的命令行应用程序</title>
+        <published>2022-07-09T16:00:00+00:00</published>
+        <updated>2022-07-09T16:00:00+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/blog/2022/07-09-gookit-goutil-cflag-usage/" type="text/html"/>
+        <id>https://inhere.github.io/blog/2022/07-09-gookit-goutil-cflag-usage/</id>
+        <summary type="html">cflag - 包装和扩展 Go flag.FlagSet 以构建简单且漂亮的命令行应用程序。
+…</summary>
+        </entry><entry xml:lang="zh-Hans">
+        <title>gitw - Git 命令包装器，生成 git 变更记录日志</title>
+        <published>2022-07-06T21:00:00+00:00</published>
+        <updated>2022-07-06T21:00:00+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/blog/2022/07-06-gookit-gitw-intro/" type="text/html"/>
+        <id>https://inhere.github.io/blog/2022/07-06-gookit-gitw-intro/</id>
+        <summary type="html">gitw - Git 命令包装器，生成 git 变更记录日志，获取 repo 信息和一些 git 命令工具。
+
+包装本地 git 命令
+快速运行 git 命令
+快速查询存储库信息
+
+获取 remote, branch 详细信息
+
+
+通过 git log 快速生成版本变更日志
+
+允许自定义生成配置
+允许自定义生成过滤、样式等
+可以直接在 GitHub Actions 中使用
+
+
+…</summary>
+        </entry><entry xml:lang="zh-Hans">
+        <title>slog - 一个易于使用的，易扩展、可配置的日志库</title>
+        <published>2022-06-16T21:00:00+00:00</published>
+        <updated>2022-06-16T21:00:00+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/blog/2022/06-16-gookit-slog-intro/" type="text/html"/>
+        <id>https://inhere.github.io/blog/2022/06-16-gookit-slog-intro/</id>
+        <summary type="html">gookit/slog 📑 一个易于使用的，轻量级、可配置、可扩展的日志库。支持多个级别，输出到多文件；内置文件日志处理、自动切割、清理、压缩等增强功能
+…</summary>
+        </entry>
+</feed>

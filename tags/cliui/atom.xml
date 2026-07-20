@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet href="https://inhere.github.io/feed_style.xsl" type="text/xsl"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-Hans">
+    <tabi:metadata xmlns:tabi="https://github.com/welpo/tabi">
+        <tabi:base_url>https:&#x2F;&#x2F;inhere.github.io</tabi:base_url>
+        <tabi:separator>
+            •
+        </tabi:separator>
+        <tabi:about_feeds>这是Web Feed，又称为Atom Feed，把现在的网址复制到新闻阅读器即可订阅本站文章。造访「About Feeds」来了解更多资讯。</tabi:about_feeds>
+        <tabi:visit_the_site>造访网站</tabi:visit_the_site>
+        <tabi:recent_posts>近期文章</tabi:recent_posts>
+        <tabi:last_updated_on>更新于 $DATE</tabi:last_updated_on>
+        <tabi:default_theme></tabi:default_theme>
+        <tabi:post_listing_date>date</tabi:post_listing_date>
+        <tabi:current_section>cliui</tabi:current_section>
+    </tabi:metadata><link rel="extra-stylesheet" href="https://inhere.github.io/skins/blue.css?h=a4dc1e94d3f5759784d2" /><title>Inhere's Site - cliui</title>
+        <subtitle>Inhere&#x27;s site, blogs and project docs</subtitle>
+    <link href="https://inhere.github.io/tags/cliui/atom.xml" rel="self" type="application/atom+xml"/>
+    <link href="https://inhere.github.io/tags/cliui/" rel="alternate" type="text/html"/>
+    <generator uri="https://www.getzola.org/">Zola</generator><updated>2026-07-04T16:20:00+00:00</updated><id>https://inhere.github.io/tags/cliui/atom.xml</id><entry xml:lang="zh-Hans">
+        <title>cliui：给 Go CLI 程序补一层顺手的终端 UI</title>
+        <published>2026-07-04T16:20:00+00:00</published>
+        <updated>2026-07-04T16:20:00+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/blog/2026/gookit-cliui-intro/" type="text/html"/>
+        <id>https://inhere.github.io/blog/2026/gookit-cliui-intro/</id>
+        <summary type="html">很多 CLI 程序一开始都很简单：解析参数，跑任务，打印几行结果。等功能多起来之后，问题就变成了另一种样子：配置要排版，错误要醒目，安装和下载要显示进度，交互选择还要能在真实终端和 CI 日志里都工作。
+github.com/gookit/cliui 处理的就是这类“还没到完整 TUI，但已经不适合全靠 fmt.Println”的场景。它把常用终端 UI 拆成三个包：show、interact、progress，分别负责结构化输出、交互输入和进度显示。
+…</summary>
+        </entry>
+</feed>

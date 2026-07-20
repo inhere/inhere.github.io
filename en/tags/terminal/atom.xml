@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet href="https://inhere.github.io/feed_style.xsl" type="text/xsl"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <tabi:metadata xmlns:tabi="https://github.com/welpo/tabi">
+        <tabi:base_url>https:&#x2F;&#x2F;inhere.github.io</tabi:base_url>
+        <tabi:separator>
+            •
+        </tabi:separator>
+        <tabi:about_feeds>This is a web feed, also known as an Atom feed. Subscribe by copying the URL from the address bar into your newsreader. Visit About Feeds to learn more and get started. It&#x27;s free.</tabi:about_feeds>
+        <tabi:visit_the_site>Visit website</tabi:visit_the_site>
+        <tabi:recent_posts>Recent posts</tabi:recent_posts>
+        <tabi:last_updated_on>Updated on $DATE</tabi:last_updated_on>
+        <tabi:default_theme></tabi:default_theme>
+        <tabi:post_listing_date>date</tabi:post_listing_date>
+        <tabi:current_section>terminal</tabi:current_section>
+    </tabi:metadata><link rel="extra-stylesheet" href="https://inhere.github.io/skins/blue.css?h=a4dc1e94d3f5759784d2" /><title>Inhere's Site - terminal</title>
+        <subtitle>Inhere&#x27;s site, blogs and project docs</subtitle>
+    <link href="https://inhere.github.io/en/tags/terminal/atom.xml" rel="self" type="application/atom+xml"/>
+    <link href="https://inhere.github.io/en/tags/terminal/" rel="alternate" type="text/html"/>
+    <generator uri="https://www.getzola.org/">Zola</generator><updated>2026-07-04T16:20:00+00:00</updated><id>https://inhere.github.io/en/tags/terminal/atom.xml</id><entry xml:lang="en">
+        <title>cliui: terminal UI helpers for Go CLI apps</title>
+        <published>2026-07-04T16:20:00+00:00</published>
+        <updated>2026-07-04T16:20:00+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/en/blog/2026/gookit-cliui-intro/" type="text/html"/>
+        <id>https://inhere.github.io/en/blog/2026/gookit-cliui-intro/</id>
+        <summary type="html">Many CLI tools start with a parser, a few commands, and some fmt.Println calls. That works until the tool needs readable config output, clear errors, prompts, progress bars, and logs that do not break in CI.
+github.com/gookit/cliui is for that middle ground: not a full-screen TUI, but more than loose terminal prints. It splits the common pieces into three packages: show for structured output, interact for prompts and selections, and progress for long-running work.
+…</summary>
+        </entry><entry xml:lang="en">
+        <title>My Windows Terminal Config</title>
+        <published>2019-12-08T22:04:00+00:00</published>
+        <updated>2019-12-08T22:04:00+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/en/blog/2019/12-08-my-windows-terminal-config/" type="text/html"/>
+        <id>https://inhere.github.io/en/blog/2019/12-08-my-windows-terminal-config/</id>
+        <summary type="html">My windows terminal config
+added:
+
+add git bash profile
+…</summary>
+        </entry>
+</feed>
