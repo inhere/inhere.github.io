@@ -12,6 +12,24 @@
 - 自推广比例要低，先通过正常评论和反馈积累账号可信度。
 - 站点参考 @community-sharing.md
 
+## 发布记录
+
+发布过哪些站点、时间、地址、草稿，用 `share/blogshare` 记录到 `share/records.jsonl`（append-only）。
+
+```bash
+cd share/blogshare && make build                  # 产出 ./blogshare
+
+./blogshare posts                                  # 文章 key（= URL 路径，如 blog/2026/sshc-intro）
+./blogshare sites                                  # 站点 key（如 hn、reddit/r/golang、v2ex）
+./blogshare add blog/2026/sshc-intro hn --url <发布地址> --draft share/hn/sshc-intro.md
+./blogshare pending --post blog/2026/sshc-intro     # 这篇还差哪些站点
+./blogshare check                                  # 校验记录与草稿文件
+./blogshare serve --open                           # 只读 Web 视图
+```
+
+- 记错就再 `add` 一次（按 `at` 取最新，历史保留），不要手动改 JSONL。
+- 草稿放在 `share/<site>/<slug>.md`，`add` 会自动匹配并写入 `draft` 字段。
+
 ## Reddit
 
 - 发帖前检查 subreddit 规则、flair 和置顶规则确认要求。
