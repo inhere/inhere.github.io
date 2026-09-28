@@ -12,3 +12,10 @@
 - zola 当前blog站点的静态渲染工具
 - bsk 和对应skill，可以直接使用我的浏览器标签，避免登录等问题。
 - gh  github cli
+
+文章封面图两条路径，任选其一：
+
+- 本地生成（不需要任何 API/密钥，确定性输出，风格与已有海报一致）：
+  `python script/make-poster.py --title "miglite v0.8.0" --subtitle "embed your migrations in the binary" --card "//go:embed|migrations/*.sql" --card "embed.FS|SetFS(migrationFS)" --card "mig.Up()|no migrations dir" --command "./app up --yes" --note "embedded migrations / own your *sql.DB" --tag "gookit/miglite" --out static/img/blog/<name>-poster.png`
+- GLM 生成背景 + 本地叠加文字：见 @.agents/skills/glm-blog-poster/SKILL.md（需要 `BIGMODEL_API_KEY`）
+

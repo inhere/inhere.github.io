@@ -10,6 +10,8 @@ slug: gookit-miglite-v0-8-0
 
 这次没有推翻原来的设计，改动集中在两件事：**让迁移文件能跟着二进制一起走**，以及**把几个"看起来生效其实没生效"的行为修掉**。
 
+![miglite v0.8.0：把迁移文件嵌进二进制](/img/blog/miglite-v080-poster.png)
+
 <!-- more -->
 
 - 项目主页：[https://github.com/gookit/miglite](https://github.com/gookit/miglite)
