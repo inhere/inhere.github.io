@@ -44,7 +44,7 @@ func (s *Server) Handler() http.Handler {
 // shows the file as it is on disk.
 func (s *Server) dataset() (report.Dataset, error) {
 	st := store.New(s.paths.RecordsFile)
-	events, err := st.Load()
+	records, err := st.Load()
 	if err != nil {
 		return report.Dataset{}, err
 	}
@@ -54,7 +54,7 @@ func (s *Server) dataset() (report.Dataset, error) {
 	}
 
 	return report.Build(report.Options{
-		Events:      events,
+		Records:     records,
 		Posts:       postList,
 		Sites:       sites.All(),
 		DraftExists: store.DraftExists(s.paths.Root),
@@ -100,6 +100,7 @@ func (s *Server) handleRecords(w http.ResponseWriter, r *http.Request) {
 
 	q := r.URL.Query()
 	items := report.FilterRecords(ds.Records, report.Filter{
+		ID:     q.Get("id"),
 		Post:   q.Get("post"),
 		Site:   q.Get("site"),
 		Status: q.Get("status"),

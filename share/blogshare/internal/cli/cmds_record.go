@@ -2,6 +2,7 @@ package cli
 
 import (
 	"encoding/json"
+	"flag"
 	"fmt"
 	"os"
 	"path/filepath"
@@ -39,7 +40,15 @@ func parseAt(in string) (time.Time, error) {
 	return time.Time{}, fmt.Errorf("invalid --at %q, want '2006-01-02 15:04' or RFC3339", in)
 }
 
-// newAddCmd appends one share record.
+// setFlags lists the option names the user actually passed, so update can
+// distinguish "leave unchanged" from "clear this field".
+func setFlags(c *capp.Cmd) map[string]bool {
+	set := map[string]bool{}
+	c.FlagSet.Visit(func(f *flag.Flag) { set[f.Name] = true })
+	return set
+}
+
+// newAddCmd creates one share record and prints its id.
 func newAddCmd() *capp.Cmd {
 	var (
 		statusVal string
@@ -50,7 +59,7 @@ func newAddCmd() *capp.Cmd {
 		atVal     string
 	)
 
-	cmd := capp.NewCmd("add", "Append a share record for a post and site", func(c *capp.Cmd) error {
+	cmd := capp.NewCmd("add", "Create a share record for a post and site, print its id", func(c *capp.Cmd) error {
 		postKey := model.NormalizePost(c.Arg("post").String())
 		siteKey := model.NormalizeSite(c.Arg("site").String())
 
@@ -68,49 +77,176 @@ func newAddCmd() *capp.Cmd {
 			return err
 		}
 
-		title := titleVal
+		title := strings.TrimSpace(titleVal)
 		if title == "" {
 			title = runCtx.titleOf(postKey)
-		}
-		if title == postKey {
-			title = ""
+			if title == postKey {
+				title = ""
+			}
 		}
 
-		draft := draftVal
+		draft := strings.TrimSpace(draftVal)
 		if draft == "" {
 			draft = findDraft(runCtx.Paths.ShareDir, postKey)
 		}
 
-		event := model.Event{
-			At: at, Post: postKey, Site: siteKey, Status: status,
+		rec, err := runCtx.Store.Add(model.Record{
+			Post: postKey, Site: siteKey, Status: status,
 			URL: strings.TrimSpace(urlVal), Draft: draft, Title: title,
-			Note: strings.TrimSpace(noteVal),
-		}
-		if err := runCtx.Store.Append(event); err != nil {
+			Note: strings.TrimSpace(noteVal), CreateAt: at,
+		})
+		if err != nil {
 			return err
 		}
 
-		fmt.Printf("recorded %s [%s] at %s\n", pair(postKey, siteKey), status, at.Format("2006-01-02 15:04"))
+		fmt.Printf("created %s  %s -> %s  [%s]  %s\n",
+			rec.ID, rec.Post, rec.Site, rec.Status, displayTime(rec.CreateAt.Format(time.RFC3339)))
 		if _, ok := sites.Get(siteKey); !ok {
 			fmt.Fprintf(os.Stderr, "note: %q is not in the built-in registry, run 'blogshare sites' to see known keys\n", siteKey)
 		}
-		if draft == "" {
+		if rec.Draft == "" {
 			fmt.Fprintf(os.Stderr, "note: no share draft linked; pass --draft <path> when a draft exists\n")
 		}
-		printState(runCtx, postKey, siteKey)
 		return nil
 	})
 
-	cmd.Aliases = []string{"a", "record"}
+	cmd.Aliases = []string{"a", "new"}
 	cmd.Config(addCommonFlags, func(c *capp.Cmd) {
 		c.StringVar(&statusVal, "status", "published", "share status: planned|published|blocked|removed|failed;s")
 		c.StringVar(&urlVal, "url", "", "share URL;u")
 		c.StringVar(&draftVal, "draft", "", "draft file, repo relative, eg share/hn/miglite.md;d")
 		c.StringVar(&noteVal, "note", "", "free-form note, eg flair or blocker;n")
 		c.StringVar(&titleVal, "title", "", "post title stored on the record (default: from front matter);t")
-		c.StringVar(&atVal, "at", "", "record time, eg '2026-09-28 20:30' (default now)")
+		c.StringVar(&atVal, "at", "", "create_at value, eg '2026-09-28 20:30' (default now, use it to backfill)")
 		c.AddArg("post", "post key, eg blog/2026/sshc-intro; see 'blogshare posts'", true)
 		c.AddArg("site", "site key, eg hn or reddit/r/golang; see 'blogshare sites'", true)
+	})
+	return cmd
+}
+
+// newUpdateCmd patches one record by id.
+func newUpdateCmd() *capp.Cmd {
+	var (
+		postVal   string
+		siteVal   string
+		statusVal string
+		urlVal    string
+		draftVal  string
+		noteVal   string
+		titleVal  string
+		atVal     string
+	)
+
+	cmd := capp.NewCmd("update", "Update one record by id (only the given flags change)", func(c *capp.Cmd) error {
+		id := strings.ToLower(strings.TrimSpace(c.Arg("id").String()))
+		set := setFlags(c)
+
+		patch := model.Patch{}
+		if set["post"] {
+			v := model.NormalizePost(postVal)
+			patch.Post = &v
+		}
+		if set["site"] {
+			v := model.NormalizeSite(siteVal)
+			patch.Site = &v
+		}
+		if set["status"] {
+			v, err := model.ParseStatus(statusVal)
+			if err != nil {
+				return err
+			}
+			patch.Status = &v
+		}
+		if set["url"] {
+			v := strings.TrimSpace(urlVal)
+			patch.URL = &v
+		}
+		if set["draft"] {
+			v := strings.TrimSpace(draftVal)
+			patch.Draft = &v
+		}
+		if set["note"] {
+			v := strings.TrimSpace(noteVal)
+			patch.Note = &v
+		}
+		if set["title"] {
+			v := strings.TrimSpace(titleVal)
+			patch.Title = &v
+		}
+		if set["at"] {
+			v, err := parseAt(atVal)
+			if err != nil {
+				return err
+			}
+			patch.CreateAt = &v
+		}
+
+		runCtx, err := loadCtx()
+		if err != nil {
+			return err
+		}
+		rec, err := runCtx.Store.Update(id, patch)
+		if err != nil {
+			return err
+		}
+
+		fmt.Printf("updated %s  %s -> %s  [%s]\n", rec.ID, rec.Post, rec.Site, rec.Status)
+		if rec.URL != "" {
+			fmt.Printf("  url:   %s\n", rec.URL)
+		}
+		if rec.Draft != "" {
+			fmt.Printf("  draft: %s\n", rec.Draft)
+		}
+		if rec.Note != "" {
+			fmt.Printf("  note:  %s\n", rec.Note)
+		}
+		fmt.Printf("  create_at: %s  update_at: %s\n",
+			displayTime(rec.CreateAt.Format(time.RFC3339)), displayTime(rec.UpdateAt.Format(time.RFC3339)))
+		return nil
+	})
+
+	cmd.Aliases = []string{"up", "set"}
+	cmd.Config(addCommonFlags, func(c *capp.Cmd) {
+		c.StringVar(&postVal, "post", "", "new post key;p")
+		c.StringVar(&siteVal, "site", "", "new site key;s")
+		c.StringVar(&statusVal, "status", "", "new status: planned|published|blocked|removed|failed")
+		c.StringVar(&urlVal, "url", "", "new share URL;u")
+		c.StringVar(&draftVal, "draft", "", "new draft path;d")
+		c.StringVar(&noteVal, "note", "", "new note;n")
+		c.StringVar(&titleVal, "title", "", "new title;t")
+		c.StringVar(&atVal, "at", "", "new create_at, eg '2026-09-28 20:30'")
+		c.AddArg("id", "record id, see 'blogshare list'", true)
+	})
+	return cmd
+}
+
+// newRmCmd deletes one record by id.
+func newRmCmd() *capp.Cmd {
+	var asJSON bool
+
+	cmd := capp.NewCmd("rm", "Delete one record by id", func(c *capp.Cmd) error {
+		id := strings.ToLower(strings.TrimSpace(c.Arg("id").String()))
+
+		runCtx, err := loadCtx()
+		if err != nil {
+			return err
+		}
+		removed, err := runCtx.Store.Delete(id)
+		if err != nil {
+			return err
+		}
+
+		if asJSON {
+			return printJSON(removed)
+		}
+		fmt.Printf("removed %s  %s -> %s  [%s]\n", removed.ID, removed.Post, removed.Site, removed.Status)
+		return nil
+	})
+
+	cmd.Aliases = []string{"del", "delete"}
+	cmd.Config(addCommonFlags, func(c *capp.Cmd) {
+		c.BoolVar(&asJSON, "json", false, "print the removed record as JSON;j")
+		c.AddArg("id", "record id, see 'blogshare list'", true)
 	})
 	return cmd
 }
@@ -118,6 +254,7 @@ func newAddCmd() *capp.Cmd {
 // newListCmd reads all records with filters.
 func newListCmd() *capp.Cmd {
 	var (
+		idVal     string
 		postVal   string
 		siteVal   string
 		statusVal string
@@ -126,14 +263,14 @@ func newListCmd() *capp.Cmd {
 		limit     int
 	)
 
-	cmd := capp.NewCmd("list", "List share records (latest state per post/site)", func(c *capp.Cmd) error {
+	cmd := capp.NewCmd("list", "List share records", func(c *capp.Cmd) error {
 		runCtx, err := loadCtx()
 		if err != nil {
 			return err
 		}
 
 		items := report.FilterRecords(runCtx.dataset().Records, report.Filter{
-			Post: postVal, Site: siteVal, Status: statusVal, Query: queryVal,
+			ID: idVal, Post: postVal, Site: siteVal, Status: statusVal, Query: queryVal,
 		})
 		if limit > 0 && len(items) > limit {
 			items = items[:limit]
@@ -149,10 +286,14 @@ func newListCmd() *capp.Cmd {
 		}
 
 		w := tabwriter.NewWriter(os.Stdout, 0, 0, 2, ' ', 0)
-		_, _ = fmt.Fprintln(w, "AT\tPOST\tSITE\tSTATUS\tURL\tNOTE")
+		_, _ = fmt.Fprintln(w, "ID\tUPDATED\tPOST\tSITE\tSTATUS\tURL\tDRAFT\tNOTE")
 		for _, r := range items {
-			_, _ = fmt.Fprintf(w, "%s\t%s\t%s\t%s\t%s\t%s\n",
-				displayTime(r.At), r.Post, r.Site, r.Status, r.URL, r.Note)
+			draft := r.Draft
+			if draft != "" && !r.DraftExists {
+				draft += " (missing)"
+			}
+			_, _ = fmt.Fprintf(w, "%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n",
+				r.ID, displayTime(r.UpdateAt), r.Post, r.Site, r.Status, r.URL, draft, r.Note)
 		}
 		_ = w.Flush()
 		fmt.Printf("\n%d record(s), file: %s\n", len(items), runCtx.Paths.RecordsFile)
@@ -161,6 +302,7 @@ func newListCmd() *capp.Cmd {
 
 	cmd.Aliases = []string{"ls"}
 	cmd.Config(addCommonFlags, func(c *capp.Cmd) {
+		c.StringVar(&idVal, "id", "", "filter by record id")
 		c.StringVar(&postVal, "post", "", "filter by post key;p")
 		c.StringVar(&siteVal, "site", "", "filter by site key;s")
 		c.StringVar(&statusVal, "status", "", "filter by status")
@@ -175,7 +317,7 @@ func newListCmd() *capp.Cmd {
 func newShowCmd() *capp.Cmd {
 	var asJSON bool
 
-	cmd := capp.NewCmd("show", "Show one post: records, draft links and pending sites", func(c *capp.Cmd) error {
+	cmd := capp.NewCmd("show", "Show one post: records (with ids), draft links and pending sites", func(c *capp.Cmd) error {
 		postKey := model.NormalizePost(c.Arg("post").String())
 
 		runCtx, err := loadCtx()
@@ -206,14 +348,14 @@ func newShowCmd() *capp.Cmd {
 			fmt.Println("no records yet")
 		} else {
 			w := tabwriter.NewWriter(os.Stdout, 0, 0, 2, ' ', 0)
-			_, _ = fmt.Fprintln(w, "AT\tSITE\tSTATUS\tURL\tDRAFT\tNOTE")
+			_, _ = fmt.Fprintln(w, "ID\tUPDATED\tSITE\tSTATUS\tURL\tDRAFT\tNOTE")
 			for _, r := range items {
 				draft := r.Draft
 				if draft != "" && !r.DraftExists {
 					draft += " (missing)"
 				}
-				_, _ = fmt.Fprintf(w, "%s\t%s\t%s\t%s\t%s\t%s\n",
-					displayTime(r.At), r.Site, r.Status, r.URL, draft, r.Note)
+				_, _ = fmt.Fprintf(w, "%s\t%s\t%s\t%s\t%s\t%s\t%s\n",
+					r.ID, displayTime(r.UpdateAt), r.Site, r.Status, r.URL, draft, r.Note)
 			}
 			_ = w.Flush()
 		}
@@ -292,16 +434,6 @@ func newPendingCmd() *capp.Cmd {
 		c.BoolVar(&asJSON, "json", false, "output JSON;j")
 	})
 	return cmd
-}
-
-// printState prints the current state of one pair after a write.
-func printState(runCtx *ctx, postKey, siteKey string) {
-	for _, r := range report.FilterRecords(runCtx.dataset().Records, report.Filter{Post: postKey, Site: siteKey}) {
-		if r.Post == postKey && r.Site == siteKey {
-			fmt.Printf("current: %s %s\n", r.Status, displayTime(r.At))
-			return
-		}
-	}
 }
 
 // findDraft guesses the draft file of a post: share/<something>/<slug>.md.

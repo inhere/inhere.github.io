@@ -24,6 +24,8 @@ func NewApp(info BuildInfo, content fs.FS) *capp.App {
 	app.LongHelp = `
 <cyan>Examples:</>
   blogshare add blog/2026/sshc-intro hn --url https://news.ycombinator.com/item?id=1
+  blogshare update a3k9qz --url https://news.ycombinator.com/item?id=2   # fix by id
+  blogshare rm a3k9qz
   blogshare list --site reddit --status published
   blogshare show blog/2026/sshc-intro
   blogshare pending --post blog/2026/sshc-intro
@@ -31,11 +33,13 @@ func NewApp(info BuildInfo, content fs.FS) *capp.App {
   blogshare serve --open
 
 <cyan>Files:</>
-  records   <root>/share/records.jsonl   (append-only JSONL, --file to override)
+  records   ROOT/share/records.jsonl   (one JSON record per line, --file to override)
   root      auto-detected by walking up to config.toml + content/, --root to override
 `
 	app.Add(
 		newAddCmd(),
+		newUpdateCmd(),
+		newRmCmd(),
 		newListCmd(),
 		newShowCmd(),
 		newPendingCmd(),

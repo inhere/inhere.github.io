@@ -71,8 +71,29 @@ func Scan(contentDir string) ([]Post, error) {
 		return nil, err
 	}
 
-	sort.Slice(list, func(i, j int) bool { return list[i].Key < list[j].Key })
-	return list, nil
+	return dedupe(list), nil
+}
+
+// dedupe collapses language variants that share one post key (eg
+// 07-11-sshc-intro.md and 07-11-sshc-intro.en.md): one key, one row. The
+// default-language file wins; Lang keeps the variant that was kept.
+func dedupe(list []Post) []Post {
+	byKey := make(map[string]int, len(list))
+	out := make([]Post, 0, len(list))
+	for _, p := range list {
+		idx, ok := byKey[p.Key]
+		if !ok {
+			byKey[p.Key] = len(out)
+			out = append(out, p)
+			continue
+		}
+		if out[idx].Lang != "" && p.Lang == "" {
+			out[idx] = p // prefer the default language file
+		}
+	}
+
+	sort.Slice(out, func(i, j int) bool { return out[i].Key < out[j].Key })
+	return out
 }
 
 // Find returns the post with the given key.

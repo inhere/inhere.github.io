@@ -189,20 +189,19 @@ func newCheckCmd() *capp.Cmd {
 			return err
 		}
 
-		lines, problems := runCtx.Store.Validate()
+		records, problems := runCtx.Store.LoadValidate()
 
 		missingDrafts := make([]string, 0)
 		unknownSites := make([]string, 0)
 		seenSite := map[string]struct{}{}
-		for _, ln := range lines {
-			e := ln.Event
-			if e.Draft != "" && !runCtx.draftExists(e.Draft) {
-				missingDrafts = append(missingDrafts, fmt.Sprintf("%s -> %s: draft not found: %s", e.Post, e.Site, e.Draft))
+		for _, rec := range records {
+			if rec.Draft != "" && !runCtx.draftExists(rec.Draft) {
+				missingDrafts = append(missingDrafts, fmt.Sprintf("%s %s -> %s: draft not found: %s", rec.ID, rec.Post, rec.Site, rec.Draft))
 			}
-			if _, ok := sites.Get(e.Site); !ok {
-				if _, ok := seenSite[e.Site]; !ok {
-					seenSite[e.Site] = struct{}{}
-					unknownSites = append(unknownSites, e.Site)
+			if _, ok := sites.Get(rec.Site); !ok {
+				if _, ok := seenSite[rec.Site]; !ok {
+					seenSite[rec.Site] = struct{}{}
+					unknownSites = append(unknownSites, rec.Site)
 				}
 			}
 		}
@@ -210,8 +209,8 @@ func newCheckCmd() *capp.Cmd {
 		// posts referenced by records but missing from content/
 		unknownPosts := make([]string, 0)
 		seenPost := map[string]struct{}{}
-		for _, ln := range lines {
-			key := ln.Event.Post
+		for _, rec := range records {
+			key := rec.Post
 			if _, ok := posts.Find(runCtx.Posts, key); !ok {
 				if _, ok := seenPost[key]; !ok {
 					seenPost[key] = struct{}{}
@@ -223,7 +222,7 @@ func newCheckCmd() *capp.Cmd {
 		if asJSON {
 			return printJSON(map[string]any{
 				"file":           runCtx.Paths.RecordsFile,
-				"lines":          len(lines),
+				"records":        len(records),
 				"problems":       problems,
 				"missing_drafts": missingDrafts,
 				"unknown_sites":  unknownSites,
@@ -231,7 +230,7 @@ func newCheckCmd() *capp.Cmd {
 			})
 		}
 
-		reportProblems(problems, "invalid lines")
+		reportProblems(problems, "problems")
 		reportProblems(missingDrafts, "missing drafts")
 		if len(unknownSites) > 0 {
 			fmt.Printf("unknown sites (%d): %s\n", len(unknownSites), strings.Join(unknownSites, ", "))
@@ -241,9 +240,9 @@ func newCheckCmd() *capp.Cmd {
 		}
 
 		if len(problems) > 0 || len(missingDrafts) > 0 {
-			return fmt.Errorf("check failed: %d invalid line(s), %d missing draft(s)", len(problems), len(missingDrafts))
+			return fmt.Errorf("check failed: %d problem(s), %d missing draft(s)", len(problems), len(missingDrafts))
 		}
-		fmt.Printf("OK: %d record line(s) in %s\n", len(lines), runCtx.Paths.RecordsFile)
+		fmt.Printf("OK: %d record(s) in %s\n", len(records), runCtx.Paths.RecordsFile)
 		return nil
 	})
 

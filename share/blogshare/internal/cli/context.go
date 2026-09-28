@@ -26,14 +26,14 @@ func addCommonFlags(c *capp.Cmd) {
 
 // ctx is the loaded state every command works with.
 type ctx struct {
-	Paths  store.Paths
-	Store  *store.Store
-	Events []model.Event
-	Posts  []posts.Post
-	Sites  []sites.Site
+	Paths   store.Paths
+	Store   *store.Store
+	Records []model.Record
+	Posts   []posts.Post
+	Sites   []sites.Site
 }
 
-// loadCtx resolves paths and reads the whole event log.
+// loadCtx resolves paths and reads all records.
 func loadCtx() (*ctx, error) {
 	paths, err := store.Locate(rootFlag, fileFlag)
 	if err != nil {
@@ -41,7 +41,7 @@ func loadCtx() (*ctx, error) {
 	}
 
 	st := store.New(paths.RecordsFile)
-	events, err := st.Load()
+	records, err := st.Load()
 	if err != nil {
 		return nil, err
 	}
@@ -51,13 +51,13 @@ func loadCtx() (*ctx, error) {
 		return nil, err
 	}
 
-	return &ctx{Paths: paths, Store: st, Events: events, Posts: postList, Sites: sites.All()}, nil
+	return &ctx{Paths: paths, Store: st, Records: records, Posts: postList, Sites: sites.All()}, nil
 }
 
 // dataset derives all views for the loaded context.
 func (c *ctx) dataset() report.Dataset {
 	return report.Build(report.Options{
-		Events:      c.Events,
+		Records:     c.Records,
 		Posts:       c.Posts,
 		Sites:       c.Sites,
 		DraftExists: c.draftExists,

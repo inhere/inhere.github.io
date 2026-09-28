@@ -6,13 +6,14 @@
 
 ## 数据文件
 
-`share/records.jsonl` — **append-only 事件日志**，一行一个事件：
+`share/records.jsonl` — 一行一条记录，每条有个短 id（6 位 base36），当成简单存储用：新增 / 按 id 修改 / 按 id 删除。
 
 ```json
-{"at":"2026-09-28T20:31:00+08:00","post":"blog/2026/sshc-intro","site":"hn","status":"published","url":"https://news.ycombinator.com/item?id=1","draft":"share/hn/sshc-intro.md","title":"sshc: 更顺手的 ssh 客户端","note":""}
+{"id":"a3k9qz","post":"blog/2026/sshc-intro","site":"hn","status":"published","url":"https://news.ycombinator.com/item?id=1","draft":"share/hn/sshc-intro.md","title":"sshc: 更顺手的 ssh 客户端","note":"Show HN 首发","create_at":"2026-09-20T10:30:00+08:00","update_at":"2026-09-28T20:31:00+08:00"}
 ```
 
-- `(post, site)` 的当前状态 = `at` 最大的那条事件（时间相同取后写入的行），所以**修正错误靠追加新事件**，历史不会丢。
+- `id`：唯一短 id，`update <id>` / `rm <id>` 都用它；`(post, site)` 唯一，重复会被拒绝并提示已有 id。
+- `create_at`：记录创建时间，也就是**发布时间**，补录历史用 `--at` 指定；`update_at`：最后一次修改时间，自动维护。
 - `status`：`planned` / `published` / `blocked` / `removed` / `failed`（默认 `published`）。
 - `post` 用文章 key，等于 URL 路径去掉前后斜杠，例如 `blog/2026/sshc-intro`、`projects/gookit-goutil`。
   直接用 `blogshare posts` 里的 key 最稳妥；粘贴 `content/blog/2026/07-11-sshc-intro.md` 这类路径也会自动归一化（去掉 `content/`、`.md`、日期前缀、`/index`）。
@@ -30,13 +31,20 @@ blogshare posts --only unshared                        # 还没分享过的文�
 blogshare add blog/2026/sshc-intro hn \
   --url https://news.ycombinator.com/item?id=1 \
   --note "Show HN 首发"
+# => created a3k9qz  blog/2026/sshc-intro -> hn  [published]  2026-09-28 20:31
 
 blogshare add blog/2026/sshc-intro v2ex --status blocked --note "账号等级不够"
-blogshare add blog/2026/sshc-intro juejin --at "2026-09-27 21:00"   # 补记历史
+blogshare add blog/2026/sshc-intro juejin --at "2026-09-27 21:00"   # 补录历史（create_at）
 
+blogshare update a3k9qz --url https://news.ycombinator.com/item?id=2   # 按 id 改，update_at 自动刷新
+blogshare update a3k9qz --status removed --note "被 AutoMod 删除"
+blogshare rm a3k9qz                                    # 按 id 删除
+
+blogshare list                                         # 全部记录（含 id / updated）
+blogshare list --id a3k9qz                             # 按 id 过滤
 blogshare list --status published                      # 全部已发布记录
 blogshare list --site reddit --json                    # 机器可读输出
-blogshare show blog/2026/sshc-intro                    # 单篇：记录 + 仍待发布站点
+blogshare show blog/2026/sshc-intro                    # 单篇：记录(含 id) + 仍待发布站点
 blogshare pending                                      # 已开始分发的文章还差哪些站点
 blogshare pending --post blog/2026/sshc-intro --urls
 blogshare stats                                        # 按站点/月份/状态统计
@@ -49,7 +57,8 @@ blogshare serve --open                                 # 只读 Web 视图（默
 
 - `--root`：博客仓库根目录。默认从当前目录向上找 `config.toml` + `content/`。
 - `--file`：记录文件。默认 `<root>/share/records.jsonl`。
-- `--json`：`list` / `show` / `pending` / `sites` / `posts` / `stats` / `check` 均支持，便于脚本或 agent 消费。
+- `--json`：`list` / `show` / `pending` / `sites` / `posts` / `stats` / `check` / `rm` 均支持，便于脚本或 agent 消费。
+- 写操作只有 `add`（新建）、`update <id>`（只改显式给出的字段，`--url ""` 可清空）、`rm <id>`；每次写入都会重写整个文件（临时文件 + 原子替换）。
 - `add` 未传 `--draft` 时，会自动匹配 `share/<site>/<slug>.md`；`--title` 缺省时取该文章 front matter 的标题。
 
 ## Web 视图
@@ -66,8 +75,8 @@ blogshare serve --open                                 # 只读 Web 视图（默
 
 ```
 main.go                    入口（embed web/ + capp 应用）
-internal/model/            事件模型、状态、key 归一化、状态归约
-internal/store/            路径定位 + JSONL 追加/读取/校验
+internal/model/            记录模型、状态、id 生成、key 归一化、Patch
+internal/store/            路径定位 + JSONL 读取/校验 + 按 id 增删改（原子写）
 internal/sites/            内置站点表（来自 ../../share/community-sharing.md）
 internal/posts/            扫描 content/ 的 zola 页面
 internal/report/           记录/待发布/站点/文章/统计等派生视图

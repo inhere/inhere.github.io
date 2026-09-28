@@ -112,6 +112,20 @@ func keysOf(list []Post) map[string]Post {
 	return out
 }
 
+func TestScanMergesLanguageVariants(t *testing.T) {
+	dir := t.TempDir()
+	writePage(t, dir, "blog/2026/07-11-sshc-intro.md", "+++\ntitle = \"中文\"\ndate = 2026-07-11\n+++\n")
+	writePage(t, dir, "blog/2026/07-11-sshc-intro.en.md", "+++\ntitle = \"English\"\ndate = 2026-07-11\n+++\n")
+
+	list, err := Scan(dir)
+	assert.NoErr(t, err)
+	assert.Len(t, list, 1)
+	assert.Eq(t, "blog/2026/sshc-intro", list[0].Key)
+	assert.Eq(t, "中文", list[0].Title)
+	assert.Eq(t, "", list[0].Lang)
+	assert.Eq(t, "content/blog/2026/07-11-sshc-intro.md", list[0].Path)
+}
+
 func TestScanMissingDir(t *testing.T) {
 	list, err := Scan(filepath.Join(t.TempDir(), "nope"))
 	assert.NoErr(t, err)

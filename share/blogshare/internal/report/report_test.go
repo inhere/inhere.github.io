@@ -10,16 +10,21 @@ import (
 	"github.com/inhere/blogshare/internal/sites"
 )
 
+// baseTime is the reference date of the fixture records.
+var baseTime = time.Date(2026, 9, 20, 10, 0, 0, 0, time.Local)
+
+// at returns baseTime plus d.
+func at(d time.Duration) time.Time { return baseTime.Add(d) }
+
 func buildTestDataset(t *testing.T) Dataset {
 	t.Helper()
-	sep20 := time.Date(2026, 9, 20, 10, 0, 0, 0, time.Local)
 
 	return Build(Options{
-		Events: []model.Event{
-			{At: sep20, Post: "blog/2026/sshc-intro", Site: "hn", Status: model.StatusPublished, URL: "https://news.ycombinator.com/item?id=1", Draft: "share/hn/sshc-intro.md", Title: "sshc: ssh client"},
-			{At: sep20.Add(time.Hour), Post: "blog/2026/sshc-intro", Site: "v2ex", Status: model.StatusBlocked, Note: "needs bigger account"},
-			{At: sep20.Add(2 * time.Hour), Post: "blog/2026/miglite", Site: "v2ex", Status: model.StatusPublished},
-			{At: sep20.Add(30 * time.Hour), Post: "blog/2026/miglite", Site: "reddit/r/golang", Status: model.StatusPublished},
+		Records: []model.Record{
+			{ID: "r1hn01", CreateAt: at(0), UpdateAt: at(0), Post: "blog/2026/sshc-intro", Site: "hn", Status: model.StatusPublished, URL: "https://news.ycombinator.com/item?id=1", Draft: "share/hn/sshc-intro.md", Title: "sshc: ssh client"},
+			{ID: "r2v2x1", CreateAt: at(time.Hour), UpdateAt: at(time.Hour), Post: "blog/2026/sshc-intro", Site: "v2ex", Status: model.StatusBlocked, Note: "needs bigger account"},
+			{ID: "r3v2x2", CreateAt: at(2 * time.Hour), UpdateAt: at(2 * time.Hour), Post: "blog/2026/miglite", Site: "v2ex", Status: model.StatusPublished},
+			{ID: "r4rdt1", CreateAt: at(30 * time.Hour), UpdateAt: at(30 * time.Hour), Post: "blog/2026/miglite", Site: "reddit/r/golang", Status: model.StatusPublished},
 		},
 		Posts: []posts.Post{
 			{Key: "blog/2026/sshc-intro", Title: "sshc: ssh client", Date: "2026-07-11", Path: "content/blog/2026/07-11-sshc-intro.md"},
@@ -27,7 +32,7 @@ func buildTestDataset(t *testing.T) Dataset {
 			{Key: "blog/2026/untouched", Title: "untouched", Date: "2026-09-01"},
 		},
 		DraftExists: func(p string) bool { return p == "share/hn/sshc-intro.md" },
-		Now:         sep20.Add(48 * time.Hour),
+		Now:         at(48 * time.Hour),
 	})
 }
 
@@ -41,7 +46,10 @@ func TestBuildRecords(t *testing.T) {
 	}
 
 	hn := byKey["blog/2026/sshc-intro|hn"]
+	assert.Eq(t, "r1hn01", hn.ID)
 	assert.Eq(t, "published", hn.Status)
+	assert.Eq(t, at(0).Format(time.RFC3339), hn.CreateAt)
+	assert.Eq(t, at(0).Format(time.RFC3339), hn.UpdateAt)
 	assert.Eq(t, "Hacker News", hn.SiteName)
 	assert.Eq(t, "sshc: ssh client", hn.Title)
 	assert.True(t, hn.DraftExists)
@@ -49,6 +57,9 @@ func TestBuildRecords(t *testing.T) {
 	v2ex := byKey["blog/2026/sshc-intro|v2ex"]
 	assert.Eq(t, "blocked", v2ex.Status)
 	assert.False(t, v2ex.DraftExists)
+
+	// newest update first
+	assert.Eq(t, "r4rdt1", ds.Records[0].ID)
 }
 
 func TestBuildSummaryAndStats(t *testing.T) {
@@ -58,7 +69,7 @@ func TestBuildSummaryAndStats(t *testing.T) {
 	assert.Eq(t, 2, ds.Summary.Posts)
 	assert.Eq(t, 3, ds.Summary.Sites)
 	assert.Eq(t, 3, ds.Summary.Published)
-	assert.Eq(t, time.Date(2026, 9, 21, 16, 0, 0, 0, time.Local).Format(time.RFC3339), ds.Summary.LastAt)
+	assert.Eq(t, at(30*time.Hour).Format(time.RFC3339), ds.Summary.LastAt)
 
 	// pending only covers posts with records: 2 posts x 20 registry sites - 3 published
 	assert.Eq(t, 2*len(sites.All())-3, ds.Summary.Pending)
@@ -94,6 +105,10 @@ func TestFilterRecordsAndPending(t *testing.T) {
 	published := FilterRecords(ds.Records, Filter{Status: "published"})
 	assert.Len(t, published, 3)
 	assert.Eq(t, "blog/2026/miglite", published[0].Post) // newest first
+
+	byID := FilterRecords(ds.Records, Filter{ID: "R1HN"})
+	assert.Len(t, byID, 1)
+	assert.Eq(t, "hn", byID[0].Site)
 
 	hnOnly := FilterRecords(ds.Records, Filter{Query: "hacker"})
 	assert.Len(t, hnOnly, 1)

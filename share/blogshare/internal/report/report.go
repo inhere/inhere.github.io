@@ -12,24 +12,31 @@ import (
 	"github.com/inhere/blogshare/internal/sites"
 )
 
-// Record is the current state of one (post, site) pair.
+// Record is one share record with its display fields resolved.
 type Record struct {
+	ID          string `json:"id"`
 	Post        string `json:"post"`
 	Title       string `json:"title"`
 	Site        string `json:"site"`
 	SiteName    string `json:"site_name"`
 	Status      string `json:"status"`
-	At          string `json:"at"`
+	CreateAt    string `json:"create_at"`
+	UpdateAt    string `json:"update_at"`
 	URL         string `json:"url"`
 	Draft       string `json:"draft"`
 	DraftExists bool   `json:"draft_exists"`
 	Note        string `json:"note"`
-	EventCount  int    `json:"event_count"`
 }
 
-// Time parses At back into a time value (zero when unset).
-func (r Record) Time() time.Time {
-	t, _ := time.Parse(time.RFC3339, r.At)
+// ParsedCreateAt returns CreateAt as a time value (zero when unset).
+func (r Record) ParsedCreateAt() time.Time {
+	t, _ := time.Parse(time.RFC3339, r.CreateAt)
+	return t
+}
+
+// ParsedUpdateAt returns UpdateAt as a time value (zero when unset).
+func (r Record) ParsedUpdateAt() time.Time {
+	t, _ := time.Parse(time.RFC3339, r.UpdateAt)
 	return t
 }
 
@@ -115,7 +122,7 @@ type Dataset struct {
 
 // Options configures Build.
 type Options struct {
-	Events      []model.Event
+	Records     []model.Record
 	Posts       []posts.Post
 	Sites       []sites.Site
 	DraftExists func(path string) bool
@@ -134,7 +141,7 @@ func Build(opts Options) Dataset {
 		draftExists = func(string) bool { return false }
 	}
 
-	states := model.States(opts.Events)
+	stored := opts.Records
 	registry := opts.Sites
 	if registry == nil {
 		registry = sites.All()
@@ -145,73 +152,73 @@ func Build(opts Options) Dataset {
 	}
 
 	// ---- records -------------------------------------------------------
-	records := make([]Record, 0, len(states))
-	publishedPerPost := make(map[string]int, len(states))
-	publishedPerSite := make(map[string]int, len(states))
+	records := make([]Record, 0, len(stored))
+	publishedPerPost := make(map[string]int, len(stored))
+	publishedPerSite := make(map[string]int, len(stored))
 	postsPerSite := map[string]map[string]struct{}{}
 	statusCount := map[string]int{}
 	monthCount := map[string]int{}
-	eventPosts := map[string]struct{}{}
-	eventSites := map[string]struct{}{}
+	knownPosts := map[string]struct{}{}
+	knownSitesUsed := map[string]struct{}{}
 	var lastAt time.Time
 
-	for _, e := range opts.Events {
-		eventPosts[e.Post] = struct{}{}
-		eventSites[e.Site] = struct{}{}
-		if e.At.After(lastAt) {
-			lastAt = e.At
-		}
-	}
-
-	for _, st := range states {
-		title := st.Title
+	for _, item := range stored {
+		title := item.Title
 		if title == "" {
-			title = posts.Title(opts.Posts, st.Post)
+			title = posts.Title(opts.Posts, item.Post)
 		}
 
 		rec := Record{
-			Post:        st.Post,
+			ID:          item.ID,
+			Post:        item.Post,
 			Title:       title,
-			Site:        st.Site,
-			SiteName:    siteName(knownSites, st.Site),
-			Status:      string(st.Status),
-			At:          st.At.Format(time.RFC3339),
-			URL:         st.URL,
-			Draft:       st.Draft,
-			DraftExists: st.Draft != "" && draftExists(st.Draft),
-			Note:        st.Note,
-			EventCount:  st.EventCount,
+			Site:        item.Site,
+			SiteName:    siteName(knownSites, item.Site),
+			Status:      string(item.Status),
+			CreateAt:    item.CreateAt.Format(time.RFC3339),
+			UpdateAt:    item.UpdateAt.Format(time.RFC3339),
+			URL:         item.URL,
+			Draft:       item.Draft,
+			DraftExists: item.Draft != "" && draftExists(item.Draft),
+			Note:        item.Note,
 		}
 		records = append(records, rec)
 
+		knownPosts[item.Post] = struct{}{}
+		knownSitesUsed[item.Site] = struct{}{}
+		if item.UpdateAt.After(lastAt) {
+			lastAt = item.UpdateAt
+		}
+
 		statusCount[rec.Status]++
-		if st.IsPublished() {
-			publishedPerPost[st.Post]++
-			publishedPerSite[st.Site]++
-			monthCount[st.At.Format("2006-01")]++
-			if _, ok := postsPerSite[st.Site]; !ok {
-				postsPerSite[st.Site] = map[string]struct{}{}
+		if item.IsPublished() {
+			publishedPerPost[item.Post]++
+			publishedPerSite[item.Site]++
+			monthCount[item.CreateAt.Format("2006-01")]++
+			if _, ok := postsPerSite[item.Site]; !ok {
+				postsPerSite[item.Site] = map[string]struct{}{}
 			}
-			postsPerSite[st.Site][st.Post] = struct{}{}
+			postsPerSite[item.Site][item.Post] = struct{}{}
 		}
 	}
+	sortRecords(records)
 
 	// ---- pending -------------------------------------------------------
 	// Sites of the registry that a post has not been published to. Only posts
 	// with at least one record are listed when no explicit post is requested,
 	// otherwise every scanned post would produce registrySize rows.
 	pending := make([]PendingItem, 0, len(records))
-	activePosts := make([]string, 0, len(eventPosts))
-	for p := range eventPosts {
+	activePosts := make([]string, 0, len(knownPosts))
+	for p := range knownPosts {
 		activePosts = append(activePosts, p)
 	}
 	sort.Strings(activePosts)
 	for _, postKey := range activePosts {
 		title := posts.Title(opts.Posts, postKey)
 		published := map[string]struct{}{}
-		for _, st := range states {
-			if st.Post == postKey && st.IsPublished() {
-				published[st.Site] = struct{}{}
+		for _, item := range stored {
+			if item.Post == postKey && item.IsPublished() {
+				published[item.Site] = struct{}{}
 			}
 		}
 		for _, s := range registry {
@@ -243,9 +250,9 @@ func Build(opts Options) Dataset {
 			continue
 		}
 		title := ""
-		for _, st := range states {
-			if st.Post == key && st.Title != "" {
-				title = st.Title
+		for _, item := range stored {
+			if item.Post == key && item.Title != "" {
+				title = item.Title
 				break
 			}
 		}
@@ -258,7 +265,7 @@ func Build(opts Options) Dataset {
 	sort.Slice(postRows, func(i, j int) bool { return postRows[i].Post < postRows[j].Post })
 
 	// ---- sites ---------------------------------------------------------
-	siteRows := make([]SiteRow, 0, len(registry)+len(eventSites))
+	siteRows := make([]SiteRow, 0, len(registry)+len(knownSitesUsed))
 	for _, s := range registry {
 		siteRows = append(siteRows, SiteRow{
 			Key: s.Key, Name: s.Name, URL: s.URL, Lang: s.Lang, Notes: s.Notes,
@@ -266,7 +273,7 @@ func Build(opts Options) Dataset {
 		})
 	}
 	unknownSites := make([]string, 0)
-	for key := range eventSites {
+	for key := range knownSitesUsed {
 		if _, ok := knownSites[key]; !ok {
 			unknownSites = append(unknownSites, key)
 		}
@@ -314,10 +321,10 @@ func Build(opts Options) Dataset {
 	})
 
 	summary := Summary{
-		Records:     len(opts.Events),
-		Posts:       len(eventPosts),
-		Sites:       len(eventSites),
-		Published:   publishedCount(states),
+		Records:     len(stored),
+		Posts:       len(knownPosts),
+		Sites:       len(knownSitesUsed),
+		Published:   countPublished(stored),
 		Pending:     len(pending),
 		GeneratedAt: now.Format(time.RFC3339),
 	}
@@ -333,6 +340,20 @@ func Build(opts Options) Dataset {
 		Posts:   postRows,
 		Stats:   Stats{BySite: bySite, ByMonth: byMonth, ByStatus: byStatus},
 	}
+}
+
+// sortRecords orders view records newest first (by update time).
+func sortRecords(list []Record) {
+	sort.SliceStable(list, func(i, j int) bool {
+		ti, tj := list[i].ParsedUpdateAt(), list[j].ParsedUpdateAt()
+		if !ti.Equal(tj) {
+			return ti.After(tj)
+		}
+		if list[i].Post != list[j].Post {
+			return list[i].Post < list[j].Post
+		}
+		return list[i].Site < list[j].Site
+	})
 }
 
 // siteName resolves a display name from the active registry.
@@ -352,18 +373,19 @@ func pendingCount(total, published int) int {
 	return total - published
 }
 
-func publishedCount(states []model.State) int {
+func countPublished(records []model.Record) int {
 	n := 0
-	for _, st := range states {
-		if st.IsPublished() {
+	for _, rec := range records {
+		if rec.IsPublished() {
 			n++
 		}
 	}
 	return n
 }
 
-// Filter selects records by post key, site key, status and free text.
+// Filter selects records by id, post key, site key, status and free text.
 type Filter struct {
+	ID     string
 	Post   string
 	Site   string
 	Status string
@@ -372,6 +394,9 @@ type Filter struct {
 
 // Match reports whether the record passes the filter.
 func (f Filter) Match(r Record) bool {
+	if f.ID != "" && !strings.Contains(strings.ToLower(r.ID), strings.ToLower(strings.TrimSpace(f.ID))) {
+		return false
+	}
 	if f.Post != "" && !strings.Contains(r.Post, model.NormalizePost(f.Post)) {
 		return false
 	}
@@ -383,7 +408,7 @@ func (f Filter) Match(r Record) bool {
 	}
 	if f.Query != "" {
 		q := strings.ToLower(f.Query)
-		hay := strings.ToLower(r.Post + " " + r.Title + " " + r.Site + " " + r.SiteName + " " + r.URL + " " + r.Draft + " " + r.Note)
+		hay := strings.ToLower(r.ID + " " + r.Post + " " + r.Title + " " + r.Site + " " + r.SiteName + " " + r.URL + " " + r.Draft + " " + r.Note)
 		if !strings.Contains(hay, q) {
 			return false
 		}
@@ -391,7 +416,7 @@ func (f Filter) Match(r Record) bool {
 	return true
 }
 
-// FilterRecords applies f, newest first.
+// FilterRecords applies f; records stay ordered newest first.
 func FilterRecords(list []Record, f Filter) []Record {
 	out := make([]Record, 0, len(list))
 	for _, r := range list {
@@ -399,15 +424,6 @@ func FilterRecords(list []Record, f Filter) []Record {
 			out = append(out, r)
 		}
 	}
-	sort.SliceStable(out, func(i, j int) bool {
-		if out[i].At != out[j].At {
-			return out[i].At > out[j].At
-		}
-		if out[i].Post != out[j].Post {
-			return out[i].Post < out[j].Post
-		}
-		return out[i].Site < out[j].Site
-	})
 	return out
 }
 
