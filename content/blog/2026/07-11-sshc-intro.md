@@ -140,7 +140,7 @@ sshc host add --ip 192.168.1.20 --name pve-host --auth dev-root
 sshc host add --name lxc-app \
   --backend command_proxy \
   --via pve-host \
-  --run-template "pct exec 101 -- sh -lc {{cmd}}" \
+  --run-template "pct exec 101 -- sh -lc {% raw %}{{cmd}}{% endraw %}" \
   --login-command "pct enter 101"
 
 sshc run lxc-app -- cat /etc/os-release
