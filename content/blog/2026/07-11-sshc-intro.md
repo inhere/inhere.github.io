@@ -10,6 +10,8 @@ slug: sshc-intro
 
 `sshc` 是我为这类日常工作写的 SSH 命令行工具。它把主机、认证信息和执行记录放进同一套本地配置，同时提供单机执行、批量任务、文件传输、跳板机、失败重跑和本地 Web 控制台。它仍然使用 SSH，也不试图替代 Ansible；它处理的是两者之间那段经常由脚本和记忆勉强维持的工作流。
 
+![sshc SSH 运维工作流海报](/img/blog/sshc-poster.png)
+
 <!-- more -->
 
 - 项目主页：[https://github.com/inhere/sshc](https://github.com/inhere/sshc)
