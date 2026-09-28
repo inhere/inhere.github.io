@@ -17,7 +17,7 @@ The last post about `miglite` covered v0.4.0 in June. Since then it shipped four
 - Previous post: [miglite: raw SQL migrations for Go projects](/en/blog/2026/gookit-miglite-intro/)
 - Latest release: [v0.8.0](https://github.com/gookit/miglite/releases/tag/v0.8.0)
 
-## What changed since v0.4.0
+## What changed across these releases
 
 | Version | Date | Change |
 | --- | --- | --- |
@@ -152,4 +152,6 @@ There are no breaking changes between v0.4.0 and v0.8.0: no command was removed,
 
 For a single-binary deployment that should not carry a `migrations` directory, the `embed.FS` support in v0.8.0 removes that step. For a local SQLite database that just needs schema management, the v0.4.0 usage still works unchanged.
 
-The project lives at [gookit/miglite](https://github.com/gookit/miglite). Install it with `go install github.com/gookit/miglite/cmd/miglite@latest`, or with [eget](https://github.com/inherelab/eget): `eget install gookit/miglite`.
+- Project: [gookit/miglite](https://github.com/gookit/miglite)
+- Quick install: `go install github.com/gookit/miglite/cmd/miglite@latest`
+- Or with [eget](https://github.com/inherelab/eget): `eget install gookit/miglite`
