@@ -29,7 +29,7 @@ cd share/blogshare && make build                  # 产出 ./blogshare
 ./blogshare serve --open                           # 只读 Web 视图
 ```
 
-- 每条记录有 6 位 `id`（`list` 第一列）；`create_at` 是发布时间（`--at` 可补录），`update_at` 自动刷新。
+- 每条记录有 `yymm_xxxxxx` 形式的 `id`（`list` 第一列，`yymm` 是记录月份）；`create_at` 是发布时间（`--at` 可补录），`update_at` 自动刷新。
 - 草稿放在 `share/<site>/<slug>.md`，`add` 会自动匹配并写入 `draft` 字段。
 
 ## Reddit

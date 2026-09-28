@@ -58,19 +58,37 @@ func TestRecordValidate(t *testing.T) {
 }
 
 func TestNewID(t *testing.T) {
+	created := time.Date(2026, 9, 28, 10, 0, 0, 0, time.Local)
+	assert.Eq(t, "2609_", IDPrefix(created))
+
 	seen := map[string]bool{}
 	for i := 0; i < 500; i++ {
-		id := NewID(seen)
-		assert.Eq(t, IDLen, len(id))
+		id := NewID(created, seen)
+		assert.Eq(t, IDPrefixLen+IDLen, len(id))
+		assert.NoErr(t, ValidateID(id))
+		assert.Contains(t, id, "2609_")
 		assert.False(t, seen[id], "id %q generated twice", id)
 		seen[id] = true
 	}
 
 	// collisions are skipped
 	taken := map[string]bool{}
-	taken[NewID(taken)] = true
-	fresh := NewID(taken)
-	assert.False(t, taken[fresh])
+	first := NewID(created, taken)
+	taken[first] = true
+	assert.False(t, taken[NewID(created, taken)])
+
+	assert.Eq(t, "2606_", IDPrefix(time.Date(2026, 6, 18, 0, 0, 0, 0, time.Local)))
+}
+
+func TestValidateID(t *testing.T) {
+	assert.NoErr(t, ValidateID("2609_abc123"))
+	assert.NoErr(t, ValidateID("9912_zzzzzz"))
+
+	assert.Err(t, ValidateID(""))
+	assert.Err(t, ValidateID("abc123"))
+	assert.Err(t, ValidateID("2609_ABC123"))
+	assert.Err(t, ValidateID("2609_abc12"))
+	assert.Err(t, ValidateID("26093_abc12"))
 }
 
 func TestApplyPatch(t *testing.T) {

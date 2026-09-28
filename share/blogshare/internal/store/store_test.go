@@ -27,7 +27,8 @@ func TestAddLoadUpdateDelete(t *testing.T) {
 		URL: "https://news.ycombinator.com/item?id=1", Title: "sshc", CreateAt: backdated,
 	})
 	assert.NoErr(t, err)
-	assert.Eq(t, model.IDLen, len(created.ID))
+	assert.Eq(t, model.IDPrefixLen+model.IDLen, len(created.ID))
+	assert.Eq(t, "2609_", created.ID[:5])              // yymm_ of the backdated create_at
 	assert.Eq(t, "blog/2026/sshc-intro", created.Post) // normalized by Add
 	assert.Eq(t, "hn", created.Site)
 	assert.Eq(t, backdated, created.CreateAt) // --at keeps the publish time
@@ -121,11 +122,11 @@ func TestLoadValidateCollectsAllProblems(t *testing.T) {
 	assert.NoErr(t, os.MkdirAll(filepath.Dir(file), 0o755))
 
 	lines := []string{
-		`{"id":"a1","post":"blog/a","site":"hn","status":"published","create_at":"2026-09-28T10:00:00+08:00","update_at":"2026-09-28T10:00:00+08:00"}`,
-		`{"id":"a1","post":"blog/b","site":"hn","status":"published","create_at":"2026-09-28T10:00:00+08:00","update_at":"2026-09-28T10:00:00+08:00"}`,
+		`{"id":"2609_a1b2c3","post":"blog/a","site":"hn","status":"published","create_at":"2026-09-28T10:00:00+08:00","update_at":"2026-09-28T10:00:00+08:00"}`,
+		`{"id":"2609_a1b2c3","post":"blog/b","site":"hn","status":"published","create_at":"2026-09-28T10:00:00+08:00","update_at":"2026-09-28T10:00:00+08:00"}`,
 		`{"post":"blog/c","site":"hn","status":"published","create_at":"2026-09-28T10:00:00+08:00","update_at":"2026-09-28T10:00:00+08:00"}`,
 		`{"id":"a4","post":"blog/a","site":"hn","status":"published","create_at":"2026-09-28T10:00:00+08:00","update_at":"2026-09-28T10:00:00+08:00"}`,
-		`{"id":"a5","post":"blog/d","site":"hn"}`,
+		`{"id":"2609_e5f6a7","post":"blog/d","site":"hn"}`,
 		`{oops}`,
 	}
 	assert.NoErr(t, os.WriteFile(file, []byte(strings.Join(lines, "\n")+"\n"), 0o644))
@@ -134,13 +135,15 @@ func TestLoadValidateCollectsAllProblems(t *testing.T) {
 	// a1, the duplicate id line, the id-less line and the duplicate pair line parse fine;
 	// only the line without create_at is dropped by Validate.
 	assert.Len(t, records, 4)
-	assert.Len(t, problems, 5)
+	assert.Len(t, problems, 6)
 
 	joined := strings.Join(problems, "\n")
 	assert.Contains(t, joined, "duplicate id")
-	assert.Contains(t, joined, "has no id")
+	assert.Contains(t, joined, "id is required")
+	assert.Contains(t, joined, "must look like yymm_xxxxxx")
 	assert.Contains(t, joined, "duplicate pair")
 	assert.Contains(t, joined, "create_at is required")
+	assert.Contains(t, joined, "must look like yymm_xxxxxx")
 	assert.Contains(t, joined, "invalid JSON")
 }
 

@@ -24,8 +24,8 @@ func NewApp(info BuildInfo, content fs.FS) *capp.App {
 	app.LongHelp = `
 <cyan>Examples:</>
   blogshare add blog/2026/sshc-intro hn --url https://news.ycombinator.com/item?id=1
-  blogshare update a3k9qz --url https://news.ycombinator.com/item?id=2   # fix by id
-  blogshare rm a3k9qz
+  blogshare update 2609_a3k9qz --url https://news.ycombinator.com/item?id=2   # fix by id
+  blogshare rm 2609_a3k9qz
   blogshare list --site reddit --status published
   blogshare show blog/2026/sshc-intro
   blogshare pending --post blog/2026/sshc-intro

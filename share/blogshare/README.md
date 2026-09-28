@@ -6,13 +6,13 @@
 
 ## 数据文件
 
-`share/records.jsonl` — 一行一条记录，每条有个短 id（6 位 base36），当成简单存储用：新增 / 按 id 修改 / 按 id 删除。
+`share/records.jsonl` — 一行一条记录，每条有个短 id（`yymm_xxxxxx`，创建月份 + 6 位 base36），当成简单存储用：新增 / 按 id 修改 / 按 id 删除。
 
 ```json
-{"id":"a3k9qz","post":"blog/2026/sshc-intro","site":"hn","status":"published","url":"https://news.ycombinator.com/item?id=1","draft":"share/hn/sshc-intro.md","title":"sshc: 更顺手的 ssh 客户端","note":"Show HN 首发","create_at":"2026-09-20T10:30:00+08:00","update_at":"2026-09-28T20:31:00+08:00"}
+{"id":"2609_a3k9qz","post":"blog/2026/sshc-intro","site":"hn","status":"published","url":"https://news.ycombinator.com/item?id=1","draft":"share/hn/sshc-intro.md","title":"sshc: 更顺手的 ssh 客户端","note":"Show HN 首发","create_at":"2026-09-20T10:30:00+08:00","update_at":"2026-09-28T20:31:00+08:00"}
 ```
 
-- `id`：唯一短 id，`update <id>` / `rm <id>` 都用它；`(post, site)` 唯一，重复会被拒绝并提示已有 id。
+- `id`：唯一短 id，`yymm_xxxxxx` 形式（`yymm` 取 `create_at` 的年月，便于一眼看出哪个月记的）；`update <id>` / `rm <id>` 都用它；`(post, site)` 唯一，重复会被拒绝并提示已有 id。
 - `create_at`：记录创建时间，也就是**发布时间**，补录历史用 `--at` 指定；`update_at`：最后一次修改时间，自动维护。
 - `status`：`planned` / `published` / `blocked` / `removed` / `failed`（默认 `published`）。
 - `post` 用文章 key，等于 URL 路径去掉前后斜杠，例如 `blog/2026/sshc-intro`、`projects/gookit-goutil`。
@@ -31,17 +31,17 @@ blogshare posts --only unshared                        # 还没分享过的文�
 blogshare add blog/2026/sshc-intro hn \
   --url https://news.ycombinator.com/item?id=1 \
   --note "Show HN 首发"
-# => created a3k9qz  blog/2026/sshc-intro -> hn  [published]  2026-09-28 20:31
+# => created 2609_a3k9qz  blog/2026/sshc-intro -> hn  [published]  2026-09-28 20:31
 
 blogshare add blog/2026/sshc-intro v2ex --status blocked --note "账号等级不够"
 blogshare add blog/2026/sshc-intro juejin --at "2026-09-27 21:00"   # 补录历史（create_at）
 
-blogshare update a3k9qz --url https://news.ycombinator.com/item?id=2   # 按 id 改，update_at 自动刷新
-blogshare update a3k9qz --status removed --note "被 AutoMod 删除"
-blogshare rm a3k9qz                                    # 按 id 删除
+blogshare update 2609_a3k9qz --url https://news.ycombinator.com/item?id=2   # 按 id 改，update_at 自动刷新
+blogshare update 2609_a3k9qz --status removed --note "被 AutoMod 删除"
+blogshare rm 2609_a3k9qz                               # 按 id 删除
 
 blogshare list                                         # 全部记录（含 id / updated）
-blogshare list --id a3k9qz                             # 按 id 过滤
+blogshare list --id 2609_a3k9qz                        # 按 id 过滤
 blogshare list --status published                      # 全部已发布记录
 blogshare list --site reddit --json                    # 机器可读输出
 blogshare show blog/2026/sshc-intro                    # 单篇：记录(含 id) + 仍待发布站点
@@ -75,7 +75,7 @@ blogshare serve --open                                 # 只读 Web 视图（默
 
 ```
 main.go                    入口（embed web/ + capp 应用）
-internal/model/            记录模型、状态、id 生成、key 归一化、Patch
+internal/model/            记录模型、状态、`yymm_xxxxxx` id 生成、key 归一化、Patch
 internal/store/            路径定位 + JSONL 读取/校验 + 按 id 增删改（原子写）
 internal/sites/            内置站点表（来自 ../../share/community-sharing.md）
 internal/posts/            扫描 content/ 的 zola 页面

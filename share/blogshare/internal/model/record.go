@@ -169,19 +169,34 @@ func (r *Record) Apply(p Patch, now time.Time) {
 // idAlphabet is base36: short ids that stay readable in tables and commands.
 const idAlphabet = "0123456789abcdefghijklmnopqrstuvwxyz"
 
-// IDLen is the length of generated record ids.
+// IDLen is the length of the random part of a record id.
 const IDLen = 6
 
-// NewID returns a random 6 character id that is not in taken.
-func NewID(taken map[string]bool) string {
+// IDPrefixLen is the length of the "yymm_" prefix of a record id.
+const IDPrefixLen = 5
+
+// idPattern matches a full record id: "yymm_" plus 6 base36 characters.
+var idPattern = regexp.MustCompile(`^\d{4}_[0-9a-z]{6}$`)
+
+// IDPrefix returns the "yymm_" prefix for a record created at t.
+func IDPrefix(t time.Time) string {
+	return t.Format("0601") + "_"
+}
+
+// NewID returns a random id for a record created at t, shaped
+// "yymm_" + 6 base36 characters, that is not in taken.
+func NewID(t time.Time, taken map[string]bool) string {
+	prefix := IDPrefix(t)
+
 	buf := make([]byte, IDLen)
 	for attempt := 0; attempt < 100; attempt++ {
 		if _, err := rand.Read(buf); err != nil {
 			break
 		}
-		id := make([]byte, IDLen)
-		for i, b := range buf {
-			id[i] = idAlphabet[int(b)%len(idAlphabet)]
+		id := make([]byte, 0, IDPrefixLen+IDLen)
+		id = append(id, prefix...)
+		for _, b := range buf {
+			id = append(id, idAlphabet[int(b)%len(idAlphabet)])
 		}
 		if !taken[string(id)] {
 			return string(id)
@@ -190,11 +205,22 @@ func NewID(taken map[string]bool) string {
 
 	// Fallback keeps ids working even without a usable random source.
 	for i := 0; ; i++ {
-		id := fmt.Sprintf("%0*d", IDLen, i)
+		id := prefix + fmt.Sprintf("%0*d", IDLen, i)
 		if !taken[id] {
 			return id
 		}
 	}
+}
+
+// ValidateID reports whether id has the "yymm_" + 6 base36 form.
+func ValidateID(id string) error {
+	if id == "" {
+		return fmt.Errorf("id is required")
+	}
+	if !idPattern.MatchString(id) {
+		return fmt.Errorf("id %q must look like yymm_xxxxxx", id)
+	}
+	return nil
 }
 
 // Sort orders records newest first (by update time, then post and site).

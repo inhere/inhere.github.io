@@ -85,8 +85,8 @@ func (s *Store) LoadValidate() (records []model.Record, problems []string) {
 			problems = append(problems, fmt.Sprintf("line %d: %v", num, err))
 			continue
 		}
-		if rec.ID == "" {
-			problems = append(problems, fmt.Sprintf("line %d: record %s -> %s has no id", num, rec.Post, rec.Site))
+		if err := model.ValidateID(rec.ID); err != nil {
+			problems = append(problems, fmt.Sprintf("line %d: record %s -> %s: %v", num, rec.Post, rec.Site, err))
 		} else if prev, ok := seenID[rec.ID]; ok {
 			problems = append(problems, fmt.Sprintf("line %d: duplicate id %q (first on line %d)", num, rec.ID, prev))
 		} else {
@@ -140,7 +140,7 @@ func (s *Store) Add(rec model.Record) (model.Record, error) {
 	for _, existing := range records {
 		taken[existing.ID] = true
 	}
-	rec.ID = model.NewID(taken)
+	rec.ID = model.NewID(rec.CreateAt, taken)
 
 	if err := rec.Validate(); err != nil {
 		return model.Record{}, err
