@@ -10,6 +10,7 @@
 - 一篇草稿通常只放一个主链接；需要补充时再放 blog 或 repo。
 - 被删除或拦截后，先看规则、flair、AutoModerator 原因，不要立刻重复提交。
 - 自推广比例要低，先通过正常评论和反馈积累账号可信度。
+- 站点参考 @community-sharing.md
 
 ## Reddit
 
