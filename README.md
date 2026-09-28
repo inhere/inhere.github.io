@@ -23,7 +23,7 @@ skillc add -S https://github.com/affaan-m/ECC --skill article-writing
 # content-rewrite
 skillc add -S https://github.com/zc277584121/marketing-skills --skill content-rewrite
 # blog-writing-guide
-skillc add -S https://skills.sh/sickn33/antigravity-awesome-skills blog-writing-guide
+skillc add -S https://github.com/sickn33/agentic-awesome-skills --skill blog-writing-guide
 skillc add -S https://github.com/blader/humanizer humanizer
 skillc add -S https://github.com/op7418/Humanizer-zh  humanizer-zh
 ```

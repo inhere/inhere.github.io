@@ -19,7 +19,7 @@ slug: gookit-miglite-v0-8-0
 - 上一篇：[miglite：用原始 SQL 文件管理数据库迁移](/blog/2026/gookit-miglite-intro/)
 - 最新版本：[v0.8.0](https://github.com/gookit/miglite/releases/tag/v0.8.0)
 
-## 这几个月改了什么
+## 这几个版本改了什么
 
 | 版本 | 时间 | 主要变化 |
 | --- | --- | --- |
@@ -155,4 +155,6 @@ if err = mig.Status(command.StatusOption{}); err != nil {
 
 如果你的服务是单二进制部署、又不想在镜像里管一个 `migrations` 目录，v0.8.0 的 `embed.FS` 支持正好省掉这件事；如果你只是想在本地 SQLite 上把 schema 管起来，v0.4.0 那套用法现在依然原样能用。
 
-工具链接再放一次：仓库 [gookit/miglite](https://github.com/gookit/miglite)，`go install github.com/gookit/miglite/cmd/miglite@latest`，或者用 [eget](https://github.com/inherelab/eget) 装：`eget install gookit/miglite`。
+- 工具链接仓库 [gookit/miglite](https://github.com/gookit/miglite)
+- 快速安装 `go install github.com/gookit/miglite/cmd/miglite@latest`
+- 或者用 [eget](https://github.com/inherelab/eget) 安装：`eget install gookit/miglite`。
