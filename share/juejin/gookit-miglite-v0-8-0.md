@@ -8,7 +8,7 @@ published: false
 
 这次没有推翻原来的设计，改动集中在两件事：让迁移文件跟着二进制一起走，以及修掉几个看起来生效、其实没生效的行为。
 
-![miglite v0.8.0：把迁移文件嵌进二进制](/img/blog/miglite-v080-poster.png)
+![miglite v0.8.0：把迁移文件嵌进二进制](https://inhere.github.io/img/blog/miglite-v080-poster.png)
 
 <!-- more -->
 

@@ -7,7 +7,7 @@ canonical_url: https://inhere.github.io/en/blog/2026/gookit-miglite-v0-8-0/
 
 The last post about `miglite` covered v0.4.0 in June. Since then it shipped four releases and 69 commits (`v0.4.0..v0.8.0`), up to v0.8.0. The design did not change. Two things did: migration files can now travel inside the binary, and several flags that were accepted but ignored now take effect.
 
-![miglite v0.8.0: embed migrations in the binary](/img/blog/miglite-v080-poster.png)
+![miglite v0.8.0: embed migrations in the binary](https://inhere.github.io/img/blog/miglite-v080-poster.png)
 
 <!-- more -->
 
