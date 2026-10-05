@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet href="https://inhere.github.io/feed_style.xsl" type="text/xsl"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-Hans">
+    <tabi:metadata xmlns:tabi="https://github.com/welpo/tabi">
+        <tabi:base_url>https://inhere.github.io</tabi:base_url>
+        <tabi:separator>
+            •
+        </tabi:separator>
+        <tabi:about_feeds>
+            这是Web Feed，又称为Atom Feed，把现在的网址复制到新闻阅读器即可订阅本站文章。造访「About Feeds」来了解更多资讯。
+        </tabi:about_feeds>
+        <tabi:visit_the_site>
+            造访网站
+        </tabi:visit_the_site>
+        <tabi:recent_posts>
+            近期文章
+        </tabi:recent_posts>
+        <tabi:last_updated_on>
+            更新于 $DATE
+        </tabi:last_updated_on>
+        <tabi:default_theme></tabi:default_theme>
+        <tabi:post_listing_date>date</tabi:post_listing_date>
+        <tabi:current_section>sshc</tabi:current_section>
+    </tabi:metadata><link rel="extra-stylesheet" href="https://inhere.github.io/skins/blue.css?h=a4dc1e94d3f5759784d2" /><title>Inhere&apos;s Site - sshc</title>
+        <subtitle>Inhere&#39;s site, blogs and project docs</subtitle>
+    <link href="https://inhere.github.io/tags/sshc/atom.xml" rel="self" type="application/atom+xml"/>
+    <link href="https://inhere.github.io/tags/sshc/" rel="alternate" type="text/html"/>
+    <generator uri="https://www.getzola.org/">Zola</generator><updated>2026-07-11T16:30:00+00:00</updated><id>https://inhere.github.io/tags/sshc/atom.xml</id><entry xml:lang="zh-Hans">
+        <title>sshc：把零散的 SSH 命令整理成可重复的运维工作流</title>
+        <published>2026-07-11T16:30:00+00:00</published>
+        <updated>2026-07-11T16:30:00+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/blog/2026/sshc-intro/" type="text/html"/>
+        <id>https://inhere.github.io/blog/2026/sshc-intro/</id>
+        <summary type="html">只管理一两台服务器时，SSH 很简单：记住地址，敲一条命令就能登录。机器多起来以后，麻烦通常不在 SSH 本身，而在 SSH 周围：地址散落在聊天记录里，账号和密钥重复配置，批量操作靠临时 shell 循环，执行失败后还要翻终端输出确认漏了哪台。
+sshc 是我为这类日常工作写的 SSH 命令行工具。它把主机、认证信息和执行记录放进同一套本地配置，同时提供单机执行、批量任务、文件传输、跳板机、失败重跑和本地 Web 控制台。它仍然使用 SSH，也不试图替代 Ansible；它处理的是两者之间那段经常由脚本和记忆勉强维持的工作流。
+…</summary>
+        </entry>
+</feed>
