@@ -61,7 +61,7 @@ gofer job worktree merge <id> --cleanup   # merge into the main branch, remove t
 
 In short: **hand work to any coding agent, then accept or reject it like a pull request.**
 
-![Open a job waiting for review, read the diff, accept and merge it](/img/blog/gofer-intro-review-merge.gif)
+![Open a job waiting for review, read the diff, accept and merge it](/img/blog/gofer-intro-review-merge.en.gif)
 
 ## Many machines, one console
 
