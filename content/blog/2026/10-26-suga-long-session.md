@@ -13,6 +13,8 @@ agent 在一个会话里干久了，会出三种问题：上下文塞满后开�
 
 先交代清楚：当前版本 v0.49，`v0` 阶段次版本之间可能有不兼容变更；MIT 许可；我是作者，以下是自述。
 
+![suga：长会话里第 1 轮的约束一直有效](/img/blog/suga-long-session-poster.png)
+
 <!-- more -->
 
 - 仓库：[github.com/inhere/suga](https://github.com/inhere/suga)
