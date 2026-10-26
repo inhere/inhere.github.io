@@ -11,7 +11,9 @@ slug: gofer-intro
 
 `gofer` 是我为这件事写的工具。一句话：**你的 agent、你的机器、一个控制面**——把 Claude Code、Codex、ACP agent 或者普通命令，作为可追踪、可验收的任务，跑在你自己的每台机器上，不上云，worker 也不需要开入站端口。
 
-先交代清楚：gofer 是 MIT 开源，单个 Go 二进制带一个 Web 控制台；当前版本 v0.196，还在 `0.x`，发版频繁，接口可能调整，以 CHANGELOG 为准；我是作者，以下是自述。
+先交代清楚：gofer 是 MIT 开源，单个 Go 二进制带一个 Web 控制台；当前版本 v0.196，还在 `0.x`，发版频繁，接口可能调整，以 CHANGELOG 为准；以下是 gofer 简介。
+
+![gofer：你的 agent、你的机器、一个控制面](/img/blog/gofer-intro-poster.png)
 
 <!-- more -->
 
@@ -57,7 +59,7 @@ gofer job accept <id>                     # 或：gofer job reject <id> --note "
 gofer job worktree merge <id> --cleanup   # 合并回主分支，清理 worktree
 ```
 
-这就是副标题说的：**把活交给任意 coding agent，再像审 PR 一样接受或打回**。
+也就是：**把活交给任意 coding agent，再像审 PR 一样接受或打回**。
 
 <!-- 图 / GIF：派任务 → 待验收面板 → 合并，T03 出图 -->
 
@@ -95,7 +97,7 @@ gofer session relay on                  # 会话停下来时，在 Web 上等我
 单个任务之上还有几层，系列后续文章会一篇一篇展开：
 
 - **计划**：把一批活拆成带依赖的待办，前一项完成后一项自动派发；一份任务也可以扇出给几个 agent，对比结果再择优合并。
-- **信箱**：会话和任务之间按地址互相写信，比如让负责前端的会话通知负责后端的会话「接口改好了」。
+- **信箱**：会话和任务之间按地址互相写信、实时沟通，收发双方可以是不同的 agent（`claude-code <-> codex`），也可以在不同的机器上。例如让负责前端的会话通知负责后端的会话「接口改好了」。
 - **仓库里的 tracker 与记忆**：issue 和 agent 记住的经验存在仓库里（`.gofer/tracker`），跟着代码走，Web 上可以跨项目搜索。
 - **定时任务**：cron 或一次性，带参数，比如每天清理构建缓存。
 
