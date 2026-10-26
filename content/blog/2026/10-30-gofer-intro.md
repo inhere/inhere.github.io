@@ -20,7 +20,7 @@ slug: gofer-intro
 - 仓库：[github.com/inhere/gofer](https://github.com/inhere/gofer)
 - 发布页：[releases/latest](https://github.com/inhere/gofer/releases/latest)（Linux / macOS / Windows 二进制，含 Web 控制台）
 
-<!-- 图：工作台全景（新界面、示例数据），T03 出图 -->
+![gofer 工作台：左边是登记的会话，右边是一个会话的对话和输入框](/img/blog/gofer-intro-workbench.png)
 
 ## 它是什么，不是什么
 
@@ -61,7 +61,7 @@ gofer job worktree merge <id> --cleanup   # 合并回主分支，清理 worktree
 
 也就是：**把活交给任意 coding agent，再像审 PR 一样接受或打回**。
 
-<!-- 图 / GIF：派任务 → 待验收面板 → 合并，T03 出图 -->
+![从待验收打开任务，看 diff，通过并合并到基线](/img/blog/gofer-intro-review-merge.gif)
 
 ## 多台机器，一个控制台
 
@@ -90,7 +90,7 @@ gofer session relay on                  # 会话停下来时，在 Web 上等我
 
 对 ACP agent，还可以开审批：改文件、执行命令这类调用要人点头，只读工具直接放行。
 
-<!-- 图：手机上的今天页与一次审批，T03 出图 -->
+<img src="/img/blog/gofer-intro-today-phone.png" alt="手机上的「今天」页：待批准和待验收的任务" width="320">
 
 ## 再往上：计划、信箱、仓库里的 tracker
 
