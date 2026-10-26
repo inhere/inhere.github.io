@@ -1,7 +1,6 @@
 ---
 title: "14 turns, 3 context resets, and the turn-1 constraint still holds: long sessions in suga"
-date: 2026-10-26T10:00:00
-draft: true
+date: 2026-10-26T14:54:00
 taxonomies:
   tags: [suga, golang, ai-agent, cli, open-source, gofer]
 slug: suga-long-session

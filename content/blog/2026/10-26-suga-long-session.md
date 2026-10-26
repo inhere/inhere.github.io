@@ -1,7 +1,6 @@
 ---
 title: 让 agent 跑 14 轮、换 3 次段还记得第 1 轮的约束：suga 的长会话做法
-date: 2026-10-26T10:00:00
-draft: true
+date: 2026-10-26T14:54:00
 taxonomies:
   tags: [suga, golang, ai-agent, cli, open-source, gofer]
 slug: suga-long-session
