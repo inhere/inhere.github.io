@@ -10,7 +10,7 @@ Keep an agent in one session long enough and three things go wrong. The context 
 
 `suga` is a personal coding agent I write in Go. The goal is a session that can stay with me for a full working day. This post covers the trade-offs it makes for long sessions, which of them are backed by data and which experiments failed, and how it works with gofer, my job platform. suga itself is built on gofer, one batch of agent jobs at a time.
 
-Up front: the current version is v0.49. It is `v0`, so minor releases may break things. It is MIT licensed. I am the author, so read this as a first-hand account, not a review.
+> The current version is v0.49. It is `v0`, so minor releases may break things. It is MIT licensed. What follows is an introduction to suga.
 
 ![suga: long agent sessions that keep the turn-1 constraint](/img/blog/suga-long-session-poster.png)
 
@@ -35,7 +35,7 @@ This is tested by a set of "hard" long-session evals. Each task runs 13 to 14 tu
 
 With a real model (deepseek-v4.1-flash), three runs per task, it currently passes 12/12.
 
-**I got this wrong once.** I gave the model call that writes the handoff an output limit derived from the budget (about 3.3k tokens). Unit tests and fake-model evals all passed. On a real model, 3 of 4 tasks failed at the reset with "empty summary": a reasoning model spends output tokens on thinking, and the limit ran out before the answer started. That call now has no limit. The handoff size is enforced by the budgets and by trimming each section afterwards. The lesson: a fake model will not catch changes that depend on model behavior. They need a real model run.
+> **I got this wrong once.** I gave the model call that writes the handoff an output limit derived from the budget (about 3.3k tokens). Unit tests and fake-model evals all passed. On a real model, 3 of 4 tasks failed at the reset with "empty summary": a reasoning model spends output tokens on thinking, and the limit ran out before the answer started. That call now has no limit. The handoff size is enforced by the budgets and by trimming each section afterwards. The lesson: a fake model will not catch changes that depend on model behavior. They need a real model run.
 
 ## Every token is accounted for: fixed prefix, tool descriptions, lazy loading
 
@@ -146,7 +146,7 @@ Several suga jobs in parallel, each in its own worktree + branch: change code, r
 gofer job worktree merge → suga-verify workflow
    (Linux race / CI simulation / staticcheck / Windows tests + ConPTY smoke / 40+ pty scenarios)
    ▼
-tag → GitHub Actions builds binaries for three platforms → upload to the intranet mirror
+tag → GitHub Actions builds binaries for three platforms → upload
 ```
 
 Jobs go to different models in rotation, and every review verdict is recorded. Changes that need a design get a design doc, a review and human approval, then a plan that also needs approval before implementation. By v0.49 there are 56 tags and more than 2,400 commits. For the last few dozen batches, the code was written almost entirely by suga jobs. I split the work, review it and release.
@@ -173,7 +173,7 @@ result, err := runtime.Run(ctx, agentcore.RunInput{
 
 For a real model, swap in `llm.NewOpenAIProvider(...)`. Add tools with `reg.Register(...)`. To control permissions, wrap it in `tools.NewApproval`: with no approver configured, every call is denied, not allowed. The limits, stated here too: it is a single-agent loop with no multi-agent orchestration, and `pkg/sugasdk` (in-process Open / Send / Event) is marked experimental.
 
-## Compared with similar tools, and when not to use it
+## Compared with similar tools
 
 Claude Code and Codex CLI come from the model vendors, and their model integration and interaction are more polished. aider has a mature git workflow. opencode has a good TUI. suga makes different trade-offs:
 
@@ -212,7 +212,5 @@ For a one-off task: `suga run --prompt "Summarize this project"`. To have it cha
 - `pkg/agentcore`: the core and capability layer; start with the table in `layering_test.go`.
 
 `docs/` holds 45 design docs, 32 plans and 13 research reports. Most of the "why" is in there, and most numbers in this post come from `docs/research`.
-
-How big is the fixed prefix on each of your agent's requests, and have you measured it? Mine was about 7.9k tokens before the trim and about 7.0k after. I tried lazy loading once, and the extra calls ate most of the savings. If you handle this differently or have hit worse problems, come talk in [GitHub Issues](https://github.com/inhere/suga/issues).
 
 > I'm inhere ([blog](https://inhere.github.io) · [GitHub](https://github.com/inhere)), the author of suga. The numbers in this post come from measured runs on v0.48 to v0.49 and from the reports under `docs/research` in the repository. The commands are all in the text, so you can reproduce them.

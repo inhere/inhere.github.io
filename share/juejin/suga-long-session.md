@@ -10,7 +10,7 @@ agent 在一个会话里干久了，会出三种问题：上下文塞满后开�
 
 `suga` 是我用 Go 写的个人 coding agent，目标是一个会话能陪我干一整天活。这篇讲它在长会话上的几处取舍，哪些有数据支撑、哪些试过没成，以及它和我的任务平台 gofer 怎么配合。suga 本身就是在 gofer 上由 agent 一批批写出来的。
 
-先交代清楚：当前版本 v0.49，`v0` 阶段次版本之间可能有不兼容变更；MIT 许可；我是作者，以下是自述。
+> 当前版本 v0.49，`v0` 阶段次版本之间可能有不兼容变更；MIT 许可；以下是suga的一些介绍。
 
 ![suga：长会话里第 1 轮的约束一直有效](https://inhere.github.io/img/blog/suga-long-session-poster.png)
 
@@ -33,7 +33,7 @@ suga 的做法是**分段**：上下文快满时开新的一段，旧段落盘�
 
 真实模型（deepseek-v4.1-flash）每个任务跑 3 次，当前 12/12 通过。
 
-**这里栽过一次跟头**：给“写交接包”这次模型调用加了一个按预算算出来的输出上限（约 3.3k token），单测和假模型评测全过。换真实模型一跑，4 个任务里 3 个在换段时报“摘要为空”——推理模型的思考过程也占输出额度，额度用完时正文还没开始写。现在这个调用不设上限，包的大小由预算和事后按节截断来保证。教训是：涉及模型行为的改动，假模型测不出来，必须过真实模型。
+> **这里栽过一次跟头**：给“写交接包”这次模型调用加了一个按预算算出来的输出上限（约 3.3k token），单测和假模型评测全过。换真实模型一跑，4 个任务里 3 个在换段时报“摘要为空”——推理模型的思考过程也占输出额度，额度用完时正文还没开始写。现在这个调用不设上限，包的大小由预算和事后按节截断来保证。教训是：涉及模型行为的改动，假模型测不出来，必须过真实模型。
 
 ## 每个 token 都有账：固定前缀、工具描述、按需加载
 
@@ -144,7 +144,7 @@ suga 自己的开发就是这么跑的：
 gofer job worktree merge → suga-verify 工作流
    （Linux race / CI 模拟 / staticcheck / Windows 测试 + ConPTY 冒烟 / 40+ 个伪终端场景）
    ▼
-打 tag → GitHub Actions 出三平台二进制 → 上传内网
+打 tag → GitHub Actions 出三平台二进制 → 上传
 ```
 
 不同模型交叉派活、记录每次审核的结论；需要设计的改动先出设计、评审、经人批准，再出计划、经批准才实施。到 v0.49 一共 56 个 tag、2400 多个提交；最近几十批改动，代码基本都是 suga 实施 job 写的，我负责拆任务、审核和发版。
@@ -171,7 +171,7 @@ result, err := runtime.Run(ctx, agentcore.RunInput{
 
 接真实模型换成 `llm.NewOpenAIProvider(...)`，加工具用 `reg.Register(...)`，控权限在外面包一层 `tools.NewApproval`：没配审批方时一律拒绝，而不是放行。限制也写在这里：只做单 agent 循环，不做多 agent 编排；`pkg/sugasdk`（进程内 Open / Send / Event）标着 experimental。
 
-## 和同类工具比，什么时候别用它
+## 和同类工具对比
 
 Claude Code、Codex CLI 是模型厂商自己做的，模型适配和交互打磨得更好；aider 的 git 工作流很成熟；opencode 的 TUI 体验好。suga 的取舍不同：
 
@@ -210,7 +210,5 @@ suga chat                         # 在当前目录开始；:help 看命令，:c
 - `pkg/agentcore`：内核与能力层，先看 `layering_test.go` 那张表。
 
 `docs/` 下有 45 篇设计、32 篇计划、13 篇调研，“为什么这么做”基本都在里面，文中的数字大多出自 `docs/research`。
-
-你的 agent 每次请求的固定前缀有多大，量过吗？我这边精简前约 7.9k token、精简后约 7.0k，按需加载试过一轮，省下的被多出来的调用吃掉了大半。有不同做法或踩过更深的坑，欢迎到 [GitHub Issues](https://github.com/inhere/suga/issues) 聊。
 
 > 我是 inhere（[博客](https://inhere.github.io) · [GitHub](https://github.com/inhere)），suga 的作者。文中数字来自 v0.48–v0.49 的实测运行和仓库 `docs/research` 下的报告，命令都在正文里，可以自己复现。
