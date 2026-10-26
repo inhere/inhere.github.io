@@ -59,7 +59,7 @@ A 10-character prompt, 8,853 input tokens. The `context` event in `suga inspect 
 | `system` | 3,559 | the stable system prompt |
 | `skills` | 1,333 | the skills list |
 
-The cache hit rate for this call was 69.4% (`IN 2709 + CACHE-R 6144 = 8853`). A high hit rate depends on a stable prefix: the tool table, the system prompt and the segment context do not change within a session. Put a timestamp or a random ID into the system prompt on every request and the hit rate drops and the bill goes up. The thinking-signature bug later in this post has the same cause.
+The cache hit rate for this call was only 69.4% (`IN 2709 + CACHE-R 6144 = 8853`), because it was the first request of a new session: the 6,144 cached tokens are the shared prefix (system prompt and tool table) left at the provider by earlier requests, and the uncached part is roughly the workspace rules plus the prompt. Once a session is running, the rate is much higher: the 14-turn task below made 87 calls, the calls within turns hit about 88%, and with the 3 uncached calls at the resets it comes to 86% overall. That depends on a stable prefix: the tool table, the system prompt and the segment context do not change within a session. Put a timestamp or a random ID into the system prompt on every request and the hit rate drops and the bill goes up. The thinking-signature bug later in this post has the same cause.
 
 Cost in a long session is roughly "number of calls × context per call". Breaking a 14-turn task down call by call showed that **29% of the input was the fixed prefix resent on every call**: about 0.9k tokens of system prompt and about 7.0k tokens of schemas for the 20 built-in tools.
 
