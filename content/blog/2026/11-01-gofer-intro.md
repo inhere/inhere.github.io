@@ -1,6 +1,6 @@
 ---
 title: 把 Claude Code、Codex 当成可验收的任务来跑：gofer，一个自托管的 agent 控制面
-date: 2026-10-30T10:00:00
+date: 2026-11-01T10:00:00
 draft: true
 taxonomies:
   tags: [gofer, golang, ai-agent, claude-code, codex, self-hosted, open-source]
@@ -11,7 +11,7 @@ slug: gofer-intro
 
 `gofer` 是我为这件事写的工具。一句话：**你的 agent、你的机器、一个控制面**——把 Claude Code、Codex、ACP agent 或者普通命令，作为可追踪、可验收的任务，跑在你自己的每台机器上，不上云，worker 也不需要开入站端口。
 
-先交代清楚：gofer 是 MIT 开源，单个 Go 二进制带一个 Web 控制台；当前版本 v0.196，还在 `0.x`，发版频繁，接口可能调整，以 CHANGELOG 为准；以下是 gofer 简介。
+先交代清楚：gofer 是 MIT 开源，单个 Go 二进制带一个 Web 控制台；当前版本 v0.199，还在 `0.x`，发版频繁，接口可能调整，以 CHANGELOG 为准；以下是 gofer 简介。
 
 ![gofer：你的 agent、你的机器、一个控制面](/img/blog/gofer-intro-poster.png)
 

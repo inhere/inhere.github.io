@@ -1,6 +1,6 @@
 ---
 title: "gofer: run Claude Code and Codex as reviewable jobs on your own machines"
-date: 2026-10-30T10:00:00
+date: 2026-11-01T10:00:00
 draft: true
 taxonomies:
   tags: [gofer, golang, ai-agent, claude-code, codex, self-hosted, open-source]
@@ -11,7 +11,7 @@ With three or four Claude Code and Codex sessions open across two computers and 
 
 `gofer` is the tool I wrote for that. In one line: **your agents, your machines, one control plane.** It runs Claude Code, Codex, ACP agents or plain commands as tracked, reviewable jobs on every machine you own, with no cloud in between and no inbound ports to open on the workers.
 
-The basics up front: gofer is MIT licensed, a single Go binary with a web console built in. The current version is v0.196. It is still `0.x`, it ships often, and interfaces may change; the CHANGELOG is the source of truth. Here is what it does.
+The basics up front: gofer is MIT licensed, a single Go binary with a web console built in. The current version is v0.199. It is still `0.x`, it ships often, and interfaces may change; the CHANGELOG is the source of truth. Here is what it does.
 
 ![gofer: your agents, your machines, one control plane](/img/blog/gofer-intro-poster.png)
 
