@@ -11,24 +11,12 @@ With three or four Claude Code and Codex sessions open across two computers and 
 
 `gofer` is the tool I wrote for that. In one line: **your agents, your machines, one control plane.** It runs Claude Code, Codex, ACP agents or plain commands as tracked, reviewable jobs on every machine you own, with no cloud in between and no inbound ports to open on the workers.
 
-The basics up front: gofer is MIT licensed, a single Go binary with a web console built in. The current version is v0.200. It is still `0.x`, it ships often, and interfaces may change; the CHANGELOG is the source of truth. Here is what it does.
+![Open a job waiting for review, read the diff, accept and merge it](https://inhere.github.io/img/blog/gofer-intro-review-merge.en.gif)
 
-![gofer: your agents, your machines, one control plane](https://inhere.github.io/img/blog/gofer-intro-poster.png)
+gofer is MIT licensed: a single Go binary with a web console built in. The current version is v0.200. It is still `0.x`, it ships often, and interfaces may change; the CHANGELOG is the source of truth. Installing and starting it takes about five commands, listed under "Try it" at the end.
 
 - Repository: [github.com/inhere/gofer](https://github.com/inhere/gofer)
 - Releases: [releases/latest](https://github.com/inhere/gofer/releases/latest) (Linux, macOS and Windows binaries, web console included)
-
-![The gofer workbench: registered sessions on the left, one session's conversation and input box on the right](https://inhere.github.io/img/blog/gofer-intro-workbench.en.png)
-
-## What it is, and what it isn't
-
-gofer has three parts:
-
-- **server** (`gofer serve`): the single source of truth. Projects and their admission rules, the job store, scheduling, the HTTP API and the web console all live here. One per machine.
-- **worker** (`gofer worker`): an executor on another machine or in a container. It dials into the server, reports which directories and agents it has, and runs jobs locally. No inbound port needed.
-- **agent**: the program that does the work. gofer ships no model. It starts and supervises CLIs you already have: `claude`, `codex`, `omp`, an ACP agent, or a plain command.
-
-It is **not** an agent, a hosted service, a CI system or a sandbox, and it has no multi-tenant mode. Access is token based, and a job runs with the permissions of the gofer process that executes it. It fits one developer, or a small team that trusts each other.
 
 ## What a job looks like
 
@@ -59,8 +47,6 @@ gofer job worktree merge <id> --cleanup   # merge into the main branch, remove t
 
 In short: **hand work to any coding agent, then accept or reject it like a pull request.**
 
-![Open a job waiting for review, read the diff, accept and merge it](https://inhere.github.io/img/blog/gofer-intro-review-merge.en.gif)
-
 ## Many machines, one console
 
 My setup is a Windows workstation, a Linux container and two more Windows machines. They all connect to one server as workers:
@@ -77,6 +63,8 @@ After that, `--runner <worker-id>` sends a job there. Upgrades are one click in 
 
 ## Pick up terminal sessions on your phone
 
+![The gofer workbench: registered sessions on the left, one session's conversation and input box on the right](https://inhere.github.io/img/blog/gofer-intro-workbench.en.png)
+
 A lot of the time I'm not dispatching jobs at all. I'm working in a terminal with Claude Code. gofer can register those sessions too:
 
 ```bash
@@ -89,6 +77,16 @@ When a session stops and needs a decision, I can see what it asked from a browse
 For ACP agents you can also turn on approvals. Tool calls that edit files or run commands wait for a person, and read-only tools pass through.
 
 <img src="https://inhere.github.io/img/blog/gofer-intro-today-phone.en.png" alt="The Today page on a phone: jobs waiting for approval and for review" width="320">
+
+## What it is, and what it isn't
+
+gofer has three parts:
+
+- **server** (`gofer serve`): the single source of truth. Projects and their admission rules, the job store, scheduling, the HTTP API and the web console all live here. One per machine.
+- **worker** (`gofer worker`): an executor on another machine or in a container. It dials into the server, reports which directories and agents it has, and runs jobs locally. No inbound port needed.
+- **agent**: the program that does the work. gofer ships no model. It starts and supervises CLIs you already have: `claude`, `codex`, `omp`, an ACP agent, or a plain command.
+
+It is **not** an agent, a hosted service, a CI system or a sandbox, and it has no multi-tenant mode. Access is token based, and a job runs with the permissions of the gofer process that executes it. It fits one developer, or a small team that trusts each other.
 
 ## On top of jobs: plans, a mailbox, a tracker in the repo
 

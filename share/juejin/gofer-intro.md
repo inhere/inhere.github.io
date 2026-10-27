@@ -10,24 +10,12 @@ published: false
 
 `gofer` 是我为这件事写的工具。一句话：**你的 agent、你的机器、一个控制面**——把 Claude Code、Codex、ACP agent 或者普通命令，作为可追踪、可验收的任务，跑在你自己的每台机器上，不上云，worker 也不需要开入站端口。
 
-先交代清楚：gofer 是 MIT 开源，单个 Go 二进制带一个 Web 控制台；当前版本 v0.200，还在 `0.x`，发版频繁，接口可能调整，以 CHANGELOG 为准；以下是 gofer 简介。
+![从待验收打开任务，看 diff，通过并合并到基线](https://inhere.github.io/img/blog/gofer-intro-review-merge.gif)
 
-![gofer：你的 agent、你的机器、一个控制面](https://inhere.github.io/img/blog/gofer-intro-poster.png)
+gofer 是 MIT 开源的，单个 Go 二进制，自带 Web 控制台；当前版本 v0.200，还在 `0.x`，发版频繁，接口可能调整，以 CHANGELOG 为准。完整的安装和启动步骤在文末「试一下」，五条命令左右。
 
 - 仓库：[github.com/inhere/gofer](https://github.com/inhere/gofer)
 - 发布页：[releases/latest](https://github.com/inhere/gofer/releases/latest)（Linux / macOS / Windows 二进制，含 Web 控制台）
-
-![gofer 工作台：左边是登记的会话，右边是一个会话的对话和输入框](https://inhere.github.io/img/blog/gofer-intro-workbench.png)
-
-## 它是什么，不是什么
-
-gofer 由三部分组成：
-
-- **server**（`gofer serve`）：唯一的事实来源。项目和准入规则、任务存储、调度、HTTP API、Web 控制台都在这里，一台机器一个。
-- **worker**（`gofer worker`）：其他机器或容器上的执行器。它主动连到 server，报告自己有哪些目录、装了哪些 agent，然后在本地跑任务。不需要开入站端口。
-- **agent**：真正干活的程序。gofer 不带模型，它启动和监管你已经装好的 CLI：`claude`、`codex`、`omp`、ACP agent，或者一条普通命令。
-
-它**不是** agent，也不是托管服务、CI 系统或沙箱，不做多租户。访问基于 token，任务以执行它的 gofer 进程的权限运行。适合一个人，或者互相信任的小团队。
 
 ## 一个任务长什么样
 
@@ -58,8 +46,6 @@ gofer job worktree merge <id> --cleanup   # 合并回主分支，清理 worktree
 
 也就是：**把活交给任意 coding agent，再像审 PR 一样接受或打回**。
 
-![从待验收打开任务，看 diff，通过并合并到基线](https://inhere.github.io/img/blog/gofer-intro-review-merge.gif)
-
 ## 多台机器，一个控制台
 
 我的日常是一台 Windows 主力机、一个 Linux 容器，外加另外两台 Windows。它们都作为 worker 连到同一个 server：
@@ -76,6 +62,8 @@ gofer worker -d
 
 ## 终端会话也能在手机上接
 
+![gofer 工作台：左边是登记的会话，右边是一个会话的对话和输入框](https://inhere.github.io/img/blog/gofer-intro-workbench.png)
+
 很多时候我不是派任务，而是直接在终端里开着 Claude Code 干活。gofer 可以把这些会话登记起来：
 
 ```bash
@@ -88,6 +76,16 @@ gofer session relay on                  # 会话停下来时，在 Web 上等我
 对 ACP agent，还可以开审批：改文件、执行命令这类调用要人点头，只读工具直接放行。
 
 <img src="https://inhere.github.io/img/blog/gofer-intro-today-phone.png" alt="手机上的「今天」页：待批准和待验收的任务" width="320">
+
+## 它是什么，不是什么
+
+gofer 由三部分组成：
+
+- **server**（`gofer serve`）：唯一的事实来源。项目和准入规则、任务存储、调度、HTTP API、Web 控制台都在这里，一台机器一个。
+- **worker**（`gofer worker`）：其他机器或容器上的执行器。它主动连到 server，报告自己有哪些目录、装了哪些 agent，然后在本地跑任务。不需要开入站端口。
+- **agent**：真正干活的程序。gofer 不带模型，它启动和监管你已经装好的 CLI：`claude`、`codex`、`omp`、ACP agent，或者一条普通命令。
+
+它**不是** agent，也不是托管服务、CI 系统或沙箱，不做多租户。访问基于 token，任务以执行它的 gofer 进程的权限运行。适合一个人，或者互相信任的小团队。
 
 ## 再往上：计划、信箱、仓库里的 tracker
 
