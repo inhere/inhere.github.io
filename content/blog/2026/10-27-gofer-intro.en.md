@@ -1,7 +1,6 @@
 ---
 title: "gofer: run Claude Code and Codex as reviewable jobs on your own machines"
-date: 2026-11-01T10:00:00
-draft: true
+date: 2026-10-27T10:00:00
 taxonomies:
   tags: [gofer, golang, ai-agent, claude-code, codex, self-hosted, open-source]
 slug: gofer-intro

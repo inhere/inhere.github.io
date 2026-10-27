@@ -1,7 +1,6 @@
 ---
 title: 把 Claude Code、Codex 当成可验收的任务来跑：gofer，一个自托管的 agent 控制面
-date: 2026-11-01T10:00:00
-draft: true
+date: 2026-10-27T10:00:00
 taxonomies:
   tags: [gofer, golang, ai-agent, claude-code, codex, self-hosted, open-source]
 slug: gofer-intro
