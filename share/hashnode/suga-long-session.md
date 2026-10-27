@@ -106,7 +106,7 @@ The fix: send back `{}`, and keep that reminder's text and position fixed within
 
 ## Safe by default, and "tests pass" comes from a command, not the model
 
-suga is read-only by default. With writes enabled, chat asks before writing a file or running a command (`y` / `n` / `a` to stop asking for this session), and rules by tool, path or command can live in a file. File tools snapshot before writing, so `:undo` or `suga undo <session>` can roll back. Changes made through `shell_exec` are recorded but not rolled back, on purpose.
+suga is read-only by default. With writes enabled, chat asks before writing a file or running a command (`y` / `n` / `a` to stop asking for this session), and rules by tool, path or command can live in a file. File tools snapshot before writing, so `:undo` or `suga session undo <session>` can roll back. Changes made through `shell_exec` are recorded but not rolled back, on purpose.
 
 A model saying "fixed, tests pass" does not count. `--verify` runs the check command you give it after the turn ends, and a failure goes back to the model as a new turn (at most 2 rounds by default). A small repository with one bug (the prompt asks it to confirm the bug in `Add` with the tests, then fix it; the model answered in Chinese):
 
