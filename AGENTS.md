@@ -6,7 +6,7 @@ zola 博客仓库：文章在 `content/blog/<year>/`，社区分发草稿在 `sh
 
 一篇文章从初稿到分发按 1→7 走。只做用户当前要求的那一步，不要顺手把后面几步一起做；第 4-7 步动手前先跟用户确认（发布属于外部动作）。
 
-1. **写中文稿**：介绍自己的工具 / 项目的文章，先读 `@docs/tool-intro-post-guide.md`（第一屏怎么写、推荐结构与写法）。新建 `content/blog/<year>/<MM-DD>-<slug>.md`，YAML front matter（`title` / `date` / `taxonomies.tags` / `slug`）。文件名与 slug 的规则（含版本号里的点写成短横线）见 `@README.md` 的「多语言文章」。先讲问题和取舍，少用功能清单和营销词。
+1. **写中文稿**：介绍自己的工具 / 项目的文章，先读 `@docs/tool-intro-post-guide.md`（第一屏怎么写、推荐结构与写法）。新建 `content/blog/<year>/<MM-DD>-<slug>.md`，YAML front matter（`title` / `date` / `taxonomies.tags` / `slug`）。文件名与 slug 的规则（含版本号里的点写成短横线）见 `@README.md` 的「多语言文章」。开头直接写工具的核心能力，不用第一人称，不写开发过程、局限和预告；少用营销词。
    完成：`zola build` 通过，文章能在 `zola serve` 里从头读一遍。
 2. **去 AI 味（中文，必做）**：先读 `.agents/skills/humanizer-zh/SKILL.md`，按里面的模式改；再用它自带的结构检查对比改前改后：`python .agents/skills/humanizer-zh/tests/check_structure.py <改前> <改后>`。
    完成：结构检查里 frontmatter / 代码块 / 行内代码 / 链接 / 表格 / 序号步骤全为 true（标题文字除标点统一外不动），版本号、数字、日期与改前一致，`值得|深入|赋能|闭环|至关重要|总而言之|下面我们` 这类词 0 命中。
