@@ -6,12 +6,43 @@ taxonomies:
 slug: apic-intro
 ---
 
-`apic` 把任何 HTTP API 变成命令行：**读取 API 的定义（OpenAPI / Swagger，或几行 YAML），每个接口生成一条命令**，参数变成选项，带 shell 补全。
+`apic` 是一个可以把任何 HTTP API 变成命令行的工具：**读取 API 的定义（OpenAPI / Swagger，或几行 YAML），每个接口生成一条命令**，参数变成选项，带 shell 补全。
 
 - **定义即命令**：有 OpenAPI 文档的服务一条 `site add` 接入；没有文档的内部服务，写几行 YAML 列出接口即可。
 - **多环境与认证**：dev / prod 各自的地址和凭证，支持 bearer、basic、apikey、登录换 token、外部命令取 token；生产环境写操作要 `--yes`。
 - **取值、分页、换格式**：`--pick` 跨层取字段、改列名，`--all-pages` 翻页合并，`-o table` / `yaml` 直接看。
 - **人和 AI agent 共用**：stdout 只有响应体，退出码有固定含义，`apic skill` 生成给 agent 的 `SKILL.md`；密钥在 `-v`、`--dry-run` 和报错里一律打码。
+
+<!-- more -->
+
+apic 是 MIT 开源的，单个 Go 二进制，Linux / macOS / Windows 都能用。安装和上手见下面两节，四五条命令。
+
+- 仓库：[github.com/inhere/apic](https://github.com/inhere/apic)
+- 发布页：[releases/latest](https://github.com/inhere/apic/releases/latest)
+
+## 快速安装
+
+推荐用 [eget](https://github.com/inherelab/eget) 安装（会校验 checksum）：
+
+```bash
+eget install inhere/apic
+# 或者：go install github.com/inhere/apic/cmd/apic@latest
+```
+
+## 快速开始
+
+用公开的示例服务试一下，或者照下文「从零接入一个服务」写一个简单定义：
+
+```bash
+apic site add pet --spec https://petstore3.swagger.io/api/v3/openapi.json --base-url https://petstore3.swagger.io
+apic ops pet
+apic pet find-pets-by-status --status available --pick '*.{id,name}' -o table
+apic pet get-pet-by-id --petId 1 --pick 'name,category=category.name'   # {"name":"doggie","category":"Dogs"}
+```
+
+README 里有一节「常用场景」，覆盖列表转表格、分页、脚本、生产保护和凭证这些写法；
+
+> 简单的 GitLab API 的只读示例配置在 [examples/gitlab](https://github.com/inhere/apic/tree/main/examples/gitlab)。
 
 ```bash
 $ apic pet users --all-pages --pick '*.{id,name,dept=dept.name}' -o table
@@ -23,13 +54,6 @@ id  name    dept
 ```
 
 上面这条命令翻完了所有分页，从每条记录里取出三个字段（其中一个是嵌套字段，改了列名），输出成表格。token 在配置里引用，不出现在命令行上。
-
-<!-- more -->
-
-apic 是 MIT 开源的，单个 Go 二进制，Linux / macOS / Windows 都能用，当前版本 v0.5.0。安装和上手在文末「试一下」，四五条命令。
-
-- 仓库：[github.com/inhere/apic](https://github.com/inhere/apic)
-- 发布页：[releases/latest](https://github.com/inhere/apic/releases/latest)
 
 ## 从零接入一个服务
 
@@ -79,7 +103,7 @@ sites:
       prod: {type: bearer, token: "${exec:pass show pet/prod-token}"}
 ```
 
-和「别出事」有关的几条：
+和安全有关的几条：
 
 - **环境绑定认证**：`--env prod` 一定用 prod 的 token。之前用 `apic use` 存下来的选择，不会把 dev 的 token 发到 prod 去。
 - **写保护**：`protect: true` 的环境，GET 照常，POST/PUT/DELETE 不带 `--yes` 直接拒绝，退出码 6。认证上还可以加 `allow_methods: [GET, HEAD]`，做成只读账号。
@@ -151,28 +175,8 @@ apic 是一个按定义生成命令的 HTTP 客户端，面向日常查询和小
 - 不是代码生成器：不生成 SDK 或独立的 CLI 源码，命令在运行时从定义生成。
 - 不做 OAuth 授权码、设备码这类交互式登录。需要的话可以用 `exec` 认证调用现成的 SSO 命令行拿 token。
 
-## 和同类工具比
+### 和同类工具比
 
 - **curl / HTTPie**：什么都能调，也最灵活。apic 底层也只是发 HTTP 请求，`--dry-run` 输出的就是 curl 命令。区别在于 apic 记住了地址、环境和认证，命令和参数有补全，这些在 curl 里要靠 shell 别名和脚本自己维护。
 - **Restish**：同样读取 OpenAPI 生成命令，成熟、功能多。apic 的取舍是把重心放在没有 OpenAPI 文档的内部服务（简单定义、overlay）、按环境绑定认证与写保护，以及给 agent 用的 skill 和退出码约定。
 - **为每个服务手写 CLI**：体验可以做到最好，但每个服务都要写一遍、维护一遍。apic 适合那些需要个命令行、又犯不上专门写一个的服务。
-
-## 试一下
-
-推荐用 [eget](https://github.com/inherelab/eget) 安装（会校验 checksum）：
-
-```bash
-eget install inhere/apic
-# 或者：go install github.com/inhere/apic/cmd/apic@latest
-```
-
-用公开的示例服务试一下，或者照上面「从零接入一个服务」写一个简单定义：
-
-```bash
-apic site add pet --spec https://petstore3.swagger.io/api/v3/openapi.json --base-url https://petstore3.swagger.io
-apic ops pet
-apic pet find-pets-by-status --status available --pick '*.{id,name}' -o table
-apic pet get-pet-by-id --petId 1 --pick 'name,category=category.name'   # {"name":"doggie","category":"Dogs"}
-```
-
-README 里有一节「常用场景」，覆盖列表转表格、分页、脚本、生产保护和凭证这些写法；GitLab 的只读示例配置在 [examples/gitlab](https://github.com/inhere/apic/tree/main/examples/gitlab)。
