@@ -4,11 +4,13 @@ date: 2026-11-13T10:00:00
 taxonomies:
   tags: [apic, api, openapi, golang, cli, ai-agent]
 slug: apic-intro
+extra:
+  social_media_card: "img/blog/apic-intro-poster.png"
 ---
 
 `apic` 是一个可以把任何 HTTP API 变成命令行的工具：**读取 API 的定义（OpenAPI / Swagger，或几行 YAML），每个接口生成一条命令**，参数变成选项，带 shell 补全。
 
-- **定义即命令**：有 OpenAPI 文档的服务一条 `site add` 接入；没有文档的内部服务，写几行 YAML 列出接口即可。
+- **定义即命令**：有 OpenAPI 文档的服务一条 `site add` 接入；没有文档的内部服务，写几行 YAML 列出接口即可。`apic link` 还能给站点生成独立的命令入口，如 `petctl`。
 - **多环境与认证**：dev / prod 各自的地址和凭证，支持 bearer、basic、apikey、登录换 token、外部命令取 token；生产环境写操作要 `--yes`。
 - **取值、分页、换格式**：`--pick` 跨层取字段、改列名，`--all-pages` 翻页合并，`-o table` / `yaml` 直接看。
 - **人和 AI agent 共用**：stdout 只有响应体，退出码有固定含义，`apic skill` 生成给 agent 的 `SKILL.md`；密钥在 `-v`、`--dry-run` 和报错里一律打码。
@@ -118,6 +120,22 @@ apic pet create-user -f name=tom --dry-run
 ```
 
 `--dry-run` 打印等价的 curl 命令，不发请求，适合在真正写入之前确认一遍。
+
+## 给站点生成独立命令
+
+常用的站点可以生成一个独立命令，用起来和专门写的 CLI 一样，不用每次敲 `apic pet`：
+
+```bash
+apic link pet --name petctl              # 生成 petctl
+petctl users --keyword tom               # 等同于 apic pet users --keyword tom
+petctl create-user -f name=tom --dry-run
+
+apic link pet --name pet-prod --env prod # 固定环境：pet-prod 只连生产
+apic link ls                             # 列出已生成的命令
+apic link rm pet-prod
+```
+
+生成的是一个很薄的脚本（`exec apic --api pet --env prod "$@"`），默认放在 `~/.local/bin`，Windows 上放在 `%USERPROFILE%\bin` 并同时生成 `.cmd`，可以用 `defaults.link_dir` 或 `--dir` 改位置。`--env`、`--auth` 可以把环境和认证固定在命令里，写保护照常生效。这些命令同样有补全：`eval "$(apic link ls --completion bash)"`。
 
 ## 只取需要的字段
 
