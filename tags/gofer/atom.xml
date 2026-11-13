@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet href="https://inhere.github.io/feed_style.xsl" type="text/xsl"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-Hans">
+    <tabi:metadata xmlns:tabi="https://github.com/welpo/tabi">
+        <tabi:base_url>https://inhere.github.io</tabi:base_url>
+        <tabi:separator>
+            •
+        </tabi:separator>
+        <tabi:about_feeds>
+            这是 Web Feed，也叫 Atom Feed。把地址栏中的网址复制到 RSS 阅读器中订阅。访问 About Feeds 了解更多。
+        </tabi:about_feeds>
+        <tabi:visit_the_site>
+            访问网站
+        </tabi:visit_the_site>
+        <tabi:recent_posts>
+            近期文章
+        </tabi:recent_posts>
+        <tabi:last_updated_on>
+            更新于 $DATE
+        </tabi:last_updated_on>
+        <tabi:default_theme></tabi:default_theme>
+        <tabi:post_listing_date>date</tabi:post_listing_date>
+        <tabi:current_section>gofer</tabi:current_section>
+    </tabi:metadata><link rel="extra-stylesheet" href="https://inhere.github.io/skins/blue.css?h=a4dc1e94d3f5759784d2" /><title>Inhere&apos;s Site - gofer</title>
+        <subtitle>Inhere&#39;s site, blogs and project docs</subtitle>
+    <link href="https://inhere.github.io/tags/gofer/atom.xml" rel="self" type="application/atom+xml"/>
+    <link href="https://inhere.github.io/tags/gofer/" rel="alternate" type="text/html"/>
+    <generator uri="https://www.getzola.org/">Zola</generator><updated>2026-10-27T10:00:00+00:00</updated><id>https://inhere.github.io/tags/gofer/atom.xml</id><entry xml:lang="zh-Hans">
+        <title>把 Claude Code、Codex 当成可验收的任务来跑：gofer，一个自托管的 agent 控制面</title>
+        <published>2026-10-27T10:00:00+00:00</published>
+        <updated>2026-10-27T10:00:00+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/blog/2026/gofer-intro/" type="text/html"/>
+        <id>https://inhere.github.io/blog/2026/gofer-intro/</id>
+        <summary type="html">同时开着三四个 Claude Code 和 Codex 会话、分布在两台电脑和一个容器里的时候，我经常答不上这几个问题：哪个会话在等我回复？那个让它改测试的 agent 到底改了什么，跑过测试没有？昨天晚上派出去的活，现在是做完了、卡住了，还是早就报错退出了？出门在外，手机上能不能看一眼、点个批准？
+gofer 是我为这件事写的工具。一句话：你的 agent、你的机器、一个控制面——把 Claude Code、Codex、ACP agent 或者普通命令，作为可追踪、可验收的任务，跑在你自己的每台机器上，不上云，worker 也不需要开入站端口。
+…</summary>
+        </entry><entry xml:lang="zh-Hans">
+        <title>让 agent 跑 14 轮、换 3 次段还记得第 1 轮的约束：suga 的长会话做法</title>
+        <published>2026-10-26T14:54:00+00:00</published>
+        <updated>2026-10-26T14:54:00+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/blog/2026/suga-long-session/" type="text/html"/>
+        <id>https://inhere.github.io/blog/2026/suga-long-session/</id>
+        <summary type="html">agent 在一个会话里干久了，会出三种问题：上下文塞满后开始压缩，压缩掉的恰好是你第一轮交代的约束；每次请求都背着几千 token 的固定开销，会话越长越贵；出了问题想回头查“它到底做了什么”，却没有记录可查。
+suga 是我用 Go 写的个人 coding agent，目标是一个会话能陪我干一整天活。这篇讲它在长会话上的几处取舍，哪些有数据支撑、哪些试过没成，以及它和我的任务平台 gofer 怎么配合。suga 本身就是在 gofer 上由 agent 一批批写出来的。
+
+当前版本 v0.49，v0 阶段次版本之间可能有不兼容变更；MIT 许可；以下是suga的一些介绍。
+
+…</summary>
+        </entry>
+</feed>

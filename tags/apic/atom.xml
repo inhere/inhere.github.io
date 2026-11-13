@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet href="https://inhere.github.io/feed_style.xsl" type="text/xsl"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-Hans">
+    <tabi:metadata xmlns:tabi="https://github.com/welpo/tabi">
+        <tabi:base_url>https://inhere.github.io</tabi:base_url>
+        <tabi:separator>
+            •
+        </tabi:separator>
+        <tabi:about_feeds>
+            这是 Web Feed，也叫 Atom Feed。把地址栏中的网址复制到 RSS 阅读器中订阅。访问 About Feeds 了解更多。
+        </tabi:about_feeds>
+        <tabi:visit_the_site>
+            访问网站
+        </tabi:visit_the_site>
+        <tabi:recent_posts>
+            近期文章
+        </tabi:recent_posts>
+        <tabi:last_updated_on>
+            更新于 $DATE
+        </tabi:last_updated_on>
+        <tabi:default_theme></tabi:default_theme>
+        <tabi:post_listing_date>date</tabi:post_listing_date>
+        <tabi:current_section>apic</tabi:current_section>
+    </tabi:metadata><link rel="extra-stylesheet" href="https://inhere.github.io/skins/blue.css?h=a4dc1e94d3f5759784d2" /><title>Inhere&apos;s Site - apic</title>
+        <subtitle>Inhere&#39;s site, blogs and project docs</subtitle>
+    <link href="https://inhere.github.io/tags/apic/atom.xml" rel="self" type="application/atom+xml"/>
+    <link href="https://inhere.github.io/tags/apic/" rel="alternate" type="text/html"/>
+    <generator uri="https://www.getzola.org/">Zola</generator><updated>2026-11-13T10:00:00+00:00</updated><id>https://inhere.github.io/tags/apic/atom.xml</id><entry xml:lang="zh-Hans">
+        <title>apic：给任何 HTTP API 一个命令行，不用再为每个服务写 CLI</title>
+        <published>2026-11-13T10:00:00+00:00</published>
+        <updated>2026-11-13T10:00:00+00:00</updated>
+        <author>
+            <name>Inhere</name>
+        </author>
+        <link rel="alternate" href="https://inhere.github.io/blog/2026/apic-intro/" type="text/html"/>
+        <id>https://inhere.github.io/blog/2026/apic-intro/</id>
+        <summary type="html">apic 是一个可以把任何 HTTP API 变成命令行的工具：读取 API 的定义（OpenAPI / Swagger，或几行 YAML），每个接口生成一条命令，参数变成选项，带 shell 补全。
+
+定义即命令：有 OpenAPI 文档的服务一条 site add 接入；没有文档的内部服务，写几行 YAML 列出接口即可。apic link 还能给站点生成独立的命令入口，如 petctl。
+多环境与认证：dev / prod 各自的地址和凭证，支持 bearer、basic、apikey、登录换 token、外部命令取 token；生产环境写操作要 --yes。
+取值、分页、换格式：--pick 跨层取字段、改列名，--all-pages 翻页合并，-o table / yaml 直接看。
+人和 AI agent 共用：stdout 只有响应体，退出码有固定含义，apic skill 生成给 agent 的 SKILL.md；密钥在 -v、--dry-run 和报错里一律打码。
+…</summary>
+        </entry>
+</feed>
